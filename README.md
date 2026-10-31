@@ -10,7 +10,7 @@ Run `npm test`, `npm run typecheck`, `npm run build`, `npm run audit:public`, `n
 
 ## Publication
 
-The manifest starts empty. No portrait, video, product screenshot, CV or research PDF is approved in this release candidate. Design reference files must never be publication assets. Research candidates are a source register, not published reports. The portrait placeholder is for private review; release remains incomplete until the owner verifies a genuine photograph or explicitly changes that requirement.
+The manifest includes only the owner-supplied professional portrait, with exact SHA-256 approval and a lossless EXIF/IPTC removal receipt. Decoded pixels and full square framing are unchanged. No video, product screenshot, CV or research PDF is approved. Design reference files must never be publication assets. Research candidates are a source register, not published reports.
 
 Every media release requires exact bytes, content/metadata inspection, rights/privacy review and owner approval of its SHA-256. Research also requires independent numerical/source review and full publication metadata. Historical files may remain accessible through Git history; deleting current copies does not erase past public exposure.
 

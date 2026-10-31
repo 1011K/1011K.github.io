@@ -1,5 +1,19 @@
 {
   "schemaVersion": 1,
   "research": [],
-  "media": []
+  "media": [
+    {
+      "kind": "PORTRAIT",
+      "title": "Professional portrait",
+      "alt": "Krishiv Ramchandani",
+      "path": "media/krishiv-ramchandani-portrait.jpg",
+      "sha256": "a87403e8a2f3c96777a80fad14652c06ca370622c2ec26136c95fb768d6921de",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner supplied this exact portrait in chat in response to the genuine-portrait request for authorized public deployment. EXIF and IPTC containers removed losslessly; decoded pixels and full square framing unchanged. Source SHA-256 d49e798332bcc736281f822cc75ed1f0bbb12ea4474dcfb97f7cde2019a64898. Identity and publication permission are owner-attested.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    }
+  ]
 }

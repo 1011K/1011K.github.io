@@ -41,6 +41,7 @@ test("exact approval hashes are required in both source and build", async () => 
   const original = readFileSync("publication-manifest.json");
   const bytes = "Synthetic audit fixture, never research";
   const record = {
+    ticker: "DLF",
     title: "Synthetic fixture",
     sector: "Test",
     methodology: "Test",

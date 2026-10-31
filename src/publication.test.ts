@@ -2,6 +2,7 @@ import { expect, it } from "vitest";
 import { isReleased, safeAssetPath, escapeHTML } from "./publication";
 import { assignments, filterResearch } from "./research";
 const valid = {
+  ticker: "DLF",
   publicationStatus: "APPROVED",
   researchProgress: "COMPLETE",
   verificationStatus: "VERIFIED",

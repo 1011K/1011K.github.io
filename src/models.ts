@@ -56,7 +56,7 @@ export interface OptionInput {
   time: number;
 }
 // Rational normal-tail approximation, with a continued fraction in the far tail.
-const cdf = (x: number) => {
+export const cdf = (x: number) => {
   const z = Math.abs(x);
   if (z > 37) return x > 0 ? 1 : 0;
   const e = Math.exp((-z * z) / 2);

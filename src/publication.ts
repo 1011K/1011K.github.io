@@ -14,7 +14,9 @@ export interface ReleaseAsset {
   path: string;
   sha256: string;
 }
+export const CORE_TICKERS = ["HDFCBANK", "DLF", "BHARTIARTL", "BAJFINANCE", "HDFCLIFE"];
 export interface ReleaseRecord {
+  ticker: string;
   title: string;
   sector: string;
   methodology: string;
@@ -50,6 +52,7 @@ export function isReleased(raw: unknown): raw is ReleaseRecord {
   if (!raw || typeof raw !== "object") return false;
   const r = raw as Record<string, unknown>;
   return (
+    CORE_TICKERS.includes(r.ticker as string) &&
     r.publicationStatus === "APPROVED" &&
     r.researchProgress === "COMPLETE" &&
     r.verificationStatus === "VERIFIED" &&

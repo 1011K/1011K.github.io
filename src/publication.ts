@@ -95,3 +95,27 @@ export function isReleased(raw: unknown): raw is ReleaseRecord {
     )
   );
 }
+
+export interface ApprovedMedia {
+  kind: 'CV' | 'DESIGN_REFERENCE';
+  title: string;
+  alt: string;
+  path: string;
+  sha256: string;
+  approved: true;
+  approvedBy: string;
+  approvedAt: string;
+  reviewReceipt: string;
+  rightsCleared: true;
+  privacyCleared: true;
+}
+export function isApprovedMedia(raw: unknown): raw is ApprovedMedia {
+  if (!raw || typeof raw !== 'object') return false;
+  const a = raw as Record<string, unknown>;
+  return a.approved === true && a.rightsCleared === true && a.privacyCleared === true
+    && ['title','alt','approvedBy','reviewReceipt'].every(k=>text(a[k]))
+    && date(a.approvedAt) && safeAssetPath(a.path)
+    && typeof a.sha256 === 'string' && /^[a-f0-9]{64}$/.test(a.sha256)
+    && ((a.kind === 'CV' && /^media\/[\w-]+\.pdf$/.test(a.path))
+      || (a.kind === 'DESIGN_REFERENCE' && /^media\/[\w-]+\.(png|jpg|jpeg|webp)$/.test(a.path)));
+}

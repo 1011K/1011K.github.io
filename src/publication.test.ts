@@ -82,3 +82,16 @@ it("escapes metadata before HTML interpolation", () =>
   expect(escapeHTML('<img src=x onerror="x">&\'')).toBe(
     "&lt;img src=x onerror=&quot;x&quot;&gt;&amp;&#39;",
   ));
+
+it('approves only reviewed CV and conceptual-design assets with exact hashes', async () => {
+  const {isApprovedMedia}=await import('./publication');
+  const asset={kind:'CV',title:'Professional CV',alt:'Professional CV',path:'media/krishiv-cv.pdf',sha256:'a'.repeat(64),approved:true,approvedBy:'Krishiv Ramchandani',approvedAt:'2026-10-31',reviewReceipt:'Explicit owner publication request',rightsCleared:true,privacyCleared:true};
+  expect(isApprovedMedia(asset)).toBe(true);
+  for(const key of Object.keys(asset))expect(isApprovedMedia({...asset,[key]:null}),key).toBe(false);
+  expect(isApprovedMedia({...asset,approved:false})).toBe(false);
+  expect(isApprovedMedia({...asset,privacyCleared:false})).toBe(false);
+  expect(isApprovedMedia({...asset,kind:'CV',path:'media/cv.png'})).toBe(false);
+  expect(isApprovedMedia({...asset,kind:'DESIGN_REFERENCE',path:'media/design.png'})).toBe(true);
+  expect(isApprovedMedia({...asset,path:'https://example.com/cv.pdf'})).toBe(false);
+  expect(isApprovedMedia({...asset,sha256:'invalid'})).toBe(false);
+});

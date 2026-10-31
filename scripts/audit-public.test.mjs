@@ -51,12 +51,12 @@ test('exact approval hashes are required in both source and build', async () => 
   };
   mkdirSync('public/reports',{recursive:true});mkdirSync('dist/reports',{recursive:true});
   try {
-    writeFileSync('publication-manifest.json',JSON.stringify({schemaVersion:1,research:[record],media:[]}));
+    writeFileSync('publication-manifest.json',JSON.stringify({...JSON.parse(original),research:[record]}));
     writeFileSync('public/reports/synthetic-probe.pdf',bytes);writeFileSync('dist/reports/synthetic-probe.pdf',bytes);
     assert.match(run(),/audit passed/);
     writeFileSync('dist/reports/synthetic-probe.pdf','Changed bytes');assert.throws(run,/hash mismatch|missing or changed/);
     writeFileSync('dist/reports/synthetic-probe.pdf',bytes);
-    writeFileSync('publication-manifest.json',JSON.stringify({schemaVersion:1,research:[{...record,privacyCleared:false}],media:[]}));
+    writeFileSync('publication-manifest.json',JSON.stringify({...JSON.parse(original),research:[{...record,privacyCleared:false}]}));
     assert.throws(run,/Incomplete or unapproved/);
   } finally {
     writeFileSync('publication-manifest.json',original);

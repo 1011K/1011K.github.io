@@ -25,8 +25,8 @@ The dev and preview servers bind to loopback. Development HMR uses loopback; COR
 - `/research/`: separate Reliance study summary; 17 proposed sector assignments with company/sector/method search. All 17 remain PLANNED, UNVERIFIED and publication WITHHELD.
 - `/lab/`: independent hypothetical DCF, two-asset risk, European Black–Scholes and a conceptual statement map. Formulas, units and limitations are visible. No real issuer valuations.
 - `/astra/`: high-level conceptual case study. Capability descriptions are owner-described, partial or experimental; no engine is publicly certified.
-- `/about/`: CV-grounded education, qualifications, experience and explicitly labelled simulations. No CV download.
-- `/contact/`: professional email, LinkedIn and GitHub. No phone or residential address.
+- `/about/`: CV-grounded education, qualifications, experience and explicitly labelled simulations. Public-safe CV download.
+- `/contact/`: professional email, LinkedIn and GitHub. Public-safe CV download; no phone or residential address.
 
 Separate HTML entries make direct static Pages navigation work without an SPA rewrite. The source-supplied ticker references remain explicitly unverified; no live tickers or price targets are displayed.
 
@@ -34,7 +34,7 @@ Separate HTML entries make direct static Pages navigation work without an SPA re
 
 Public source code is public data too. Keep original CVs, private handoffs, photos, videos, research PDFs, workbooks, proprietary data and review working files outside this repository. Do not copy the execution package into Git.
 
-`publication-manifest.json` is deliberately empty. No binary media or research assets are approved. `src/publication.ts` contains a shared fail-closed metadata and URL gate. Each future entry requires COMPLETE research progress, VERIFIED review status, explicit APPROVED publication status, owner name/date, review receipt, source/period/currency/scope/method/authorship/limitations metadata and true rights/privacy/legal/accuracy checks. Each file requires an exact safe relative path and SHA-256. Never set these fields automatically.
+`publication-manifest.json` records the owner-authorized public-safe CV and three supplied conceptual design reference images by exact SHA-256. No research documents are approved. The design images are visibly labelled conceptual; they are not private application captures. `src/publication.ts` contains a shared fail-closed metadata and URL gate. Each future entry requires COMPLETE research progress, VERIFIED review status, explicit APPROVED publication status, owner name/date, review receipt, source/period/currency/scope/method/authorship/limitations metadata and true rights/privacy/legal/accuracy checks. Each file requires an exact safe relative path and SHA-256. Never set these fields automatically.
 
 A future release requires manual inspection of the precise file, metadata, hidden sheets, notes, external links, image/video content and redistribution rights. A valid manifest is an auditable record, not proof that a human performed those checks. The owner must approve the exact bytes. Reports live only under `public/reports/`; approved media only under `public/media/`. Files are rejected if missing, changed, duplicated, unapproved or absent from the built output. Runtime links use the same metadata gate; the build audit verifies actual bytes.
 
@@ -50,10 +50,10 @@ Black–Scholes assumes European exercise, no dividends, constant rates/volatili
 
 The two-asset example preserves the original tested calculation. Its default 25% weighted average versus 20% portfolio volatility means 5 percentage points, or 20% relative reduction. No return projection is implied.
 
-## Release withheld
+## Release controls
 
-No merge or deployment is authorized. The legacy branch deployment script now exits without pushing. The proposed workflow runs review checks and permits a Pages release only on manual dispatch with `owner_approved=true`; there is no push-to-main deployment trigger. Use an exact reviewed ref after the owner explicitly approves it.
+The owner explicitly authorized the initial merge and public release in chat on 31 October 2026. Future releases still require explicit owner approval. The legacy branch deployment script now exits without pushing. The proposed workflow runs review checks and permits a Pages release only on manual dispatch with `owner_approved=true`; there is no push-to-main deployment trigger. Use an exact reviewed ref after the owner explicitly approves it.
 
-At inspection, Pages uses the existing `gh-pages` branch and main has no branch protection. These remote settings are not changed by this implementation. Before release, configure required checks/reviewers and a protected `github-pages` environment, resolve any Actions account restriction, and deliberately choose the Pages publishing source. Do not force-push or erase published history. Local passing checks do not establish hosted CI or deployment success.
+At inspection, Pages uses the existing `gh-pages` branch and main has no branch protection. These remote settings are not changed by this implementation. Recommended administration improvements: configure required checks/reviewers and a protected `github-pages` environment. The existing gh-pages branch publishing source can receive a normal descendant commit of the audited build; no force push is needed. Do not force-push or erase published history. Local passing checks do not establish hosted CI or deployment success.
 
-Bundled Fraunces and Inter fonts retain their upstream Fontsource package licenses. No stock media or external brand assets are included.
+Bundled Fraunces and Inter fonts retain their upstream Fontsource package licenses. No stock media or external brand assets are included. Supplied conceptual design images and the public-safe CV are individually hash-allowlisted.

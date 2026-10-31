@@ -1,5 +1,58 @@
 {
   "schemaVersion": 1,
   "research": [],
-  "media": []
+  "media": [
+    {
+      "kind": "CV",
+      "title": "Professional CV",
+      "alt": "Professional CV for Krishiv Ramchandani",
+      "path": "media/krishiv-ramchandani-cv.pdf",
+      "sha256": "4aef51b04d2c90686ac918c387ff82dc1b56a27451f5db5d0446e96b2bed4575",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner explicitly requested immediate public release of supplied images and CV in chat on 2026-10-31. CV is a public-safe version without private phone/address or private project output counts; images are supplied conceptual design references.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "DESIGN_REFERENCE",
+      "title": "Professional portfolio design",
+      "alt": "Conceptual professional portfolio design reference",
+      "path": "media/01_general_professional_portfolio.png",
+      "sha256": "2780e4411deace3181d617815ee6695f60d6ad28867e9d75abc135eba0ec0fe3",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner explicitly requested immediate public release of supplied images and CV in chat on 2026-10-31. CV is a public-safe version without private phone/address or private project output counts; images are supplied conceptual design references.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "DESIGN_REFERENCE",
+      "title": "Independent lab design",
+      "alt": "Conceptual educational research lab design reference",
+      "path": "media/02_financial_research_lab.png",
+      "sha256": "5a7a16dcc3b8c6682f11a33858c22c1646fd9807ffb2282bff4517a4a219e17a",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner explicitly requested immediate public release of supplied images and CV in chat on 2026-10-31. CV is a public-safe version without private phone/address or private project output counts; images are supplied conceptual design references.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "DESIGN_REFERENCE",
+      "title": "ASTRA case-study design",
+      "alt": "Conceptual public ASTRA case-study design; not a private application screenshot",
+      "path": "media/03_astra_project_case_study.png",
+      "sha256": "52db4477ebc5c38420ec813b07b8cb49d5ba625db03c93441453054e08553a5e",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner explicitly requested immediate public release of supplied images and CV in chat on 2026-10-31. CV is a public-safe version without private phone/address or private project output counts; images are supplied conceptual design references.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    }
+  ]
 }

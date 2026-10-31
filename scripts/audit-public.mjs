@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, lstatSync, existsSync } from "node:fs";
 import { join, extname } from "node:path";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { isReleased } from "../src/publication.ts";
+import { isReleased, isApprovedMedia } from "../src/publication.ts";
 const manifest = JSON.parse(readFileSync("publication-manifest.json", "utf8"));
 const errors = [];
 const fail = (message) => errors.push(message);
@@ -14,7 +14,7 @@ if (
 )
   throw Error("Invalid publication manifest");
 const approved = new Map();
-for (const record of [...manifest.research, ...manifest.media]) {
+for (const record of manifest.research) {
   if (!isReleased(record)) {
     fail("Incomplete or unapproved release record");
     continue;
@@ -23,6 +23,11 @@ for (const record of [...manifest.research, ...manifest.media]) {
     if (approved.has(a.path)) fail("Duplicate approved asset path");
     approved.set(a.path, a.sha256);
   }
+}
+for (const asset of manifest.media) {
+  if (!isApprovedMedia(asset)) { fail("Incomplete or unapproved media record"); continue; }
+  if (approved.has(asset.path)) fail("Duplicate approved asset path");
+  approved.set(asset.path, asset.sha256);
 }
 const sourceFiles = new Set([
   ".gitignore",

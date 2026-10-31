@@ -1280,3 +1280,8 @@ footer {
 @media (max-width: 560px) {
   #dcf-chart text { font-size: 22px; }
 }
+
+.design-references { margin-top:24px; }
+.design-references figure { overflow:hidden; }
+.design-references img { display:block; width:100%; height:auto; }
+.design-references figcaption { padding:14px 18px; }

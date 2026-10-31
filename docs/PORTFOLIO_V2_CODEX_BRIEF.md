@@ -1,3 +1,9 @@
+# SUPERSEDED: READ FINAL MASTER SPEC FIRST
+
+The sole controlling contract for this portfolio is [PORTFOLIO_V2_FINAL_MASTER_SPEC_2026-10-31.md](PORTFOLIO_V2_FINAL_MASTER_SPEC_2026-10-31.md). This older draft is retained only as historical discussion. Its conflicting instructions about creating/sanitizing a new video, graduation month, released media or older site architecture are REVOKED. Implement the final master specification instead. No public deployment authorized.
+
+---
+
 # PORTFOLIO V2 — LOCKED CODEX IMPLEMENTATION BRIEF
 Version: 2026-10-31 | Status: APPROVED SCOPE, NOT APPROVED FOR PUBLIC DEPLOYMENT
 Repository: 1011K/1011K.github.io

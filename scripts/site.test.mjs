@@ -41,3 +41,12 @@ test('only manifest-approved exact bytes have public download links', () => {
   assert.ok(html.includes('src="/media/krishiv-ramchandani-portrait.jpg"'));
   assert.ok(html.includes('alt="Krishiv Ramchandani"'));
 });
+test('owner-approved standard CV uses exact supplied bytes and working download links', () => {
+  const cv = manifest.media.find(a => a.kind === 'CV');
+  assert.equal(cv?.path, 'media/krishiv-ramchandani-cv.pdf');
+  assert.equal(cv?.approved, true);
+  assert.equal(cv?.sha256, 'aeabe2ef5ab3ef5d6a627fa58e6421225e0b111c59f54ce72528d00bb05ed68e');
+  assert.ok(html.includes('Download CV'));
+  assert.ok(html.includes('href="/media/krishiv-ramchandani-cv.pdf" download'));
+  assert.doesNotMatch(html, /Request CV|CV%20request/);
+});

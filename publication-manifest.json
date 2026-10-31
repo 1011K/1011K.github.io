@@ -14,6 +14,19 @@
       "reviewReceipt": "Owner supplied this exact portrait in chat in response to the genuine-portrait request for authorized public deployment. EXIF and IPTC containers removed losslessly; decoded pixels and full square framing unchanged. Source SHA-256 d49e798332bcc736281f822cc75ed1f0bbb12ea4474dcfb97f7cde2019a64898. Identity and publication permission are owner-attested.",
       "rightsCleared": true,
       "privacyCleared": true
+    },
+    {
+      "kind": "CV",
+      "title": "Standard CV",
+      "alt": "Krishiv Ramchandani standard CV",
+      "path": "media/krishiv-ramchandani-cv.pdf",
+      "sha256": "aeabe2ef5ab3ef5d6a627fa58e6421225e0b111c59f54ce72528d00bb05ed68e",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-10-31",
+      "reviewReceipt": "Owner explicitly selected \"Publish supplied phone-removed CV\" in the current release chat. Exact supplied one-page PDF bytes retained. Render, extracted text, document metadata, XMP, decoded streams, annotations and embedded Content Credentials inspected. No phone, home address, private local path, executable action or nested source PDF found. Claims are owner-provided; historical project output counts are not independently audited publications.",
+      "rightsCleared": true,
+      "privacyCleared": true
     }
   ]
 }

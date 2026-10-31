@@ -6,11 +6,18 @@ export interface TwoAsset {
   rho: number; // correlation, -1..1
 }
 
-const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));
+const clamp = (x: number, lo: number, hi: number) =>
+  Math.min(hi, Math.max(lo, x));
 
 export function sanitize(i: TwoAsset): TwoAsset {
-  const f = (x: number, lo: number, hi: number) => (Number.isFinite(x) ? clamp(x, lo, hi) : lo);
-  return { w1: f(i.w1, 0, 1), s1: f(i.s1, 0, 2), s2: f(i.s2, 0, 2), rho: f(i.rho, -1, 1) };
+  const f = (x: number, lo: number, hi: number) =>
+    Number.isFinite(x) ? clamp(x, lo, hi) : lo;
+  return {
+    w1: f(i.w1, 0, 1),
+    s1: f(i.s1, 0, 2),
+    s2: f(i.s2, 0, 2),
+    rho: f(i.rho, -1, 1),
+  };
 }
 
 export function portfolioVol(raw: TwoAsset): number {
@@ -33,3 +40,7 @@ export function minVarWeight(raw: TwoAsset): number | null {
   if (d <= 1e-12) return s1 === 0 && s2 === 0 ? null : s1 <= s2 ? 1 : 0; // identical perfectly correlated risk
   return clamp((s2 * s2 - rho * s1 * s2) / d, 0, 1);
 }
+
+/** Absolute reduction in percentage points, not relative percent. */
+export const diversificationPoints = (i: TwoAsset): number =>
+  (undiversifiedVol(i) - portfolioVol(i)) * 100;

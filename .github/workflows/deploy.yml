@@ -1,14 +1,17 @@
-name: Deploy to GitHub Pages
+name: Review checks and approved Pages release
 on:
-  push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
+    inputs:
+      owner_approved:
+        description: Explicit owner approval to deploy this exact selected ref
+        required: true
+        default: false
+        type: boolean
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: pages
+  group: portfolio-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   build:
@@ -17,18 +20,26 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm test
+      - run: npm run typecheck
       - run: npm run build
       - run: npm run audit:public
+      - run: node --test scripts/audit-public.test.mjs
+      - run: npm audit --omit=dev
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'workflow_dispatch' && inputs.owner_approved
         with:
           path: dist
   deploy:
+    if: github.event_name == 'workflow_dispatch' && inputs.owner_approved
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.d.outputs.page_url }}

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Manual deploy to the gh-pages branch (GitHub Actions is billing-locked on this account).
+# Deliberately disabled. An implementation review never authorizes deployment.
 set -euo pipefail
-npm test && npm run build && npm run audit:public
-T=$(mktemp -d); cp -R dist/. "$T"/; touch "$T/.nojekyll"
-git -C "$T" init -q -b gh-pages; git -C "$T" add -A; git -C "$T" commit -q -m "Deploy built site"
-git -C "$T" push -f "$(git remote get-url origin)" gh-pages
-rm -rf "$T"
+cat >&2 <<'MESSAGE'
+Deployment is withheld. This script cannot push or force-push gh-pages.
+After owner approval of an exact reviewed commit, dispatch the manual Pages
+workflow for that commit with owner_approved=true. Protect the github-pages
+production environment with required reviewers before enabling releases.
+MESSAGE
+exit 1

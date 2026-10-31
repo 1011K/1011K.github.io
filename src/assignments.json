@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "sector": "Banking",
+    "company": "HDFC Bank",
+    "ticker_reference_not_verified_current": "HDFCBANK.NS",
+    "research_focus": "Advances, NIM, asset quality, capital; residual income",
+    "educational_demo": "ROE and cost-of-equity sensitivity",
+    "methodology_bucket": "BANK",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 2,
+    "sector": "NBFCs",
+    "company": "Bajaj Finance",
+    "ticker_reference_not_verified_current": "BAJFINANCE.NS",
+    "research_focus": "AUM, credit losses, funding, capital; sector-specific equity valuation",
+    "educational_demo": "Credit-cost and ROE scenario",
+    "methodology_bucket": "NBFC",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 3,
+    "sector": "Life insurance",
+    "company": "HDFC Life",
+    "ticker_reference_not_verified_current": "HDFCLIFE.NS",
+    "research_focus": "Embedded value, VNB, persistency, product mix",
+    "educational_demo": "VNB margin and persistency sensitivity",
+    "methodology_bucket": "LIFE_INSURANCE",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 4,
+    "sector": "Information Technology",
+    "company": "TCS",
+    "ticker_reference_not_verified_current": "TCS.NS",
+    "research_focus": "Revenue drivers, margins, reinvestment, FCFF",
+    "educational_demo": "DCF WACC / growth explorer",
+    "methodology_bucket": "IT_SERVICES",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 5,
+    "sector": "Pharmaceuticals & Healthcare",
+    "company": "Sun Pharma",
+    "ticker_reference_not_verified_current": "SUNPHARMA.NS",
+    "research_focus": "Segment growth, specialty products, R&D, regulatory risk",
+    "educational_demo": "Segment valuation sensitivity",
+    "methodology_bucket": "PHARMA",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 6,
+    "sector": "FMCG",
+    "company": "Nestlé India",
+    "ticker_reference_not_verified_current": "NESTLEIND.NS",
+    "research_focus": "Volume, price, mix, margins, reinvestment",
+    "educational_demo": "Volume-price-mix bridge",
+    "methodology_bucket": "FMCG",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 7,
+    "sector": "Automobiles",
+    "company": "Maruti Suzuki",
+    "ticker_reference_not_verified_current": "MARUTI.NS",
+    "research_focus": "Volumes, ASP, product mix, EV transition, capex",
+    "educational_demo": "Volume / ASP scenario",
+    "methodology_bucket": "AUTO",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 8,
+    "sector": "Metals & Mining",
+    "company": "Tata Steel",
+    "ticker_reference_not_verified_current": "TATASTEEL.NS",
+    "research_focus": "Pricing cycle, input spreads, capacity, capital intensity",
+    "educational_demo": "Mid-cycle EBITDA scenario",
+    "methodology_bucket": "METALS_MINING",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 9,
+    "sector": "Oil & Gas",
+    "company": "ONGC",
+    "ticker_reference_not_verified_current": "ONGC.NS",
+    "research_focus": "Production, commodity realizations, reserves, capex",
+    "educational_demo": "Price and output scenario",
+    "methodology_bucket": "OIL_GAS",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 10,
+    "sector": "Power & Utilities",
+    "company": "NTPC",
+    "ticker_reference_not_verified_current": "NTPC.NS",
+    "research_focus": "Generation, utilization, capacity, regulatory returns",
+    "educational_demo": "Capacity and regulated return sensitivity",
+    "methodology_bucket": "POWER_UTILITIES",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 11,
+    "sector": "Industrials & Capital Goods",
+    "company": "Larsen & Toubro",
+    "ticker_reference_not_verified_current": "LT.NS",
+    "research_focus": "Order book conversion, execution, cash flows, working capital",
+    "educational_demo": "Order book to revenue bridge",
+    "methodology_bucket": "INDUSTRIALS_EPC",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 12,
+    "sector": "Real Estate",
+    "company": "DLF",
+    "ticker_reference_not_verified_current": "DLF.NS",
+    "research_focus": "Presales, project cash flows, land/property NAV, net debt",
+    "educational_demo": "Property NAV scenario",
+    "methodology_bucket": "REAL_ESTATE",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 13,
+    "sector": "Telecommunications",
+    "company": "Bharti Airtel",
+    "ticker_reference_not_verified_current": "BHARTIARTL.NS",
+    "research_focus": "ARPU, subscribers, margins, capex, leverage",
+    "educational_demo": "ARPU / margins scenario",
+    "methodology_bucket": "TELECOM",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 14,
+    "sector": "Cement & Building Materials",
+    "company": "Ambuja Cements",
+    "ticker_reference_not_verified_current": "AMBUJACEM.NS",
+    "research_focus": "Capacity, utilization, costs, EBITDA per tonne",
+    "educational_demo": "EBITDA per tonne scenario",
+    "methodology_bucket": "CEMENT",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 15,
+    "sector": "Chemicals",
+    "company": "SRF",
+    "ticker_reference_not_verified_current": "SRF.NS",
+    "research_focus": "Segment dynamics, capex, cycle, margins",
+    "educational_demo": "Segment revenue and margin sensitivity",
+    "methodology_bucket": "CHEMICALS",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 16,
+    "sector": "Consumer Discretionary",
+    "company": "Titan Company",
+    "ticker_reference_not_verified_current": "TITAN.NS",
+    "research_focus": "Store economics, category mix, inventory, cash conversion",
+    "educational_demo": "Same-store growth scenario",
+    "methodology_bucket": "RETAIL",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  },
+  {
+    "id": 17,
+    "sector": "Transportation & Logistics",
+    "company": "Container Corporation of India",
+    "ticker_reference_not_verified_current": "CONCOR.NS",
+    "research_focus": "Container volumes, rail/modal mix, unit economics",
+    "educational_demo": "Volume / realization scenario",
+    "methodology_bucket": "TRANSPORTATION",
+    "publication_status": "PLANNED - NOT PUBLICATION APPROVED"
+  }
+]

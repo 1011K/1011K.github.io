@@ -8,8 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "audit:public": "node scripts/audit-public.mjs"
+    "test": "vitest run src",
+    "audit:public": "node scripts/audit-public.mjs",
+    "test:audit": "node --test scripts/audit-public.test.mjs"
   },
   "devDependencies": {
     "typescript": "^7.0.2",

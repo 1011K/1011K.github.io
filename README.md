@@ -22,3 +22,8 @@ Target: `1011K/1011K.github.io` (repo does not exist yet; not created). Push `ma
 
 ## Independence
 No ASTRA code, data or API is used. The demo is an independent textbook calculation.
+
+## Live deploy (current)
+Live at https://1011k.github.io/ , served from the `gh-pages` branch (Pages source: branch, legacy).
+The Actions workflow is kept but cannot run while the account has a billing lock. Until fixed, deploy with
+`./scripts/deploy-branch.sh`. If Actions is restored, switch Pages source to "GitHub Actions".

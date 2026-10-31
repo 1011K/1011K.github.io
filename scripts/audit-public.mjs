@@ -5,13 +5,18 @@ import { join, extname } from 'node:path';
 const BAD_FILES = ['.map', '.env', '.pem', '.key'];
 const BAD_TEXT = [/localhost/i, /\/Users\//, /\+91\s?\d{5}/, /127\.0\.0\.1/, /astra-financial-platform/i, /api[_-]?key/i, /secret/i, /sourceMappingURL/, /gho_[A-Za-z0-9]/];
 const REVIEW = ['.pdf', '.mp4', '.mov', '.png', '.jpg', '.jpeg', '.webp']; // must be owner-approved assets
+// Explicit file allowlist. Add a reviewed file path here only after owner publication approval.
+const APPROVED_MEDIA = new Set([]);
 
 let bad = 0;
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
 for (const f of walk('dist')) {
   const ext = extname(f);
   if (BAD_FILES.includes(ext)) { console.error('BAD FILE', f); bad++; }
-  if (REVIEW.includes(ext)) console.log('REVIEW (confirm owner-approved):', f);
+  if (REVIEW.includes(ext)) {
+    const normalized = f.replace(/^dist[\\/]/, '').replace(/\\/g, '/');
+    if (!APPROVED_MEDIA.has(normalized)) { console.error('UNAPPROVED PUBLIC MEDIA', normalized); bad++; }
+  }
   if (['.html', '.js', '.css', '.json', '.svg', '.txt', '.xml'].includes(ext)) {
     const t = readFileSync(f, 'utf8');
     for (const re of BAD_TEXT) if (re.test(t)) { console.error('BAD TEXT', re, 'in', f); bad++; }

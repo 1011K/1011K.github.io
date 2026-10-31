@@ -1,10 +1,8 @@
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/inter";
 import "./style.css";
-import { mountLabs } from "./lab";
 import { escapeHTML as e, isReleased } from "./publication";
 import manifest from "../publication-manifest.json";
-mountLabs();
 const menu = document.querySelector<HTMLButtonElement>(".menu-toggle")!;
 const nav = document.getElementById("main-nav")!;
 menu.addEventListener("click", () => {
@@ -37,12 +35,6 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>
   }),
 );
 if (location.hash) requestAnimationFrame(focusHash);
-document
-  .querySelectorAll<HTMLButtonElement>(".radial-node button")
-  .forEach((button) => {
-    const node = button.parentElement!;
-    button.addEventListener("click", () => node.classList.toggle("selected"));
-  });
 const released = (manifest.research as unknown[]).filter(isReleased);
 document.getElementById("released-research")!.innerHTML = released
   .map(

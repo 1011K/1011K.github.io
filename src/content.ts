@@ -75,7 +75,7 @@ export const education = {
 };
 
 export const qualifications: { name: string; detail: string }[] = [
-  { name: 'CFA Program', detail: 'Passed Level I (2026). Registered for Level II, May 2027. Candidate, not a charterholder.' },
+  { name: 'CFA Program', detail: 'Passed Level I of the CFA Program (2026); registered candidate for the Level II exam (May 2027).' },
   { name: 'NISM Series XV', detail: 'Research Analyst: passed.' },
   { name: 'NISM Series VIII', detail: 'Equity Derivatives: passed.' },
   { name: 'NISM Series IX', detail: 'Merchant Banking: passed.' },

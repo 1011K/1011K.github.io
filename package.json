@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/audit-public.mjs --source-only && tsc --noEmit && vite build && node scripts/audit-public.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run src",
+    "test": "vitest run src && node --test scripts/site.test.mjs",
     "audit:public": "node scripts/audit-public.mjs",
     "test:audit": "node --test scripts/audit-public.test.mjs"
   },

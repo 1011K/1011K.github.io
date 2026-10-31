@@ -3,47 +3,651 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Krishiv Ramchandani — Finance Research Portfolio</title>
+    <meta name="color-scheme" content="dark" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Krishiv Ramchandani — Finance & Research</title>
     <meta
       name="description"
-      content="Krishiv Ramchandani: final-year BBA student at Jai Hind College, Mumbai. Equity research, valuation and financial modelling; CFA Level I passed, Level II registered."
+      content="Krishiv Ramchandani. Final-year BBA student at Jai Hind College, Mumbai. Independent equity research, valuation, financial modelling and ASTRA."
     />
-    <meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href="https://1011k.github.io/" />
     <meta
       property="og:title"
-      content="Krishiv Ramchandani — Finance Research Portfolio"
+      content="Krishiv Ramchandani — Finance & Research"
     />
     <meta
       property="og:description"
-      content="Finance, research and the technology behind decisions. An independent student portfolio."
+      content="A developing practice in business analysis, valuation and investment research."
     />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://1011k.github.io/" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' text-anchor='middle' fill='%23fff'%3EKR%3C/text%3E%3C/svg%3E"
+      title="Krishiv.r"
+      aria-label="Krishiv.r"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctitle%3EKrishiv.r%3C/title%3E%3Crect width='64' height='64' rx='12' fill='%23131110'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia' font-size='42' fill='%23eee9df'%3EK.%3C/text%3E%3C/svg%3E"
     />
-    <script>
-      // Apply saved theme before paint to avoid a flash.
-      (function () {
-        var t = null;
-        try {
-          t = localStorage.getItem("theme");
-        } catch (e) {}
-        if (t !== "light" && t !== "dark") t = "dark"; // Match the black/off-white design reference
-        document.documentElement.dataset.theme = t;
-      })();
-    </script>
-  </head>
-  <body data-page="profile">
-    <a class="skip" href="#main">Skip to content</a>
-    <div id="app"></div>
-    <noscript
-      ><p style="padding: 2rem; font-family: sans-serif">
-        This page needs JavaScript. Professional enquiries:
-        krishivramchandani@gmail.com
-      </p></noscript
-    >
     <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <noscript
+      ><style>
+        .menu-toggle {
+          display: none;
+        }
+        .masthead nav {
+          display: flex;
+          position: static;
+          flex-wrap: wrap;
+          padding: 12px 0;
+          border: 0;
+          gap: 18px;
+        }
+        .nav-inner {
+          height: auto;
+          min-height: 68px;
+          flex-wrap: wrap;
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+        .nav-inner nav {
+          width: 100%;
+          order: 3;
+        }
+        .nav-note {
+          display: none;
+        }
+      </style></noscript
+    >
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="masthead">
+      <div class="nav-inner">
+        <a class="wordmark" href="#about">Krishiv.r</a
+        ><button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          Menu
+        </button>
+        <nav id="main-nav" aria-label="Main navigation">
+          <a href="#about">About</a><a href="#research">Research</a
+          ><a href="#experience">Experience</a><a href="#astra">ASTRA</a
+          ><a href="#labs">Labs</a><a href="#contact">Contact</a>
+        </nav>
+        <span class="nav-note">Mumbai, India</span>
+      </div>
+    </header>
+    <main id="main" class="shell" tabindex="-1">
+      <section
+        id="about"
+        class="hero"
+        tabindex="-1"
+        aria-labelledby="hero-title"
+      >
+        <div class="hero-copy">
+          <p class="eyebrow">Finance / Research / Independent thinking</p>
+          <h1 id="hero-title">Krishiv<br /><span>Ramchandani.</span></h1>
+          <p class="hero-deck">
+            Understanding businesses.<br />Questioning assumptions.
+          </p>
+          <p class="summary">
+            I am a final-year BBA student at Jai Hind College, Mumbai, with a
+            strong interest in equity research, private equity, hedge funds and
+            buy-side investment analysis. Through investment research
+            experience, independent company valuation and financial modelling, I
+            focus on understanding businesses, challenging assumptions and
+            evaluating risk. Alongside finance, I am developing ASTRA, an
+            integrated equity research platform bringing financial, technical,
+            event-driven, derivatives and portfolio perspectives into a
+            connected research workflow.
+          </p>
+          <div class="actions">
+            <a class="button solid" href="#research"
+              >View Research <span aria-hidden="true">↗</span></a
+            ><a class="button" href="#astra"
+              >Explore ASTRA <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="hero-links">
+            <a
+              href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"
+              rel="noopener noreferrer"
+              target="_blank"
+              >LinkedIn ↗</a
+            ><a
+              href="https://github.com/1011K"
+              rel="noopener noreferrer"
+              target="_blank"
+              >GitHub ↗</a
+            ><a href="#education">Education & qualifications ↓</a>
+          </div>
+        </div>
+        <aside
+          class="portrait-review"
+          aria-label="Portrait pending owner verification"
+        >
+          <div class="portrait-frame">
+            <p class="eyebrow">Private review / Portrait withheld</p>
+            <span class="portrait-rule" aria-hidden="true"></span>
+            <p>Space reserved for<br />a genuine photograph.</p>
+            <p class="fine">
+              Owner identity, crop and exact file approval pending. No
+              substitute image.
+            </p>
+          </div>
+          <p class="portrait-caption">
+            A developing practice in finance,<br />grounded in research and
+            judgement.
+          </p>
+        </aside>
+      </section>
+      <section
+        id="education"
+        class="section"
+        tabindex="-1"
+        aria-labelledby="education-title"
+      >
+        <div class="section-label">
+          <span>01 / Foundation</span
+          ><a href="#qualifications">Qualifications ↓</a>
+        </div>
+        <div class="editorial">
+          <div>
+            <p class="eyebrow">Education</p>
+            <h2 id="education-title">Jai Hind College,<br />Mumbai.</h2>
+            <p>BBA · Final year</p>
+            <p class="muted">2024–2027 · Expected graduation 2027</p>
+          </div>
+          <div>
+            <p class="academic-intro">
+              A foundation in business, strengthened through independent
+              research and practical financial modelling.
+            </p>
+            <dl class="academic-record">
+              <div>
+                <dt>Semester 1</dt>
+                <dd>10.00</dd>
+              </div>
+              <div>
+                <dt>Semester 2</dt>
+                <dd>10.00</dd>
+              </div>
+              <div>
+                <dt>Semester 3</dt>
+                <dd>9.33</dd>
+              </div>
+              <div>
+                <dt>Semester 4</dt>
+                <dd>9.73</dd>
+              </div>
+            </dl>
+            <p class="fine">
+              Semester GPA / 10 · Class XII 91% · Class X 97.2%. Owner-provided
+              academic record.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
+        id="qualifications"
+        class="section"
+        tabindex="-1"
+        aria-labelledby="qualifications-title"
+      >
+        <div class="section-label">
+          <span>02 / Learning into practice</span>
+        </div>
+        <div class="editorial">
+          <div>
+            <p class="eyebrow">Qualifications</p>
+            <h2 id="qualifications-title">
+              Build the foundation.<br />Apply the learning.
+            </h2>
+          </div>
+          <dl class="qualification-list">
+            <div>
+              <dt>Passed Level I of the CFA Program</dt>
+              <dd>Financial statements, valuation and investment analysis.</dd>
+            </div>
+            <div>
+              <dt>CFA Level II registered candidate, May 2027</dt>
+              <dd>Continuing study of investment analysis and valuation.</dd>
+            </div>
+            <div>
+              <dt>NISM Series XV Research Analyst, passed</dt>
+              <dd>
+                Company research and interpretation of financial information.
+              </dd>
+            </div>
+            <div>
+              <dt>NISM Series VIII Equity Derivatives, passed</dt>
+              <dd>Expiry payoffs, market mechanics and risk context.</dd>
+            </div>
+            <div>
+              <dt>NISM Series IX Merchant Banking, passed</dt>
+              <dd>Capital markets and corporate finance context.</dd>
+            </div>
+            <div>
+              <dt>CFA Financial Modeling Practical Skills Module completed</dt>
+              <dd>
+                Forecast structure and the discipline of model assumptions.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+      <section
+        id="research"
+        class="section"
+        tabindex="-1"
+        aria-labelledby="research-title"
+      >
+        <div class="section-label">
+          <span>03 / Independent research</span
+          ><span>Business first. Model second.</span>
+        </div>
+        <div class="section-intro">
+          <h2 id="research-title">
+            Questions before<br /><em>conclusions.</em>
+          </h2>
+          <p>
+            Understanding value means connecting business economics with
+            assumptions that can be challenged.
+          </p>
+        </div>
+        <article class="research-study">
+          <div>
+            <p class="eyebrow">Reliance Industries / Independent study</p>
+            <h3>One company.<br />Different engines of value.</h3>
+            <p class="research-question">
+              How do Reliance’s different businesses contribute to value, and
+              which assumptions change the investment case?
+            </p>
+            <div class="tags">
+              <span>10-year FCFF</span><span>Segment SOTP</span
+              ><span>Reverse DCF</span><span>Peer comparisons</span>
+            </div>
+          </div>
+          <dl class="study-detail">
+            <div>
+              <dt>Method & contribution</dt>
+              <dd>
+                Independent financial modelling, research synthesis and
+                sensitivity analysis using a ten-year FCFF framework,
+                segment-based valuation and WACC sensitivities.
+              </dd>
+            </div>
+            <div>
+              <dt>Business drivers to examine</dt>
+              <dd>
+                Digital subscriber economics, retail growth and operating
+                margins, alongside energy-cycle cash flows and reinvestment
+                requirements.
+              </dd>
+            </div>
+            <div>
+              <dt>Counter-thesis & risk</dt>
+              <dd>
+                Capital intensity, competitive pressure and weaker segment
+                margins can undermine growth assumptions. A valuation must
+                reconcile segment scope and net debt.
+              </dd>
+            </div>
+            <div>
+              <dt>Date & publication status</dt>
+              <dd>
+                Owner-described study, 2026. Final report and model await
+                source, numerical and publication review. No valuation figure or
+                research download is released.
+              </dd>
+            </div>
+          </dl>
+        </article>
+        <div id="released-research"></div>
+      </section>
+      <section
+        id="experience"
+        class="section"
+        tabindex="-1"
+        aria-labelledby="experience-title"
+      >
+        <div class="section-label"><span>04 / Practical experience</span></div>
+        <div class="editorial">
+          <div>
+            <p class="eyebrow">Aug–Sep 2026 / Mumbai</p>
+            <h2 id="experience-title">Investments<br />internship.</h2>
+            <p class="org">
+              Ascendas Firstspace Development Management Pvt. Ltd.
+            </p>
+          </div>
+          <div>
+            <ul class="experience-list">
+              <li>
+                Researched industrial and logistics markets across Mumbai, Pune
+                and NCR, comparing rents, supply and developer activity.
+              </li>
+              <li>
+                Reconciled property and market datasets to support consistent
+                location-level comparisons.
+              </li>
+              <li>
+                Examined Japan–India investment structures and GIFT City AIF
+                concepts through company and regulatory material.
+              </li>
+            </ul>
+            <div class="learning-note">
+              <p class="eyebrow">Additional learning / Not employment</p>
+              <h3>11 Forage Virtual Job Simulations</h3>
+              <p class="muted">
+                Self-paced exercises across investment banking, private equity,
+                finance and analysis. Separate from professional employment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="astra"
+        class="section astra-section"
+        tabindex="-1"
+        aria-labelledby="astra-title"
+      >
+        <div class="section-label">
+          <span>05 / Independent project</span
+          ><span>Finance meets applied technology</span>
+        </div>
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">A connected research workflow</p>
+            <h2 id="astra-title" class="astra-heading">ASTRA</h2>
+          </div>
+          <p>
+            An independent equity research platform bringing distinct financial
+            and market perspectives into one research workflow.
+          </p>
+        </div>
+        <div class="radial" aria-label="ASTRA public purpose map">
+          <div class="radial-orbit" aria-hidden="true"></div>
+          <div class="radial-center">
+            <strong>ASTRA</strong><span>Connected perspectives</span>
+          </div>
+          <div class="radial-node node-1">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-1"
+            >
+              <span>01</span>Financial Intelligence
+            </button>
+            <p id="node-detail-1">
+              Statements, valuations and peer comparisons.
+            </p>
+          </div>
+          <div class="radial-node node-2">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-2"
+            >
+              <span>02</span>Technical Intelligence
+            </button>
+            <p id="node-detail-2">Trends and historical chart context.</p>
+          </div>
+          <div class="radial-node node-3">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-3"
+            >
+              <span>03</span>Mosaic Intelligence
+            </button>
+            <p id="node-detail-3">Announcements and company events.</p>
+          </div>
+          <div class="radial-node node-4">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-4"
+            >
+              <span>04</span>Derivatives & Quant
+            </button>
+            <p id="node-detail-4">Payoff and risk context.</p>
+          </div>
+          <div class="radial-node node-5">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-5"
+            >
+              <span>05</span>Portfolio Intelligence
+            </button>
+            <p id="node-detail-5">Allocation and risk studies.</p>
+          </div>
+          <div class="radial-node node-6">
+            <button
+              type="button"
+              aria-expanded="true"
+              aria-controls="node-detail-6"
+            >
+              <span>06</span>Market Scan
+            </button>
+            <p id="node-detail-6">Screening and discovery.</p>
+          </div>
+        </div>
+        <div class="astra-foot">
+          <p>
+            <span class="eyebrow">My contribution</span><br />Financial research
+            and modelling concepts, AI-assisted coding and output testing. I use
+            software to connect analytical ideas while retaining responsibility
+            for checking assumptions and results.
+          </p>
+          <p class="fine">
+            Public purpose map. Educational labs below are separate
+            illustrations. Product media is withheld until exact original files
+            and publication rights are verified.
+          </p>
+        </div>
+      </section>
+      <section
+        id="labs"
+        class="section labs-section"
+        tabindex="-1"
+        aria-labelledby="labs-title"
+      >
+        <div class="section-label">
+          <span>06 / Interactive research</span
+          ><span>Independent educational illustrations</span>
+        </div>
+        <div class="section-intro">
+          <h2 id="labs-title">
+            Change an assumption.<br /><em>Inspect what follows.</em>
+          </h2>
+          <p>
+            Four distinct ways to explore valuation, market rules, expiry
+            payoffs and portfolio risk. Hypothetical inputs, transparent
+            methods.
+          </p>
+        </div>
+        <nav class="lab-links" aria-label="Jump to a lab">
+          <a href="#lab-financial">01 Financial</a
+          ><a href="#lab-technical">02 Technical</a
+          ><a href="#lab-derivatives">03 Derivatives</a
+          ><a href="#lab-portfolio">04 Portfolio</a>
+        </nav>
+        <section
+          id="lab-financial"
+          class="lab"
+          tabindex="-1"
+          aria-labelledby="financial-title"
+        >
+          <header class="lab-heading">
+            <p class="eyebrow">Lab 01 / Financial Intelligence</p>
+            <h3 id="financial-title">Value lives in the assumptions.</h3>
+            <p>
+              Hypothetical diversified company · Five forecast years · ₹ crore ·
+              Enterprise and equity value, never a stock target.
+            </p>
+          </header>
+          <div id="financial-workspace"></div>
+          <noscript
+            ><p>
+              Enable JavaScript for interactive DCF charts. FCFF = revenue ×
+              margin × (1 − tax) × (1 − reinvestment). WACC must exceed terminal
+              growth.
+            </p></noscript
+          >
+        </section>
+        <section
+          id="lab-technical"
+          class="lab"
+          tabindex="-1"
+          aria-labelledby="technical-title"
+        >
+          <header class="lab-heading">
+            <p class="eyebrow">Lab 02 / Technical Intelligence</p>
+            <h3 id="technical-title">Rules, signals and their cost.</h3>
+            <p class="data-label">
+              SYNTHETIC EDUCATIONAL SERIES · Hypothetical Asset A · 180 sessions
+              · No historical share prices.
+            </p>
+          </header>
+          <div id="technical-workspace"></div>
+          <noscript
+            ><p>
+              Enable JavaScript to compare EMA trend and RSI threshold rules on
+              a synthetic series.
+            </p></noscript
+          >
+        </section>
+        <section
+          id="lab-derivatives"
+          class="lab"
+          tabindex="-1"
+          aria-labelledby="derivatives-title"
+        >
+          <header class="lab-heading">
+            <p class="eyebrow">Lab 03 / Derivatives & Quant</p>
+            <h3 id="derivatives-title">Define the payoff. See the risk.</h3>
+            <p>
+              Hypothetical underlying · P&L at expiry · Input premiums are
+              assumptions, not market quotes.
+            </p>
+          </header>
+          <div id="derivatives-workspace"></div>
+          <noscript
+            ><p>
+              Enable JavaScript for expiry P&L graphs. Long call P&L = max(0,
+              expiry price − strike) − premium.
+            </p></noscript
+          >
+        </section>
+        <section
+          id="lab-portfolio"
+          class="lab"
+          tabindex="-1"
+          aria-labelledby="portfolio-title"
+        >
+          <header class="lab-heading">
+            <p class="eyebrow">Lab 04 / Portfolio Risk & Allocation</p>
+            <h3 id="portfolio-title">Allocation changes the risk.</h3>
+            <p>
+              Two hypothetical assets · Long-only · Weights total 100% · No
+              return forecasts or account connection.
+            </p>
+          </header>
+          <div id="portfolio-workspace"></div>
+          <noscript
+            ><p>
+              Enable JavaScript for allocation and risk charts. Portfolio
+              variance combines weighted asset variances and covariance.
+            </p></noscript
+          >
+        </section>
+      </section>
+      <section
+        id="direction"
+        class="section"
+        tabindex="-1"
+        aria-labelledby="direction-title"
+      >
+        <div class="section-label"><span>07 / Career direction</span></div>
+        <div class="editorial">
+          <div>
+            <p class="eyebrow">Where I want to grow</p>
+            <h2 id="direction-title">
+              Closer to businesses.<br />Sharper on risk.
+            </h2>
+          </div>
+          <div>
+            <p class="academic-intro">
+              I am seeking opportunities to learn in equity research, valuation
+              and asset management, with longer-term interests in private
+              equity, hedge funds and buy-side investment analysis.
+            </p>
+            <dl class="qualification-list">
+              <div>
+                <dt>Financial analysis</dt>
+                <dd>
+                  Financial statements, forecasting, DCF, WACC, SOTP, comparable
+                  companies and sensitivity analysis.
+                </dd>
+              </div>
+              <div>
+                <dt>Practical tools</dt>
+                <dd>
+                  Excel and PowerPoint; basic Python, introductory SQL,
+                  AI-assisted JavaScript/TypeScript and Git/GitHub.
+                </dd>
+              </div>
+              <div>
+                <dt>Research habits</dt>
+                <dd>
+                  Business-model analysis, primary-source reconciliation and
+                  explicit consideration of uncertainty.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section
+        id="contact"
+        class="section contact-section"
+        tabindex="-1"
+        aria-labelledby="contact-title"
+      >
+        <div class="section-label">
+          <span>08 / Contact</span
+          ><span>Open to finance & research internships</span>
+        </div>
+        <h2 id="contact-title">Let’s start<br /><em>a conversation.</em></h2>
+        <a class="email-link" href="mailto:krishivramchandani@gmail.com"
+          >krishivramchandani@gmail.com <span aria-hidden="true">↗</span></a
+        >
+        <div class="hero-links">
+          <a
+            href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"
+            rel="noopener noreferrer"
+            target="_blank"
+            >LinkedIn ↗</a
+          ><a
+            href="https://github.com/1011K"
+            rel="noopener noreferrer"
+            target="_blank"
+            >GitHub ↗</a
+          >
+        </div>
+      </section>
+      <footer>
+        <span>© 2026 Krishiv Ramchandani</span
+        ><span>Independent learning & research.</span
+        ><a href="#about">Back to top ↑</a>
+      </footer>
+    </main>
   </body>
 </html>

@@ -3,17 +3,5 @@ export default defineConfig({
   base: "./",
   server: { host: "127.0.0.1", hmr: { host: "127.0.0.1" }, cors: false },
   preview: { host: "127.0.0.1", cors: false },
-  build: {
-    sourcemap: false,
-    rollupOptions: {
-      input: {
-        profile: "index.html",
-        research: "research/index.html",
-        lab: "lab/index.html",
-        astra: "astra/index.html",
-        about: "about/index.html",
-        contact: "contact/index.html",
-      },
-    },
-  },
+  build: { sourcemap: false, rollupOptions: { input: "index.html" } },
 });

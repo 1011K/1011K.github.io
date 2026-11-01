@@ -20,7 +20,7 @@ test('identity, navigation and contact work without JavaScript', () => {
   assert.match(html, /<h1[^>]*>Krishiv/);
   for (const id of ['about','education','experience','projects','astra','research','demos','simulations','contact']) assert.ok(html.includes(`id="${id}"`), id);
   const nav = [...html.matchAll(/<nav id="main-nav"[\s\S]*?<\/nav>/g)][0][0];
-  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Demos','Projects','Research','Experience','Qualifications','Simulations','Contact']);
+  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Demos','Projects','Research','Qualifications','Experience','Simulations','Contact']);
   for (const a of nav.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${a[1]}"`), a[1]);
   for (const href of page.matchAll(/href="#([^"]+)"/g)) assert.ok(page.includes(`id="${href[1]}"`), href[1]);
   assert.ok(html.includes('final-year BBA student at Jai Hind College, Mumbai'));

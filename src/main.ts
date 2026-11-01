@@ -42,6 +42,8 @@ const focusHash = () => {
   try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
   const target = document.getElementById(id);
   if (target) {
+    // Direct navigation to Research expands the section on demand.
+    if (id === "research") document.querySelector<HTMLDetailsElement>("#research-details")?.setAttribute("open", "");
     if (target instanceof HTMLDetailsElement) target.open = true;
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: "start" });

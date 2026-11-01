@@ -20,12 +20,12 @@ test('identity, navigation and contact work without JavaScript', () => {
   assert.match(html, /<h1[^>]*>Krishiv/);
   for (const id of ['about','education','experience','projects','astra','research','demos','simulations','contact']) assert.ok(html.includes(`id="${id}"`), id);
   const nav = [...html.matchAll(/<nav id="main-nav"[\s\S]*?<\/nav>/g)][0][0];
-  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Education','Experience','Projects','Research','Demonstrations','Simulations','Contact']);
+  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Demo','Projects','Research','Education','Experience','Simulations','Contact']);
   for (const a of nav.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${a[1]}"`), a[1]);
   for (const href of page.matchAll(/href="#([^"]+)"/g)) assert.ok(page.includes(`id="${href[1]}"`), href[1]);
   assert.ok(html.includes('final-year BBA student at Jai Hind College, Mumbai'));
   assert.ok(html.includes('CFA Level I') && html.includes('Level II candidate'));
-  assert.ok(page.includes('Ascendas Firstspace Development Management Pvt. Ltd.'));
+  assert.ok(page.includes('CapitaLand (Ascendas Firstspace)'));
   assert.ok(html.includes('mailto:krishivramchandani@gmail.com'));
   assert.ok(html.includes('href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"') && html.includes('href="https://github.com/1011K"'));
   for (const t of ['Industry Integrated with Tata Consultancy Services', 'April 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
@@ -110,4 +110,26 @@ test('built page, when present, has every generated section, working anchors and
   assert.equal((built.match(/class="case"/g) ?? []).length, 5);
   assert.equal((built.match(/role="tabpanel" class="panel"/g) ?? []).length, 5);
   assert.equal((built.match(/class="area"/g) ?? []).length, 6);
+});
+
+test('demo-first navigation and compact sections preserve discoverability', () => {
+  const sectionOrder = ['about', 'demos', 'projects', 'research', 'education', 'experience', 'simulations', 'contact'];
+  const positions = sectionOrder.map(id => html.indexOf('id="' + id + '"'));
+  assert.ok(positions.every(i => i >= 0), 'all requested sections exist');
+  assert.ok(positions.every((p, i) => i === 0 || p > positions[i - 1]), 'interactive demo follows hero before detailed sections');
+  assert.equal((html.match(/class="section-disclosure"/g) ?? []).length, 4);
+  for (const id of ['research','education','experience','simulations']) {
+    const start = html.indexOf('id="' + id + '"');
+    const end = html.indexOf('</section>', start);
+    const section = html.slice(start, end);
+    assert.match(section, /<details class="section-disclosure"><summary class="section-head">/);
+    assert.doesNotMatch(section, /<details class="section-disclosure" open/);
+  }
+  for (const id of ['valuation','technical','options','peers','correlation']) {
+    assert.ok(html.includes('href="#panel-' + id + '"'), id);
+  }
+  assert.match(html, /<details class="shots-block"><summary/);
+  assert.match(html, /<details class="labs-wrap"><summary/);
+  assert.doesNotMatch(html, /Studying businesses, questioning assumptions|I have researched industrial and logistics real estate investment/);
+  assert.match(html, /Aspiring Investment Analyst/);
 });

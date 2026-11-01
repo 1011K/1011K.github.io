@@ -89,7 +89,8 @@ export const companySelect = (selected: Ticker = "HDFCBANK") =>
   `<label class="field" for="company"><span>Company</span><select id="company" name="company">${COMPANIES.map((c) => `<option value="${c.ticker}"${c.ticker === selected ? " selected" : ""}>${e(c.name)} (${c.ticker})</option>`).join("")}</select></label>`;
 
 // --- Demonstrations ---
-const status = (d: Demo) => `<div class="banner" role="note"><b>RELEASE STATUS: WITHHELD</b><span>NOT YET ENGINE VERIFIED</span><p>${e(ENGINE_REASON)}</p><p class="mode-note"><b>Workstation mode:</b> ${e(d.mode)}</p></div>`;
+const status = () => `<div class="banner" role="note"><b>RELEASE STATUS: WITHHELD</b><span>NOT YET ENGINE VERIFIED</span><p>${e(ENGINE_REASON)} All five workstations below are working calculators on the inputs named in each one's mode line; open "Provenance, status and release gates" under any of them for the full ledger.</p></div>`;
+const chip = (d: Demo) => `<p class="modechip"><b>Workstation mode:</b> ${e(d.mode)}</p>`;
 const ledger = (d: Demo) => `<dl class="ledger">${(
   [
     ["Authoritative source", d.authority],
@@ -105,8 +106,9 @@ const ledger = (d: Demo) => `<dl class="ledger">${(
     ["In / out of sample", "Not run"],
   ] as [string, string][]
 ).map(([k, v]) => `<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join("")}</dl>`;
-const gates = () => `<details class="acc gates"><summary><span>Release gates</span><small>0 of ${GATES.length} passed</small></summary><ul class="gatelist">${GATES.map((g) => `<li><span aria-hidden="true">○</span> ${e(g)}: <b>pending</b></li>`).join("")}</ul></details>`;
-const registry = (d: Demo) => `<details class="acc"><summary><span>Planned panels (${d.panels.length})</span><small>None built or verified</small></summary>${list(d.panels)}</details>`;
+const gates = () => `<h4 class="prov-h">Release gates (0 of ${GATES.length} passed)</h4><ul class="gatelist">${GATES.map((g) => `<li><span aria-hidden="true">○</span> ${e(g)}: <b>pending</b></li>`).join("")}</ul>`;
+const registry = (d: Demo) => `<h4 class="prov-h">Planned panels for the engine-backed version (${d.panels.length})</h4>${list(d.panels)}`;
+const provenance = (d: Demo) => `<details class="acc prov"><summary><span>Provenance, status and release gates</span><small>Source, mode, oracle and rights for this workstation</small></summary><div class="prov-body">${ledger(d)}${gates()}${registry(d)}${labLink(d)}</div></details>`;
 const labLink = (d: Demo) => d.lab ? `<p class="muted">A separate hypothetical <a href="#${d.lab}">educational lab</a> exists below. It is a textbook illustration, not this demonstration.</p>` : "";
 const head = (d: Demo) => `<header class="dhead"><p class="eyebrow">Demo ${d.n} · ${e(d.lens)}</p><h3>${e(d.title)}</h3><p>${e(d.summary)}</p></header>`;
 
@@ -114,8 +116,8 @@ const demoBody = (d: Demo) => `<div class="workstation" data-demo="${d.id}"><nos
 
 export function demos(selected: Ticker = "HDFCBANK") {
   const tabs = `<div role="tablist" aria-label="Demonstrations" class="tabs" id="demo-tabs">${DEMOS.map((d, i) => `<button type="button" role="tab" id="tab-${d.id}" aria-selected="${i === 0}" aria-controls="panel-${d.id}" tabindex="${i ? -1 : 0}"><b>${d.n}</b>${e(d.title)}</button>`).join("")}</div>`;
-  const panels = DEMOS.map((d, i) => `<section role="tabpanel" class="panel" id="panel-${d.id}" aria-labelledby="tab-${d.id}"${i ? " hidden" : ""} tabindex="0">${head(d)}${status(d)}${demoBody(d)}${ledger(d)}${registry(d)}${gates()}${labLink(d)}</section>`).join("");
-  return `<div class="demobar"><div class="mode"><b>HISTORICAL FREEZE TARGET</b><span>${e(AS_OF_LABEL)}. No data loaded. No live updates.</span></div>${companySelect(selected)}</div>${tabs}${panels}`;
+  const panels = DEMOS.map((d, i) => `<section role="tabpanel" class="panel" id="panel-${d.id}" aria-labelledby="tab-${d.id}"${i ? " hidden" : ""} tabindex="0">${head(d)}${chip(d)}${demoBody(d)}${provenance(d)}</section>`).join("");
+  return `${status()}<div class="demobar"><div class="mode"><b>HISTORICAL FREEZE TARGET</b><span>${e(AS_OF_LABEL)}. No data loaded. No live updates.</span></div>${companySelect(selected)}</div>${tabs}${panels}`;
 }
 
 export const labs = () => `<nav class="lab-links" aria-label="Educational labs">${["financial:01 Financial", "technical:02 Technical", "derivatives:03 Derivatives", "portfolio:04 Portfolio"].map((s) => { const [id, l] = s.split(":"); return `<a href="#lab-${id}">${l}</a>`; }).join("")}</nav>

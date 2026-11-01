@@ -40,8 +40,9 @@ it("shows eleven simulation cards", () => {
 });
 it("marks every demo withheld and not engine verified", () => {
   const d = demos();
-  expect((d.match(/RELEASE STATUS: WITHHELD/g) ?? []).length).toBe(5);
-  expect((d.match(/NOT YET ENGINE VERIFIED/g) ?? []).length).toBe(5);
+  expect((d.match(/RELEASE STATUS: WITHHELD/g) ?? []).length).toBe(1);
+  expect((d.match(/NOT YET ENGINE VERIFIED/g) ?? []).length).toBe(1);
+  expect((d.match(/<span>Provenance, status and release gates<\/span>/g) ?? []).length).toBe(5);
 });
 it("every demo shows its authoritative source and source confidence; tables scroll inside regions", () => {
   const d = demos();

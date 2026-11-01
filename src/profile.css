@@ -54,3 +54,19 @@
   .portrait{box-shadow:none}
   a{text-decoration:none}
 }
+
+/* Demonstration shell: one status strip, mode chip, collapsed provenance. */
+.modechip{margin:0 0 14px;padding:8px 12px;border-left:3px solid var(--accent);background:var(--soft);font-size:13px;color:var(--muted)}
+.modechip b{color:var(--ink);margin-right:6px}
+details.prov{margin-top:20px}
+details.prov .prov-body{padding:4px 20px 18px}
+.prov-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:18px 0 8px}
+
+/* Research method and evidence. */
+.method-block,.evidence-block{margin:0 0 36px;max-width:920px}
+.method-steps{margin:14px 0 8px;padding:0 0 0 22px;display:grid;gap:12px;font-size:14px}
+.method-steps li::marker{color:var(--accent);font-weight:700}
+.evidence-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.evidence-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px 24px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.evidence-list li span{color:var(--muted)}
+@media(max-width:720px){.evidence-list li{grid-template-columns:1fr}}

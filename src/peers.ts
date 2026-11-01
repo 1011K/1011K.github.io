@@ -12,11 +12,17 @@ export interface Spec { fields: Field[]; ratios: RatioDef[] }
 
 const ok = Number.isFinite;
 /** n / d. Null unless the denominator is a finite number > 0 (and the numerator > 0 for valuation multiples). */
-const div = (n: number, d: number, posN = false) => (ok(n) && ok(d) && d > 0 && (!posN || n > 0) ? n / d : null);
+const div = (n: number, d: number, posN = false) => {
+  if (!(ok(n) && ok(d) && d > 0 && (!posN || n > 0))) return null;
+  const q = n / d;
+  return ok(q) ? q : null; // finite inputs can still overflow: never report Infinity as a meaningful value
+};
 /** Average of opening and closing balances; both must be > 0. */
 const avg = (a: number, b: number) => (a > 0 && b > 0 ? (a + b) / 2 : NaN);
-/** An entered amount passed through as-is; blank, zero or negative is not meaningful. */
+/** An entered amount passed through as-is; blank, zero or negative is not meaningful (ARPU, APE, solvency). */
 const amt = (x: number) => (ok(x) && x > 0 ? x : null);
+/** Flows where a typed zero is a real observation (no presales this period). Blank or negative is still not meaningful. */
+const flow = (x: number) => (ok(x) && x >= 0 ? x : null);
 const sub = (a: number | null, b: number | null) => (a === null || b === null ? null : a - b);
 const F = (rows: [string, string, Unit?][]): Field[] => rows.map(([key, label, unit = "cr"]) => ({ key, label, unit }));
 const R = (key: string, label: string, unit: Unit, content: string, calc: RatioDef["calc"]): RatioDef => ({ key, label, unit, content, calc });
@@ -41,12 +47,12 @@ export const SPECS: Record<string, Spec> = {
     ratios: [
       R("nav", "NAV premium / discount", "%", "NAV premium / discount", (r) => sub(div(r.mcap, r.nav, true), 1)),
       R("nde", "Net debt / equity", "x", "Net debt", (r) => div(r.debt - r.cash, r.eq)),
-      R("presales", "Presales", "cr", "Presales", (r) => amt(r.presales)),
-      R("coll", "Collections", "cr", "Collections", (r) => amt(r.coll)),
+      R("presales", "Presales", "cr", "Presales", (r) => flow(r.presales)),
+      R("coll", "Collections", "cr", "Collections", (r) => flow(r.coll)),
     ],
   },
   Telecom: {
-    fields: F([["mcap", "Market capitalisation"], ["debt", "Gross borrowings"], ["lease", "Lease liabilities"], ["cash", "Cash and equivalents"], ["ebitda", "EBITDA, period"], ["rev", "Revenue, period"], ["capex", "Capex, period"], ["arpu", "ARPU (entered), INR per month", "INR"]]),
+    fields: F([["mcap", "Market capitalisation"], ["debt", "Gross borrowings"], ["lease", "Lease liabilities"], ["cash", "Cash and equivalents"], ["ebitda", "EBITDA, period (on the lease basis chosen above)"], ["rev", "Revenue, period"], ["capex", "Capex, period"], ["arpu", "ARPU (entered), INR per month", "INR"]]),
     ratios: [
       R("evx", "EV/EBITDA", "x", "EV/EBITDA (lease policy stated)", (r, o) => { const ev = r.mcap + r.debt + lease(r, o) - r.cash; return ev > 0 ? div(ev, r.ebitda) : null; }),
       R("nd", "Net debt / EBITDA", "x", "Net debt / EBITDA", (r, o) => div(r.debt + lease(r, o) - r.cash, r.ebitda)),
@@ -59,7 +65,7 @@ export const SPECS: Record<string, Spec> = {
     ratios: [
       R("pb", "P/B", "x", "P/B", (r) => div(r.mcap, r.eqC, true)),
       R("roe", "ROE", "%", "ROE", (r) => div(r.np, avg(r.eqO, r.eqC))),
-      R("growth", "AUM growth", "%", "AUM growth", (r) => sub(div(r.loC, r.loO), 1)),
+      R("growth", "Loan-book growth (AUM proxy)", "%", "AUM growth", (r) => sub(div(r.loC, r.loO), 1)),
       R("spread", "Spread (yield less cost of funds)", "%", "NIM / spread", (r) => sub(div(r.iinc, avg(r.loO, r.loC)), div(r.iexp, avg(r.bO, r.bC)))),
       R("cof", "Cost of funds", "%", "Cost of funds", (r) => div(r.iexp, avg(r.bO, r.bC))),
       R("s3", "Stage 3 ratio", "%", "Stage 3 / ECL", (r) => (r.s3 >= 0 ? div(r.s3, r.loC) : null)),
@@ -77,11 +83,12 @@ export const SPECS: Record<string, Spec> = {
   },
 };
 
-export const BASES = ["FY", "TTM", "Quarter"];
+// Flows are not annualised, so a single quarter cannot be compared: only full-year or trailing-twelve-month periods are allowed.
+export const BASES = ["FY", "TTM"];
 export const SCOPES = ["Consolidated", "Standalone"];
 export const REASONS = ["Different business model", "Data unavailable for this period", "Period or scope cannot be matched", "Structurally different economics", "Other (own judgement)"];
 
-export interface Col { name: string; cls: "MAIN" | "DIRECT" | "ADJACENT"; included: boolean; reason: string; basis: string; scope: string; end: string; raw: Raw }
+export interface Col { name: string; cls: "MAIN" | "DIRECT" | "ADJACENT"; included: boolean; reason: string; basis: string; scope: string; end: string; attest: boolean; raw: Raw }
 export interface Rank { rank: number; of: number; pct: number }
 
 /** Peer set sanity: no blank name, no peer equal to the main company, no duplicates. */
@@ -105,6 +112,10 @@ export function blocker(cols: Col[]): string | null {
   if (inc.length < 2) return "Include at least one peer.";
   const miss = inc.find((c) => !c.basis || !c.scope || !c.end);
   if (miss) return `Select period basis, scope and period end for ${miss.name} (or load the hypothetical example).`;
+  const bq = inc.find((c) => !BASES.includes(c.basis));
+  if (bq) return `${bq.name}: period basis "${bq.basis}" is not supported. Use FY or TTM; quarterly flows are not annualised here.`;
+  const unc = inc.find((c) => !c.attest);
+  if (unc) return `Confirm that every figure for ${unc.name} is for the stated period and scope (and, for telecom, the chosen lease basis). The page cannot check this for you.`;
   for (const [k, what] of [["basis", "Period basis"], ["scope", "Scope"], ["end", "Period end"]] as const)
     if (new Set(inc.map((c) => c[k])).size > 1)
       return `${what} differs across included columns (${inc.map((c) => `${c.name}: ${c[k]}`).join("; ")}). Comparison blocked: nothing is normalised silently. Align them, or exclude a peer with a reason.`;
@@ -126,7 +137,9 @@ export function compare(arch: string, cols: Col[], o: Opts) {
   const inc = cols.filter((c) => c.included);
   const rows = spec.ratios.map((ratio) => {
     const values = inc.map((c) => ratio.calc(c.raw, o));
-    return { ratio, values, ranks: rankAmong(values) };
+    // Adjacent peers have different economics: their values are shown as context but never ranked against the main company.
+    const ranks = rankAmong(values.map((v, i) => (inc[i].cls === "ADJACENT" ? null : v)));
+    return { ratio, values, ranks };
   });
   return { inc, rows, excluded: cols.filter((c) => !c.included).map((c) => ({ name: c.name, reason: c.reason })) };
 }

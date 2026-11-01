@@ -56,3 +56,13 @@ it("describes the Reliance study as separate, with exactly its two LinkedIn post
   expect(STUDY.methods).toHaveLength(6);
   expect(JSON.stringify(STUDY)).not.toMatch(/\.pdf/);
 });
+
+it("case studies are method-only: no figures, verdicts, ratings or targets, and no private internals", async () => {
+  const { CASE_STUDY } = await import("./content");
+  expect(Object.keys(CASE_STUDY)).toEqual(COMPANIES.map((c) => c.ticker));
+  const text = JSON.stringify(CASE_STUDY);
+  expect(text).not.toMatch(/\b(BUY|SELL|REDUCE|ACCUMULATE|OVERVALUED|UNDERVALUED|target price|fair value of|upside|downside)\b/i);
+  expect(text).not.toMatch(/₹|INR\s?\d|\d+(\.\d+)?%/);
+  expect(text).not.toMatch(/FMB|engine|astra|\.yaml|\/api\//i);
+  for (const t of COMPANIES) expect(CASE_STUDY[t.ticker].open.length).toBeGreaterThanOrEqual(3);
+});

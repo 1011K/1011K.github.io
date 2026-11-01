@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { COMPANIES } from "./content.ts";
-import { type Col, type Raw, SPECS, blocker, compare, hypothetical, rankAmong, validatePeerSet } from "./peers.ts";
+import { BASES, type Col, type Raw, SPECS, blocker, compare, hypothetical, rankAmong, validatePeerSet } from "./peers.ts";
 
 const O = { leaseInEV: true };
 const calc = (arch: string, key: string, raw: Raw, o = O) => SPECS[arch].ratios.find((r) => r.key === key)!.calc(raw, o);
-const col = (name: string, raw: Raw = {}, over: Partial<Col> = {}): Col => ({ name, cls: "DIRECT", included: true, reason: "", basis: "FY", scope: "Consolidated", end: "2026-03-31", raw, ...over });
+const col = (name: string, raw: Raw = {}, over: Partial<Col> = {}): Col => ({ name, cls: "DIRECT", included: true, reason: "", basis: "FY", scope: "Consolidated", end: "2026-03-31", attest: true, raw, ...over });
 
 describe("ratios, hand computed", () => {
   const bank = { mcap: 1000, eqO: 80, eqC: 100, np: 18, taO: 900, taC: 1100, eaO: 800, eaC: 1000, lnO: 500, lnC: 700, nii: 36, prov: 3, casa: 40, dep: 100 };
@@ -158,5 +158,37 @@ describe("archetype ratio sets", () => {
   it("telecom lease switch changes EV/EBITDA", () => {
     const h = hypothetical("Telecom", 0);
     expect(calc("Telecom", "evx", h)).toBeGreaterThan(calc("Telecom", "evx", h, { leaseInEV: false })!);
+  });
+});
+
+describe("review fixes", () => {
+  const sp = SPECS;
+  it("rejects a quarterly basis because flows are not annualised", () => {
+    expect(BASES).toEqual(["FY", "TTM"]);
+    expect(blocker([col("Main", {}, { cls: "MAIN", basis: "Quarter" }), col("A", {}, { basis: "Quarter" })])).toMatch(/not supported/);
+  });
+  it("blocks until each included column's figures are confirmed to match the stated period and scope", () => {
+    expect(blocker([col("Main", {}, { cls: "MAIN", attest: false }), col("A")])).toMatch(/Confirm that every figure for Main/);
+    expect(blocker([col("Main", {}, { cls: "MAIN" }), col("A")])).toBeNull();
+  });
+  it("shows adjacent peers as context and never ranks them against the main company", () => {
+    const r = { mcap: 100, eqO: 50, eqC: 50, np: 5 };
+    const out = compare("Bank", [col("Main", r, { cls: "MAIN" }), col("Direct", { ...r, mcap: 200 }), col("Adj", { ...r, mcap: 400, np: 1 }, { cls: "ADJACENT" })], O);
+    const pb = out.rows.find((x) => x.ratio.key === "pb")!;
+    expect(pb.values).toEqual([2, 4, 8]);
+    expect(pb.ranks[2]).toBeNull();
+    expect(pb.ranks[0]).toEqual({ rank: 2, of: 2, pct: 0 });
+    expect(pb.ranks[1]).toEqual({ rank: 1, of: 2, pct: 100 });
+  });
+  it("never returns Infinity as a meaningful value", () => {
+    expect(calc("Bank", "pb", { mcap: 1e308, eqC: 1e-308 })).toBeNull();
+  });
+  it("treats a typed zero as an observation but blank or negative as not meaningful", () => {
+    expect(calc("Real estate developer", "presales", { presales: 0 })).toBe(0);
+    expect(calc("Real estate developer", "coll", { coll: NaN })).toBeNull();
+    expect(calc("Real estate developer", "coll", { coll: -1 })).toBeNull();
+  });
+  it("names the loan-book proxy honestly", () => {
+    expect(sp.NBFC.ratios.find((x) => x.key === "growth")!.label).toMatch(/Loan-book growth/);
   });
 });

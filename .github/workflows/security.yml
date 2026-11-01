@@ -1,0 +1,90 @@
+name: Security checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  secrets:
+    name: Secret scanning (gitleaks and trufflehog)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
+          GITLEAKS_ENABLE_SUMMARY: "true"
+      - name: trufflehog (verified secrets across full history)
+        run: |
+          docker run --rm -v "$PWD:/repo" trufflesecurity/trufflehog:3.99.7 \
+            git file:///repo --only-verified --fail --no-update
+  semgrep:
+    name: Static analysis (semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      # The missing-integrity rule targets external scripts and styles. This site loads none (CSP default-src 'self'), so its two hits are a canonical link and a data: icon.
+      - name: semgrep
+        run: |
+          mkdir -p reports
+          docker run --rm -v "$PWD:/src" -w /src semgrep/semgrep:1.183.0 \
+            semgrep scan --config p/default --config p/typescript --config p/javascript \
+            --error --metrics=off --sarif-output=reports/semgrep.sarif \
+            --exclude-rule html.security.audit.missing-integrity.missing-integrity \
+            src scripts index.html
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: semgrep-report
+          path: reports/semgrep.sarif
+          if-no-files-found: ignore
+          retention-days: 30
+  trivy:
+    name: Vulnerability, secret and config scan (trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scanners: vuln,secret,misconfig
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          format: sarif
+          output: trivy.sarif
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: trivy-report
+          path: trivy.sarif
+          if-no-files-found: ignore
+          retention-days: 30
+  dependency-review:
+    name: Dependency review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
+        with:
+          fail-on-severity: high

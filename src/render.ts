@@ -1,7 +1,7 @@
 // Pure string rendering shared by the Vite HTML transform (static, works without JavaScript)
 // and the browser (company-dependent refresh). No DOM access.
 import {
-  ACADEMIC_RECORD, ASTRA_AREAS, ASTRA_WORKSTREAMS, AS_OF, AS_OF_LABEL, CASE_DATA_STATUS, CASE_DETAIL, COMPANIES, CREDENTIALS, DEMOS,
+  ACADEMIC_RECORD, ASTRA_AREAS, ASTRA_WORKSTREAMS, AS_OF, AS_OF_LABEL, CASE_DATA_STATUS, CASE_DETAIL, CASE_STUDY, COMPANIES, CREDENTIALS, DEMOS,
   ENGINE_REASON, EXPERIENCE, FACTS, GATES, INTERESTS, LEADERSHIP, SIMULATIONS, SKILLS, STUDY,
   type Company, type Demo, type Role, type Ticker,
 } from "./content.ts";
@@ -67,7 +67,8 @@ export function cases(releases: ReleaseRecord[] = []) {
     const pdf = files.find((a) => a.path.endsWith(".pdf")), xlsx = files.find((a) => a.path.endsWith(".xlsx"));
     const dl = (a: { path: string } | undefined, label: string) =>
       a ? `<a class="btn" href="/${e(a.path)}" download>${label}</a>` : `<span class="state">${label}: <b>WITHHELD</b></span>`;
-    const d = CASE_DETAIL[c.ticker];
+    const d = CASE_DETAIL[c.ticker], s = CASE_STUDY[c.ticker];
+    const ul = (xs: string[]) => `<ul>${xs.map((x) => `<li>${e(x)}</li>`).join("")}</ul>`;
     return `<article class="case" id="case-${c.ticker}"><header><span class="idx">${String(i + 1).padStart(2, "0")}</span><div><h3>${e(c.name)}</h3><p class="muted">${e(c.ticker)} · ${e(c.archetype)}</p></div><span class="chip">Under verification</span></header>
 <p class="q">${e(c.question)}</p>
 <div class="hyp"><div><b>Open question A</b><p>${e(d.hypotheses[0])}</p></div><div><b>Open question B</b><p>${e(d.hypotheses[1])}</p></div></div>
@@ -81,6 +82,7 @@ export function cases(releases: ReleaseRecord[] = []) {
 <div><dt>What would change the thesis</dt><dd>${e(c.thesisChange)}</dd></div>
 <div><dt>Verification focus</dt><dd>${e(c.focus)}</dd></div>
 <div><dt>Provenance</dt><dd>Prepared by Krishiv Ramchandani with ASTRA-assisted modelling. Not independently audited. No investment recommendation or target is published.</dd></div></dl></details>
+<details class="more study"><summary>In-depth case study: method, checks and verification log</summary><div class="study-body"><p class="note"><strong>Status:</strong> the full report and workbook are in preparation. Early drafts did not pass review, so none is published. No valuation, fair value, rating or price target for these five companies is published. The calculators and labs below run on hypothetical inputs.</p><h4>How the model is built</h4>${ul(s.model)}<h4>What the checks test</h4>${ul(s.checks)}<h4>Verification log: open items</h4>${ul(s.open)}</div></details>
 <footer>${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></article>`;
   }).join("");
 }
@@ -89,7 +91,8 @@ export const companySelect = (selected: Ticker = "HDFCBANK") =>
   `<label class="field" for="company"><span>Company</span><select id="company" name="company">${COMPANIES.map((c) => `<option value="${c.ticker}"${c.ticker === selected ? " selected" : ""}>${e(c.name)} (${c.ticker})</option>`).join("")}</select></label>`;
 
 // --- Demonstrations ---
-const status = (d: Demo) => `<div class="banner" role="note"><b>RELEASE STATUS: WITHHELD</b><span>NOT YET ENGINE VERIFIED</span><p>${e(ENGINE_REASON)}</p><p class="mode-note"><b>Workstation mode:</b> ${e(d.mode)}</p></div>`;
+const status = () => `<div class="banner" role="note"><b>RELEASE STATUS: WITHHELD</b><span>NOT YET ENGINE VERIFIED</span><p>${e(ENGINE_REASON)} All five workstations below are working calculators on the inputs named in each one's mode line; open "Provenance, status and release gates" under any of them for the full ledger.</p></div>`;
+const chip = (d: Demo) => `<p class="modechip"><b>Workstation mode:</b> ${e(d.mode)}</p>`;
 const ledger = (d: Demo) => `<dl class="ledger">${(
   [
     ["Authoritative source", d.authority],
@@ -105,8 +108,9 @@ const ledger = (d: Demo) => `<dl class="ledger">${(
     ["In / out of sample", "Not run"],
   ] as [string, string][]
 ).map(([k, v]) => `<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join("")}</dl>`;
-const gates = () => `<details class="acc gates"><summary><span>Release gates</span><small>0 of ${GATES.length} passed</small></summary><ul class="gatelist">${GATES.map((g) => `<li><span aria-hidden="true">○</span> ${e(g)}: <b>pending</b></li>`).join("")}</ul></details>`;
-const registry = (d: Demo) => `<details class="acc"><summary><span>Planned panels (${d.panels.length})</span><small>None built or verified</small></summary>${list(d.panels)}</details>`;
+const gates = () => `<h4 class="prov-h">Release gates (0 of ${GATES.length} passed)</h4><ul class="gatelist">${GATES.map((g) => `<li><span aria-hidden="true">○</span> ${e(g)}: <b>pending</b></li>`).join("")}</ul>`;
+const registry = (d: Demo) => `<h4 class="prov-h">Planned panels for the engine-backed version (${d.panels.length})</h4>${list(d.panels)}`;
+const provenance = (d: Demo) => `<details class="acc prov"><summary><span>Provenance, status and release gates</span><small>Source, mode, oracle and rights for this workstation</small></summary><div class="prov-body">${ledger(d)}${gates()}${registry(d)}${labLink(d)}</div></details>`;
 const labLink = (d: Demo) => d.lab ? `<p class="muted">A separate hypothetical <a href="#${d.lab}">educational lab</a> exists below. It is a textbook illustration, not this demonstration.</p>` : "";
 const head = (d: Demo) => `<header class="dhead"><p class="eyebrow">Demo ${d.n} · ${e(d.lens)}</p><h3>${e(d.title)}</h3><p>${e(d.summary)}</p></header>`;
 
@@ -114,8 +118,8 @@ const demoBody = (d: Demo) => `<div class="workstation" data-demo="${d.id}"><nos
 
 export function demos(selected: Ticker = "HDFCBANK") {
   const tabs = `<div role="tablist" aria-label="Demonstrations" class="tabs" id="demo-tabs">${DEMOS.map((d, i) => `<button type="button" role="tab" id="tab-${d.id}" aria-selected="${i === 0}" aria-controls="panel-${d.id}" tabindex="${i ? -1 : 0}"><b>${d.n}</b>${e(d.title)}</button>`).join("")}</div>`;
-  const panels = DEMOS.map((d, i) => `<section role="tabpanel" class="panel" id="panel-${d.id}" aria-labelledby="tab-${d.id}"${i ? " hidden" : ""} tabindex="0">${head(d)}${status(d)}${demoBody(d)}${ledger(d)}${registry(d)}${gates()}${labLink(d)}</section>`).join("");
-  return `<div class="demobar"><div class="mode"><b>HISTORICAL FREEZE TARGET</b><span>${e(AS_OF_LABEL)}. No data loaded. No live updates.</span></div>${companySelect(selected)}</div>${tabs}${panels}`;
+  const panels = DEMOS.map((d, i) => `<section role="tabpanel" class="panel" id="panel-${d.id}" aria-labelledby="tab-${d.id}"${i ? " hidden" : ""} tabindex="0">${head(d)}${chip(d)}${demoBody(d)}${provenance(d)}</section>`).join("");
+  return `${status()}<div class="demobar"><div class="mode"><b>HISTORICAL FREEZE TARGET</b><span>${e(AS_OF_LABEL)}. No data loaded. No live updates.</span></div>${companySelect(selected)}</div>${tabs}${panels}`;
 }
 
 export const labs = () => `<nav class="lab-links" aria-label="Educational labs">${["financial:01 Financial", "technical:02 Technical", "derivatives:03 Derivatives", "portfolio:04 Portfolio"].map((s) => { const [id, l] = s.split(":"); return `<a href="#lab-${id}">${l}</a>`; }).join("")}</nav>

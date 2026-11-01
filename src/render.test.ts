@@ -16,7 +16,9 @@ it("gives every case two open questions, three key risks and a data status, with
   expect((c.match(/Open question A/g) ?? []).length).toBe(5);
   expect((c.match(/Open question B/g) ?? []).length).toBe(5);
   expect((c.match(/<ol class="risks">/g) ?? []).length).toBe(5);
-  expect((c.match(/<li>/g) ?? []).length).toBe(15);
+  expect((c.match(/<ol class="risks"><li>.*?<\/ol>/g) ?? []).map((x) => (x.match(/<li>/g) ?? []).length)).toEqual([3, 3, 3, 3, 3]);
+  expect((c.match(/<details class="more study">/g) ?? []).length).toBe(5);
+  expect((c.match(/Verification log: open items/g) ?? []).length).toBe(5);
   expect((c.match(/Filings and annual reports/g) ?? []).length).toBe(5);
   expect((c.match(/Not loaded/g) ?? []).length).toBe(10);
   expect(c).not.toMatch(/reliance|target price|\bbuy\b|\bsell\b|outperform|undervalued|overvalued/i);
@@ -40,8 +42,9 @@ it("shows eleven simulation cards", () => {
 });
 it("marks every demo withheld and not engine verified", () => {
   const d = demos();
-  expect((d.match(/RELEASE STATUS: WITHHELD/g) ?? []).length).toBe(5);
-  expect((d.match(/NOT YET ENGINE VERIFIED/g) ?? []).length).toBe(5);
+  expect((d.match(/RELEASE STATUS: WITHHELD/g) ?? []).length).toBe(1);
+  expect((d.match(/NOT YET ENGINE VERIFIED/g) ?? []).length).toBe(1);
+  expect((d.match(/<span>Provenance, status and release gates<\/span>/g) ?? []).length).toBe(5);
 });
 it("every demo shows its authoritative source and source confidence; tables scroll inside regions", () => {
   const d = demos();

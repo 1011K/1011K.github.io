@@ -22,7 +22,8 @@ function controls(co: Company) {
     row("Exclusion reason", (i) => (i ? `<select name="c${i}_why" aria-label="${tag(i, "Exclusion reason")}">${opt(REASONS, "Required if excluded")}</select>` : "n/a"), "(if excluded)") +
     row("Period basis", (i) => `<select name="c${i}_basis" aria-label="${tag(i, "Period basis")}">${opt(BASES, "Select")}</select>`) +
     row("Scope", (i) => `<select name="c${i}_scope" aria-label="${tag(i, "Scope")}">${opt(SCOPES, "Select")}</select>`) +
-    row("Period end", (i) => `<input type="date" name="c${i}_end" aria-label="${tag(i, "Period end")}">`);
+    row("Period end", (i) => `<input type="date" name="c${i}_end" aria-label="${tag(i, "Period end")}">`) +
+    row("All figures match this period and scope", (i) => `<input type="checkbox" name="c${i}_attest" aria-label="${tag(i, "I confirm every figure matches the stated period, scope and lease basis")}">`, "(you confirm)");
   const data = spec.fields.map((f) => row(f.label, (i) => `<input type="number" step="any" inputmode="decimal" name="c${i}_${f.key}" aria-label="${tag(i, f.label)}">`, f.unit === "cr" ? "INR cr" : "")).join("");
   const lease = co.archetype === "Telecom" ? select("lease", "EV lease treatment (all columns)", [["in", "Include lease liabilities in EV and net debt"], ["out", "Exclude lease liabilities from EV and net debt"]], "in") : "";
   return `<p class="pc-banner"><strong>HYPOTHETICAL inputs you enter. Not company data.</strong> Amounts in INR crore unless a row says otherwise; blank cells stay blank and give ${NM}.</p>
@@ -42,6 +43,7 @@ function readCols(co: Company, form: HTMLFormElement): Col[] {
     basis: str(form, `c${i}_basis`),
     scope: str(form, `c${i}_scope`),
     end: str(form, `c${i}_end`),
+    attest: (form.elements.namedItem(`c${i}_attest`) as HTMLInputElement).checked,
     raw: Object.fromEntries(spec.fields.map((f) => [f.key, val(form, `c${i}_${f.key}`)])),
   }));
 }
@@ -55,11 +57,11 @@ function render(co: Company, form: HTMLFormElement) {
   const facts: [string, string][] = [["Period basis", main.basis], ["Scope", main.scope], ["Period end", main.end], ["Columns compared", `${names.length} of ${co.peers.length + 1}`]];
   if (co.archetype === "Telecom") facts.push(["EV lease treatment", leaseIn ? "Lease liabilities included" : "Lease liabilities excluded"]);
   const vals = table("Ratios by company (HYPOTHETICAL inputs)", ["Ratio", "Unit", ...names.map((n, i) => (i ? n : `${n} (main)`))], r.rows.map((x) => [x.ratio.label, UNIT[x.ratio.unit], ...x.values.map((v) => show(x.ratio.unit, v))]));
-  const ranks = table("Rank and percentile among included columns", ["Ratio", ...names], r.rows.map((x) => [x.ratio.label, ...x.ranks.map((k, i) => (x.values[i] === null ? NM : k ? `rank ${k.rank} of ${k.of}, percentile ${fmt(k.pct, 0)}` : "n/a (needs 2+ meaningful)"))]));
+  const ranks = table("Rank and percentile among included columns", ["Ratio", ...names], r.rows.map((x) => [x.ratio.label, ...x.ranks.map((k, i) => (x.values[i] === null ? NM : r.inc[i].cls === "ADJACENT" ? "Context only: adjacent peer, not ranked" : k ? `rank ${k.rank} of ${k.of}, percentile ${fmt(k.pct, 0)}` : "n/a (needs 2+ meaningful)"))]));
   const sel = r.rows.find((x) => x.ratio.key === str(form, "chart")) ?? r.rows[0], u = sel.ratio.unit, ix = sel.values.flatMap((v, i) => (v === null ? [] : [i]));
   const skipped = names.filter((_, i) => sel.values[i] === null);
   const chart = ix.length
-    ? barChart({ title: `${sel.ratio.label} by company, hypothetical inputs`, caption: `${sel.ratio.label} (${UNIT[u]}), HYPOTHETICAL inputs.${skipped.length ? ` Not plotted, ${NM}: ${skipped.join(", ")}.` : ""}`, labels: ix.map((i) => short(names[i] + (i ? "" : " (main)"))), values: ix.map((i) => sel.values[i]! * (u === "%" ? 100 : 1)), yFmt: (v) => (u === "%" ? `${v.toFixed(1)}%` : u === "x" ? `${v.toFixed(2)}x` : v.toFixed(0)) })
+    ? barChart({ title: `${sel.ratio.label} by company, hypothetical inputs`, caption: `${sel.ratio.label} (${UNIT[u]}), HYPOTHETICAL inputs.${skipped.length ? ` Not plotted, ${NM}: ${skipped.join(", ")}.` : ""}`, labels: ix.map((i) => short(names[i] + (i ? (r.inc[i].cls === "ADJACENT" ? " (adj.)" : "") : " (main)"))), values: ix.map((i) => sel.values[i]! * (u === "%" ? 100 : 1)), yFmt: (v) => (u === "%" ? `${v.toFixed(1)}%` : u === "x" ? `${v.toFixed(2)}x` : v.toFixed(0)) })
     : `<p class="note">${e(sel.ratio.label)}: ${NM} for every included column, so there is nothing to plot.</p>`;
   const peerRows = co.peers.map((p) => `<li><strong>${e(p.name)}</strong> <span class="pc-cls">${p.cls}</span> ${e(p.note)}${names.includes(p.name) ? "" : " <em>(excluded)</em>"}</li>`).join("");
   const ex = r.excluded.length ? `<ul class="pc-list">${r.excluded.map((x) => `<li><strong>${e(x.name)}</strong>: ${e(x.reason)}</li>`).join("")}</ul>` : `<p class="note">None. All proposed peers are included.</p>`;
@@ -78,6 +80,7 @@ export const mount: Mount = (root, ctx) => {
       for (let i = 0; i <= co.peers.length; i++) {
         const set = (n: string, v: string) => ((form.elements.namedItem(n) as HTMLInputElement | null) ?? { value: "" }).value = v;
         spec.fields.forEach((f) => set(`c${i}_${f.key}`, act === "load" ? String(hypothetical(co.archetype, i)[f.key]) : ""));
+        (form.elements.namedItem(`c${i}_attest`) as HTMLInputElement).checked = act === "load";
         set(`c${i}_basis`, act === "load" ? "FY" : ""); set(`c${i}_scope`, act === "load" ? "Consolidated" : ""); set(`c${i}_end`, act === "load" ? "2026-03-31" : "");
         if (i) { set(`c${i}_why`, ""); (form.elements.namedItem(`c${i}_inc`) as HTMLInputElement).checked = true; }
       }

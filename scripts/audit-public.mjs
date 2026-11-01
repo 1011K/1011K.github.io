@@ -39,6 +39,11 @@ for (const a of manifest.media) {
 const allowed = new Set([
   ".gitignore",
   ".github/workflows/deploy.yml",
+  ".github/workflows/security.yml",
+  ".github/workflows/codeql.yml",
+  ".github/workflows/scorecard.yml",
+  ".github/dependabot.yml",
+  ".github/SECURITY.md",
   "README.md",
   "index.html",
   "package.json",

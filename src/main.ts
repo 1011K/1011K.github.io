@@ -16,7 +16,7 @@ const store = {
 const applyTheme = (t: "light" | "dark") => {
   root.dataset.theme = t;
   themeBtn.textContent = t === "dark" ? "Light" : "Dark";
-  themeBtn.setAttribute("aria-pressed", String(t === "dark"));
+  themeBtn.setAttribute("aria-label", `Switch to ${t === "dark" ? "light" : "dark"} theme`);
 };
 const saved = store.get();
 applyTheme(saved === "dark" || saved === "light" ? saved : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");

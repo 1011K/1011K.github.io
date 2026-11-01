@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { isReleased, safeAssetPath, escapeHTML } from "./publication";
+import { isDraftRelease, isReleased, safeAssetPath, escapeHTML } from "./publication";
 import { assignments, filterResearch } from "./research";
 const valid = {
   ticker: "DLF",
@@ -118,4 +118,35 @@ it("approves only reviewed publishable media and rejects design references", asy
     isApprovedMedia({ ...asset, path: "https://example.com/cv.pdf" }),
   ).toBe(false);
   expect(isApprovedMedia({ ...asset, sha256: "invalid" })).toBe(false);
+});
+
+const draft = {
+  ticker: "DLF",
+  title: "DLF draft",
+  publicationStatus: "OWNER_APPROVED_DRAFT",
+  verificationStatus: "UNVERIFIED",
+  accuracyVerified: false,
+  approvedBy: "Owner",
+  approvedAt: "2026-11-01",
+  asOf: "2026-10-30",
+  reviewReceipt: "Owner approved the exact bytes as an unverified draft.",
+  rightsCleared: true,
+  privacyCleared: true,
+  openIssues: ["EPS shown although the note says withheld"],
+  assets: [
+    { path: "reports/dlf-draft.pdf", sha256: "a".repeat(64) },
+    { path: "reports/dlf-draft.xlsx", sha256: "b".repeat(64) },
+  ],
+};
+it("accepts an owner-approved unverified draft and never mistakes it for a verified release", () => {
+  expect(isDraftRelease(draft)).toBe(true);
+  expect(isReleased(draft)).toBe(false);
+});
+it("rejects drafts that claim verification, hide open issues or lack both files", () => {
+  expect(isDraftRelease({ ...draft, verificationStatus: "VERIFIED" })).toBe(false);
+  expect(isDraftRelease({ ...draft, accuracyVerified: true })).toBe(false);
+  expect(isDraftRelease({ ...draft, openIssues: [] })).toBe(false);
+  expect(isDraftRelease({ ...draft, assets: [draft.assets[0]] })).toBe(false);
+  expect(isDraftRelease({ ...draft, ticker: "TCS" })).toBe(false);
+  expect(isDraftRelease({ ...draft, assets: [{ path: "reports/../x.pdf", sha256: "a".repeat(64) }, draft.assets[1]] })).toBe(false);
 });

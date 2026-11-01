@@ -99,6 +99,46 @@ export function isReleased(raw: unknown): raw is ReleaseRecord {
   );
 }
 
+// Owner-approved drafts: published as unverified, with open issues listed. Never confused with isReleased.
+export interface DraftRelease {
+  ticker: string;
+  title: string;
+  publicationStatus: "OWNER_APPROVED_DRAFT";
+  verificationStatus: "UNVERIFIED";
+  accuracyVerified: false;
+  approvedBy: string;
+  approvedAt: string;
+  asOf: string;
+  reviewReceipt: string;
+  rightsCleared: true;
+  privacyCleared: true;
+  openIssues: string[];
+  assets: ReleaseAsset[];
+}
+export function isDraftRelease(raw: unknown): raw is DraftRelease {
+  if (!raw || typeof raw !== "object") return false;
+  const r = raw as Record<string, unknown>;
+  const assets = r.assets as { path: string; sha256: string }[];
+  return (
+    CORE_TICKERS.includes(r.ticker as string) &&
+    r.publicationStatus === "OWNER_APPROVED_DRAFT" &&
+    r.verificationStatus === "UNVERIFIED" &&
+    r.accuracyVerified === false &&
+    r.rightsCleared === true &&
+    r.privacyCleared === true &&
+    ["title", "approvedBy", "reviewReceipt"].every((k) => text(r[k])) &&
+    ["approvedAt", "asOf"].every((k) => date(r[k])) &&
+    Array.isArray(r.openIssues) &&
+    r.openIssues.length > 0 &&
+    r.openIssues.every(text) &&
+    Array.isArray(assets) &&
+    assets.length === 2 &&
+    assets.every((a) => a && safeAssetPath(a.path) && typeof a.sha256 === "string" && /^[a-f0-9]{64}$/.test(a.sha256)) &&
+    assets.some((a) => a.path.endsWith(".pdf")) &&
+    assets.some((a) => a.path.endsWith(".xlsx"))
+  );
+}
+
 export interface ApprovedMedia {
   kind: "CV" | "PORTRAIT" | "VIDEO" | "SCREENSHOT";
   title: string;

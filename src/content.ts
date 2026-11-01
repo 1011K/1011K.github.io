@@ -594,7 +594,7 @@ export const CASE_STUDY: Record<Ticker, CaseStudy> = {
       "Free cash flow to the firm is discounted at a weighted cost of capital built from a stated cost of equity and cost of debt.",
       "Terminal value uses perpetual growth, held below the discount rate.",
       "The enterprise-to-equity bridge is designed to subtract debt, lease liabilities and minority claims and add non-operating investments, line by line.",
-      "Sensitivity to discount rate and terminal growth is shown as a grid; a driver-based simulation is shown only once it can be reproduced independently.",
+      "Sensitivity to discount rate and terminal growth is shown as a grid; a driver-based simulation appears in the unverified draft report but has not been reproduced independently.",
     ],
     checks: [
       "Test: statutory and secondary data are compared and differences are disclosed, not averaged.",
@@ -605,7 +605,7 @@ export const CASE_STUDY: Record<Ticker, CaseStudy> = {
       "Cash and some statements differ materially between sources; the primary filing must settle them.",
       "The opening balance sheet and the cash roll-forward do not reconcile in the current draft.",
       "Lease liabilities and minority interests are not yet measured in the bridge.",
-      "The simulation result cannot yet be reproduced independently, so it is not published.",
+      "The simulation result in the unverified draft report cannot yet be reproduced independently, and its median is far below the base value.",
     ],
   },
   BAJFINANCE: {

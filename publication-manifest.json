@@ -1,6 +1,152 @@
 {
   "schemaVersion": 1,
   "research": [],
+  "researchDrafts": [
+    {
+      "ticker": "HDFCBANK",
+      "title": "HDFC Bank Limited: unverified draft research report and Excel model",
+      "publicationStatus": "OWNER_APPROVED_DRAFT",
+      "verificationStatus": "UNVERIFIED",
+      "accuracyVerified": false,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "asOf": "2026-10-30",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "rightsCleared": true,
+      "privacyCleared": true,
+      "openIssues": [
+        "Fair value INR 420.32 against a price of INR 692.80 (-39.3%). Reliability is LOW.",
+        "Asset quality and capital adequacy are not evaluated (3 of 26 rubric criteria scored).",
+        "The second data source (Yahoo) differs from the NSE lender XBRL by 40 to 53% on revenue and owners' equity (7 field-years over 25%).",
+        "No segment data and no peer multiples."
+      ],
+      "assets": [
+        {
+          "path": "reports/HDFCBANK_NS_Institutional_Report.pdf",
+          "sha256": "73e7b5d7247ef719296c106c81fb68ce2cf58091ac0a15c11a55a0c59a4efeda"
+        },
+        {
+          "path": "reports/HDFCBANK_NS_Financial_Model.xlsx",
+          "sha256": "4a4c4d3157c1cdf1e0c67565a2e980fd0802d7f1145a3737bfe0ea4e66545c61"
+        }
+      ]
+    },
+    {
+      "ticker": "DLF",
+      "title": "DLF Limited: unverified draft research report and Excel model",
+      "publicationStatus": "OWNER_APPROVED_DRAFT",
+      "verificationStatus": "UNVERIFIED",
+      "accuracyVerified": false,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "asOf": "2026-10-30",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "rightsCleared": true,
+      "privacyCleared": true,
+      "openIssues": [
+        "Valuation is withheld: project-level NAV and sum of the parts cannot run, because saleable area, realisation, land bank, rental NOI and occupancy are not in the data.",
+        "The reported FY26 balance sheet does not foot (assets 73,465 Cr against liabilities and equity 47,499 Cr), so no forecast is built.",
+        "INR 1,806 Cr (61.6% of profit before tax) of FY26 profit is not itemised.",
+        "EPS is still shown in the share table although the report's own note says EPS on this profit is withheld.",
+        "All statements come from a secondary source (Screener)."
+      ],
+      "assets": [
+        {
+          "path": "reports/DLF_NS_Institutional_Report.pdf",
+          "sha256": "6d2af09a6464ea3e83d334306a69060acbf4d862f5cc68f36a428c4a65e87ca7"
+        },
+        {
+          "path": "reports/DLF_NS_Financial_Model.xlsx",
+          "sha256": "0f7d5b59d6441ba67fc975d6e22884f27b83c37da0759caaacc3e9f34fc69390"
+        }
+      ]
+    },
+    {
+      "ticker": "BHARTIARTL",
+      "title": "Bharti Airtel Limited: unverified draft research report and Excel model",
+      "publicationStatus": "OWNER_APPROVED_DRAFT",
+      "verificationStatus": "UNVERIFIED",
+      "accuracyVerified": false,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "asOf": "2026-10-30",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "rightsCleared": true,
+      "privacyCleared": true,
+      "openIssues": [
+        "The Monte Carlo median of INR 1,364.5 is 42% below the INR 2,359.67 base value, and only 17.6% of paths end above the price. This is unresolved.",
+        "Lease liabilities and minority interest are not measured or deducted. The balance sheet does not foot (gap 155,889 Cr, about INR 256 per share), so equity value is overstated by an unknown amount.",
+        "DCF cash flows come from the canonical forecast, not the withheld linked three-statement package.",
+        "No telecom operating drivers (ARPU, subscribers, spectrum) in the output. Peer comparison uses only 2 peers, with low weight given to them."
+      ],
+      "assets": [
+        {
+          "path": "reports/BHARTIARTL_NS_Institutional_Report.pdf",
+          "sha256": "58757e77ca35d60e93113e20f3be76577b86a4fbd8611eb26534c8e93da7365b"
+        },
+        {
+          "path": "reports/BHARTIARTL_NS_Financial_Model.xlsx",
+          "sha256": "3d7898f0f429b3de3a19b54d9d055833b0fd172ea63a764ced9edcddcf6dcfac"
+        }
+      ]
+    },
+    {
+      "ticker": "BAJFINANCE",
+      "title": "Bajaj Finance Limited: unverified draft research report and Excel model",
+      "publicationStatus": "OWNER_APPROVED_DRAFT",
+      "verificationStatus": "UNVERIFIED",
+      "accuracyVerified": false,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "asOf": "2026-10-30",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "rightsCleared": true,
+      "privacyCleared": true,
+      "openIssues": [
+        "The model's confidence gate fails: fair value INR 364.92 is -61.1% from the INR 939.10 price, beyond the 60% limit, so the report states no verdict. The figures are still displayed in the PDF and Excel file. Run status is FAILED (LF_NO_PLUG, worst difference 14.68 Cr).",
+        "Historical EPS is withheld (shown as n/a): the statement share count of 61.8 Cr is 10.06 times below the 622 Cr used in the valuation, pending the exchange split and bonus record. The raw 61.8 Cr count still appears in the statement rows.",
+        "The fee-income driver prints as 0.0040% of AUM, likely a unit error. Not fixed.",
+        "Only 3 of 26 rubric criteria scored."
+      ],
+      "assets": [
+        {
+          "path": "reports/BAJFINANCE_NS_Institutional_Report.pdf",
+          "sha256": "1bb4004cc3b43be21cc38e52018b37dc51b3601748faf095da945510ef0924d2"
+        },
+        {
+          "path": "reports/BAJFINANCE_NS_Financial_Model.xlsx",
+          "sha256": "ee43cfd050ee3d3311b824f52d5eb562998c95df8658c63f133c5548c230d4b1"
+        }
+      ]
+    },
+    {
+      "ticker": "HDFCLIFE",
+      "title": "HDFC Life Insurance Company Limited: unverified draft research report and Excel model",
+      "publicationStatus": "OWNER_APPROVED_DRAFT",
+      "verificationStatus": "UNVERIFIED",
+      "accuracyVerified": false,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "asOf": "2026-10-30",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "rightsCleared": true,
+      "privacyCleared": true,
+      "openIssues": [
+        "Valuation is withheld and the analysis is BLOCKED (INSURANCE_DRIVER_UNAVAILABLE): GWP, APE, VNB, claims and reserves and solvency are not in the data, so embedded value cannot be computed.",
+        "The Excel model labels the archetype Unclassified and shows a 1.8% EBITDA margin that has no meaning for an insurer."
+      ],
+      "assets": [
+        {
+          "path": "reports/HDFCLIFE_NS_Institutional_Report.pdf",
+          "sha256": "27657625debc4b321521c7091594ed6b0b91494fe060a7656a5fe04a15ca5378"
+        },
+        {
+          "path": "reports/HDFCLIFE_NS_Financial_Model.xlsx",
+          "sha256": "15c4c8f0310311f40eb45565d1b85e9423575cb34702ef736e13a06a1be0f811"
+        }
+      ]
+    }
+  ],
   "media": [
     {
       "kind": "PORTRAIT",

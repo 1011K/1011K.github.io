@@ -1,5 +1,6 @@
 import { expect, it } from "vitest";
 import { cases, demos, placeholders, study } from "./render";
+import type { DraftRelease } from "./publication";
 const html = placeholders();
 it("renders every placeholder the page uses", () => {
   expect(Object.keys(html).sort()).toEqual(["academic", "astra-areas", "astra-workstreams", "cases", "credentials", "demos", "experience", "facts", "labs", "simulations", "skills", "study"]);
@@ -53,4 +54,29 @@ it("every demo shows its authoritative source and source confidence; tables scro
   expect((d.match(/Source confidence/g) ?? []).length).toBe(5);
   expect((d.match(/Workstation mode/g) ?? []).length).toBe(10);
   expect((d.match(/data-demo="/g) ?? []).length).toBe(5);
+});
+
+it("links an owner-approved draft with its unverified label and open issues, only for its company", () => {
+  const d: DraftRelease = {
+    ticker: "DLF", title: "DLF draft", publicationStatus: "OWNER_APPROVED_DRAFT", verificationStatus: "UNVERIFIED", accuracyVerified: false,
+    approvedBy: "Owner", approvedAt: "2026-11-01", asOf: "2026-10-30", reviewReceipt: "x", rightsCleared: true, privacyCleared: true,
+    openIssues: ["Issue <one>"], assets: [{ path: "reports/dlf-draft.pdf", sha256: "a".repeat(64) }, { path: "reports/dlf-draft.xlsx", sha256: "b".repeat(64) }],
+  };
+  const c = cases([], [d]);
+  expect(c).toContain('href="/reports/dlf-draft.pdf" download');
+  expect(c).toContain('href="/reports/dlf-draft.xlsx" download');
+  expect((c.match(/DRAFT\. UNVERIFIED\./g) ?? []).length).toBe(1);
+  expect(c).toContain("Issue &lt;one&gt;");
+  expect(c).toContain("not a SEBI-registered research analyst");
+  expect((c.match(/WITHHELD/g) ?? []).length).toBe(8);
+});
+
+it("shows a verified release instead of a draft for the same company", () => {
+  const sha = "c".repeat(64);
+  const rel = { ticker: "DLF", assets: [{ path: "reports/dlf-verified.pdf", sha256: sha }, { path: "reports/dlf-verified.xlsx", sha256: sha }] } as never;
+  const d = { ticker: "DLF", asOf: "2026-10-30", openIssues: ["x"], assets: [{ path: "reports/dlf-draft.pdf", sha256: sha }, { path: "reports/dlf-draft.xlsx", sha256: sha }] } as never;
+  const c = cases([rel], [d]);
+  expect(c).toContain("reports/dlf-verified.pdf");
+  expect(c).not.toContain("dlf-draft");
+  expect(c).not.toContain("DRAFT. UNVERIFIED.");
 });

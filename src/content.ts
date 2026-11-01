@@ -148,7 +148,7 @@ export function methodVerdict(ticker: Ticker, method: Method) {
   const c = COMPANIES.find((x) => x.ticker === ticker);
   if (!c) throw new Error(`Unknown company: ${ticker}`);
   if (c.method !== method)
-    return { allowed: false, text: `${c.name} (${c.archetype}): ${methodLabel(method)} rejected. Registered method: ${methodLabel(c.method)}. ${c.prohibitedText}` };
+    return { allowed: false, text: `${c.name} (${c.archetype}): ${methodLabel(method)} rejected. Registered method: ${methodLabel(c.method)}. ${method === "FCFF_DCF" ? c.prohibitedText : `It does not fit the economics of a ${c.archetype.toLowerCase()}.`}` };
   return {
     allowed: true,
     text:

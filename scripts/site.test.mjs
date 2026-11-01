@@ -81,6 +81,17 @@ test('only manifest-approved exact bytes have public download links', () => {
   assert.equal(cv.sha256, 'aeabe2ef5ab3ef5d6a627fa58e6421225e0b111c59f54ce72528d00bb05ed68e');
   assert.ok(html.includes('href="/media/krishiv-ramchandani-cv.pdf" download'));
 });
+test('every screenshot on the page is a manifest-approved SCREENSHOT with exact bytes and no private markers', () => {
+  const shots = [...html.matchAll(/src="\/(media\/[^"]+\.webp)"/g)].map(m => m[1]);
+  assert.equal(shots.length, 5);
+  for (const path of shots) {
+    const item = manifest.media.find(a => a.kind === 'SCREENSHOT' && a.path === path);
+    assert.equal(item?.approved, true, path);
+    assert.equal(createHash('sha256').update(readFileSync(`public/${path}`)).digest('hex'), item.sha256);
+    assert.doesNotMatch(item.alt, /reliance/i);
+    assert.match(item.reviewReceipt, /No ASTRA screen/);
+  }
+});
 test('heat map palette is red, never teal or green, and both themes define it', () => {
   for (const v of ['--hdiag:#6F0D1B', '--hna:#F5E9E7']) assert.ok(css.includes(v), v);
   assert.match(css, /\[data-theme="dark"\]\{[^}]*--hna:/);

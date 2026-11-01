@@ -39,7 +39,9 @@ test('demo-first portfolio and optional deep research remain navigable', () => {
   for (let i = 1; i < ids.length; i++) {
     assert.ok(html.indexOf(`id="${ids[i - 1]}"`) < html.indexOf(`id="${ids[i]}"`), `unexpected section order: ${ids[i]}`);
   }
-  assert.match(html, /<details class="research-disclosure" id="research-details">/);
+  for (const id of ['demos','research','experience','sim']) assert.match(html, new RegExp(`<details class="research-disclosure" id="${id}-details">`), id);
+  assert.equal((page.match(/<details class="fold project-fold">/g) ?? []).length, 2, 'ASTRA and the independent study open on demand');
+  for (const id of ['about','education','contact']) assert.ok(!new RegExp(`id="${id}"[^>]*>(?:(?!</section>)[\\s\\S])*<details class="research-disclosure"`).test(html), `${id} stays open`);
   assert.match(html, /<details class="fold fold-gallery">/);
   assert.match(html, /<details class="fold fold-labs">/);
   for (const id of ['valuation','technical','options','peers','correlation']) {

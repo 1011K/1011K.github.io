@@ -71,7 +71,7 @@ export function cases(releases: ReleaseRecord[] = []) {
     const ul = (xs: string[]) => `<ul>${xs.map((x) => `<li>${e(x)}</li>`).join("")}</ul>`;
     return `<article class="case" id="case-${c.ticker}"><header><span class="idx">${String(i + 1).padStart(2, "0")}</span><div><h3>${e(c.name)}</h3><p class="muted">${e(c.ticker)} · ${e(c.archetype)}</p></div><span class="chip">Under verification</span></header>
 <p class="q">${e(c.question)}</p>
-<div class="hyp"><div><b>Open question A</b><p>${e(d.hypotheses[0])}</p></div><div><b>Open question B</b><p>${e(d.hypotheses[1])}</p></div></div>
+<details class="fold case-fold" id="case-fold-${c.ticker}"><summary>Open the case: questions, risks, evidence and verification log</summary><div class="case-body"><div class="hyp"><div><b>Open question A</b><p>${e(d.hypotheses[0])}</p></div><div><b>Open question B</b><p>${e(d.hypotheses[1])}</p></div></div>
 <div class="case-cols"><div><h4>Three key risks</h4><ol class="risks">${d.risks.map((r) => `<li>${e(r)}</li>`).join("")}</ol></div>
 <div><h4>Data and filings</h4><dl class="dstatus">${CASE_DATA_STATUS.map(([k, v]) => `<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join("")}</dl></div></div>
 <details class="more"><summary>Method, economics and verification focus</summary><dl>
@@ -83,7 +83,7 @@ export function cases(releases: ReleaseRecord[] = []) {
 <div><dt>Verification focus</dt><dd>${e(c.focus)}</dd></div>
 <div><dt>Provenance</dt><dd>Prepared by Krishiv Ramchandani with ASTRA-assisted modelling. Not independently audited. No investment recommendation or target is published.</dd></div></dl></details>
 <details class="more study"><summary>In-depth case study: method, checks and verification log</summary><div class="study-body"><p class="note"><strong>Status:</strong> the full report and workbook are in preparation. Early drafts did not pass review, so none is published. No valuation, fair value, rating or price target for these five companies is published. The calculators and labs on this page run on hypothetical inputs.</p><h4>How the model is built</h4>${ul(s.model)}<h4>What the checks test</h4>${ul(s.checks)}<h4>Verification log: open items</h4>${ul(s.open)}</div></details>
-<footer>${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></article>`;
+<footer>${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></div></details></article>`;
   }).join("");
 }
 

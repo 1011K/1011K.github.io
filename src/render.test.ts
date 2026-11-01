@@ -18,6 +18,7 @@ it("gives every case two open questions, three key risks and a data status, with
   expect((c.match(/<ol class="risks">/g) ?? []).length).toBe(5);
   expect((c.match(/<ol class="risks"><li>.*?<\/ol>/g) ?? []).map((x) => (x.match(/<li>/g) ?? []).length)).toEqual([3, 3, 3, 3, 3]);
   expect((c.match(/<details class="more study">/g) ?? []).length).toBe(5);
+  expect((c.match(/<details class="fold case-fold"/g) ?? []).length).toBe(5);
   expect((c.match(/Verification log: open items/g) ?? []).length).toBe(5);
   expect((c.match(/Filings and annual reports/g) ?? []).length).toBe(5);
   expect((c.match(/Not loaded/g) ?? []).length).toBe(10);

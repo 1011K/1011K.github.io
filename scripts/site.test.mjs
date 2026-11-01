@@ -28,7 +28,7 @@ test('identity, navigation and contact work without JavaScript', () => {
   assert.ok(page.includes('CapitaLand (Ascendas Firstspace)'));
   assert.ok(html.includes('mailto:krishivramchandani@gmail.com'));
   assert.ok(html.includes('href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"') && html.includes('href="https://github.com/1011K"'));
-  for (const t of ['Industry Integrated with Tata Consultancy Services', 'Expected graduation: 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
+  for (const t of ['Industry Integrated with Tata Consultancy Services', 'Expected graduation: April 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
   assert.match(page, /Private equity and hedge funds[\s\S]*Investment banking[\s\S]*Wealth management/);
   assert.match(html, /href="#main" class="skip"/);
   assert.match(html, /id="theme"/);
@@ -59,7 +59,7 @@ test('no-JS fallback wins the cascade and hides dead controls', () => {
 });
 test('portrait is the exact approved colour file and is never filtered', () => {
   const portrait = manifest.media.find(a => a.kind === 'PORTRAIT');
-  assert.equal(portrait.sha256, 'a87403e8a2f3c96777a80fad14652c06ca370622c2ec26136c95fb768d6921de');
+  assert.equal(portrait.sha256, 'ab970268d1029cad2bc71b064bfc88688607b775d01a92b96d69be8835b0452b');
   assert.equal(createHash('sha256').update(readFileSync(`public/${portrait.path}`)).digest('hex'), portrait.sha256);
   assert.ok(html.includes('src="/media/krishiv-ramchandani-portrait.jpg"'));
   assert.ok(html.includes('alt="Krishiv Ramchandani"'));
@@ -96,7 +96,7 @@ test('only manifest-approved exact bytes have public download links', () => {
     assert.equal(createHash('sha256').update(readFileSync(`public/${item.path}`)).digest('hex'), item.sha256);
   }
   const cv = manifest.media.find(a => a.kind === 'CV');
-  assert.equal(cv.sha256, 'aeabe2ef5ab3ef5d6a627fa58e6421225e0b111c59f54ce72528d00bb05ed68e');
+  assert.equal(cv.sha256, '8861af27345ec425d4f360cfbe76d6049cbe4a236a840d7f52b1299ebdc69533');
   assert.ok(html.includes('href="/media/krishiv-ramchandani-cv.pdf" download'));
 });
 test('every screenshot on the page is a manifest-approved SCREENSHOT with exact bytes and no private markers', () => {

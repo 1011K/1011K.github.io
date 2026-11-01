@@ -189,7 +189,7 @@ export const DEMOS: Demo[] = [
     n: 1,
     title: "Institutional valuation",
     lens: "Financial Intelligence",
-    summary: "Sector-aware valuation, planned: each company is routed to the method its economics allow, and disallowed methods are rejected with a reason.",
+    summary: "Explore sector-appropriate valuation methods using hypothetical inputs. Verified company valuations remain withheld.",
     authority: "Financial Intelligence methodology registry (owner engine)",
     oracle: "Hand-solved discounted cash flows and an independently recalculated workbook",
     lab: "lab-financial",
@@ -219,7 +219,7 @@ export const DEMOS: Demo[] = [
     n: 2,
     title: "Technical intelligence",
     lens: "Technical Intelligence",
-    summary: "Planned: three years of daily history, registered indicators and exactly three strategy families with next-session execution and costs.",
+    summary: "Test technical indicators and three rule-based strategies on synthetic data, with next-session execution and explicit costs.",
     authority: "Technicals indicator and strategy registry (owner engine)",
     oracle: "Independent indicator arrays reconciled for warm-up and EMA seeding",
     lab: "lab-technical",
@@ -240,7 +240,7 @@ export const DEMOS: Demo[] = [
     n: 3,
     title: "Options and derivatives",
     lens: "Derivatives and Quant",
-    summary: "European call and put theory with Greeks. Prices need strike, expiry, volatility, rate and dividend yield; the spot price alone never determines a premium.",
+    summary: "Calculate theoretical call and put prices, Greeks and payoffs with hypothetical contract inputs, not market quotes.",
     authority: "Derivatives research modules (owner engine)",
     oracle: "Independent Black-Scholes-Merton maths and put-call parity",
     lab: "lab-derivatives",
@@ -252,7 +252,7 @@ export const DEMOS: Demo[] = [
     n: 4,
     title: "Automatic peer comparison",
     lens: "Financial Intelligence and Market Scan",
-    summary: "Planned: up to three comparable listed peers per company, classified direct or adjacent, with matched periods and sector-specific ratios.",
+    summary: "Compare hypothetical companies and peers using sector-appropriate ratios and transparent classifications.",
     authority: "Registered peer and sector logic (owner engine)",
     oracle: "Independently computed ratio numerators and denominators",
     panels: ["Peer selection", "Classification and rationale", "Matched-period ratios", "Exclusions"],
@@ -263,7 +263,7 @@ export const DEMOS: Demo[] = [
     n: 5,
     title: "Correlation and portfolio risk",
     lens: "Portfolio Intelligence",
-    summary: "Planned: a five by five Pearson return-correlation matrix in red, with weights, portfolio volatility and risk contributions.",
+    summary: "Explore a five-company red correlation heat map, portfolio volatility and simulated risk contributions using hypothetical inputs.",
     authority: "Portfolio risk and correlation module (owner engine)",
     oracle: "Independent NumPy covariance, positive semi-definite and variance identity checks",
     lab: "lab-portfolio",
@@ -342,7 +342,7 @@ export const CREDENTIALS: Credential[] = [
   {
     id: "bba",
     title: "BBA, Jai Hind College, Mumbai",
-    status: "Final year. Industry integrated with Tata Consultancy Services. Expected graduation: 2027.",
+    status: "Final year. Industry integrated with Tata Consultancy Services. Expected graduation: April 2027.",
     studied: "Business, finance, accounting and management.",
     applied: "Reading financial statements, building forecasts and valuation models, and market research.",
   },
@@ -414,7 +414,7 @@ export const LINKS = {
 
 export const FACTS: [string, string][] = [
   ["Based in", "Mumbai, India"],
-  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected graduation: 2027."],
+  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected graduation: April 2027."],
   ["CFA Program", "Level I passed, 2026. Level II candidate, May 2027."],
   ["NISM", "Research Analyst (XV), Equity Derivatives (VIII), Merchant Banking (IX)."],
   ["Experience", "Investments Intern at CapitaLand (Ascendas Firstspace), Aug–Sep 2026."],
@@ -424,7 +424,7 @@ export const FACTS: [string, string][] = [
 ];
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
-  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected graduation: 2027" },
+  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected graduation: April 2027" },
 ];
 
 export interface Role {

@@ -45,7 +45,7 @@ const focusHash = () => {
     // Direct navigation expands the target, its collapsed parents and its section dropdown.
     for (let d = target.parentElement?.closest("details"); d; d = d.parentElement?.closest("details")) d.open = true;
     if (target instanceof HTMLDetailsElement) target.open = true;
-    target.querySelector<HTMLDetailsElement>(":scope > details.research-disclosure")?.setAttribute("open", "");
+    target.querySelector<HTMLDetailsElement>(":scope > details.research-disclosure, :scope > details.case-fold, :scope > details.project-fold")?.setAttribute("open", "");
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: "start" });
   }

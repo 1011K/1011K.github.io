@@ -351,8 +351,8 @@ export const CREDENTIALS: Credential[] = [
     title: "CFA Program",
     status: "Level I passed. Level II candidate, May 2027.",
     studied: "Valuation, capital markets, risk and research methodology.",
-    applied: "The same topics behind the demonstrations below.",
-    caution: "Not a CFA charterholder. Passing an exam does not certify any model on this page.",
+    applied: "Applied these concepts to the hypothetical valuation and risk demonstrations.",
+    caution: "CFA Level I completion does not confer the CFA charter or validate the models shown here.",
   },
   {
     id: "nism-ra",
@@ -368,7 +368,7 @@ export const CREDENTIALS: Credential[] = [
     status: "Passed.",
     studied: "Option contracts, payoff algebra, Greeks, hedging risk and pricing assumptions.",
     applied: "The options calculator below and the payoff reasoning behind it.",
-    caution: "An exam is not a substitute for licensed historical options data.",
+    caution: "The certification does not establish the accuracy of historical options data.",
   },
   {
     id: "nism-mb",
@@ -413,14 +413,10 @@ export const LINKS = {
 };
 
 export const FACTS: [string, string][] = [
-  ["Based in", "Mumbai, India"],
-  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected April 2027."],
-  ["CFA Program", "Level I passed, 2026. Level II candidate, May 2027."],
-  ["NISM", "Research Analyst (XV), Equity Derivatives (VIII), Merchant Banking (IX)."],
-  ["Experience", "Investments Intern, Ascendas Firstspace, Aug–Sep 2026."],
-  ["Leadership", "Organising Committee, TALAASH & Jai Hind Conclave, 2024–present."],
-  ["Languages", "English, Hindi."],
-  ["Career interests", "Private equity and hedge funds first, then investment banking and wealth management."],
+  ["Education", "Final-year BBA student, Jai Hind College, Mumbai."],
+  ["CFA Program", "Level I exam passed; Level II candidate (May 2027)."],
+  ["NISM", "Research Analyst, Equity Derivatives and Merchant Banking certifications."],
+  ["Experience", "CapitaLand (Ascendas Firstspace) · Investments Intern, 2026."],
 ];
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
@@ -437,10 +433,10 @@ export const EXPERIENCE: Role[] = [
   {
     dates: "Aug – Sep 2026",
     role: "Investments Intern",
-    org: "Ascendas Firstspace Development Management Pvt. Ltd.",
+    org: "CapitaLand (Ascendas Firstspace)",
     points: [
-      "Researched industrial and logistics real estate in Mumbai, Pune and NCR, focusing on rents, Grade-A supply and developer activity.",
-      "Worked with property and market data and gained an understanding of warehouse leasing, logistics assets and investment research.",
+      "Supported research on industrial and logistics real estate markets in Mumbai, Pune and the National Capital Region, including rental trends, Grade A supply and developer activity.",
+      "Reviewed property and market data to understand warehouse leasing, logistics properties and investment considerations.",
     ],
   },
 ];

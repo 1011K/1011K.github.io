@@ -42,7 +42,15 @@ const focusHash = () => {
   try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
   const target = document.getElementById(id);
   if (target) {
+    // Deep links reveal closed sections and nested research or educational details.
+    let ancestor = target.parentElement;
+    while (ancestor) {
+      if (ancestor instanceof HTMLDetailsElement) ancestor.open = true;
+      ancestor = ancestor.parentElement;
+    }
     if (target instanceof HTMLDetailsElement) target.open = true;
+    const disclosure = target.querySelector(":scope > details.section-disclosure");
+    if (disclosure instanceof HTMLDetailsElement) disclosure.open = true;
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: "start" });
   }

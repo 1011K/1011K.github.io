@@ -2,7 +2,7 @@
 
 Single-page professional portfolio for Krishiv Ramchandani. Vite, TypeScript, local Inter/Fraunces fonts, a global light/dark switch and a research-led editorial layout. No backend, remote market feed, analytics or ASTRA connection.
 
-Page order: short profile and demo shortcuts; five interactive educational workstations; three selected projects; expandable research cases; education and qualifications; experience; Forage simulations; and contact. The demo screenshot gallery and extra educational labs are collapsed by default. The separate Reliance Industries study is linked on LinkedIn only. Profile facts come from the approved standard CV; no GPA, report counts, phone or address are published.
+Page order: short profile and demo shortcuts; five interactive educational workstations; three selected projects; expandable research cases; education and qualifications; experience; Forage simulations; and contact. Every section except the profile, qualifications and contact opens as a dropdown, closed by default, so the page stays short; ASTRA and the independent study also open on demand, and in-page links open their target. The demo screenshot gallery and extra educational labs are collapsed by default. The separate Reliance Industries study is linked on LinkedIn only. Profile facts come from the approved standard CV; no GPA, report counts, phone or address are published.
 
 Public copy and demo contracts live in `src/content.ts`. Profile styles live in `src/profile.css`, base and shell styles in `src/style.css`. `src/render.ts` turns them into HTML at build time (a Vite transform fills the `<!--@name-->` placeholders in `index.html`), so every section except the interactive widgets works without JavaScript.
 

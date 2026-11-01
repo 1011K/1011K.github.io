@@ -238,6 +238,7 @@ td.h-na{background:var(--hna);color:var(--hna-ink);border:1px dashed var(--hna-l
 .fold>summary:focus-visible,.research-disclosure>summary:focus-visible,.glance-fold>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .research-disclosure>summary small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:2px}
 .research-inner{padding:4px 0 24px}
+.project-fold{margin:4px 0 0}.project-fold>.fold-astra{margin-top:0}
 .fold-gallery .shots-block{margin:10px 0 20px}
 .fold-labs .labs-wrap{padding:4px 0 20px}
 .fold-astra .areas{margin:12px 0 20px}

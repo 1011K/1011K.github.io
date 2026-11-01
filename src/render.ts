@@ -48,9 +48,9 @@ export const astraWorkstreams = () => `<p class="muted">Workstreams, 2026 to pre
 export const study = () =>
   `<article class="project" id="project-independent-study"><header class="phead"><span class="pno">03</span><div><p class="eyebrow">Independent project · ${e(STUDY.period)} · Separate from ASTRA</p><h3>${e(STUDY.title)}</h3></div></header>
 <p class="plede">${e(STUDY.summary)}</p>
-<ul class="tags">${STUDY.methods.map((m) => `<li>${e(m)}</li>`).join("")}</ul>
+<details class="fold project-fold"><summary>Open study details</summary><ul class="tags">${STUDY.methods.map((m) => `<li>${e(m)}</li>`).join("")}</ul>
 <p class="muted">${e(STUDY.note)}</p>
-<div class="plinks">${STUDY.links.map((l) => `<a class="btn" target="_blank" rel="noopener noreferrer" href="${e(l.href)}">${e(l.label)} ↗</a>`).join("")}</div></article>`;
+<div class="plinks">${STUDY.links.map((l) => `<a class="btn" target="_blank" rel="noopener noreferrer" href="${e(l.href)}">${e(l.label)} ↗</a>`).join("")}</div></details></article>`;
 
 export const simulations = () =>
   SIMULATIONS.map(

@@ -42,9 +42,10 @@ const focusHash = () => {
   try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
   const target = document.getElementById(id);
   if (target) {
-    // Direct navigation to Research expands the section on demand.
-    if (id === "research") document.querySelector<HTMLDetailsElement>("#research-details")?.setAttribute("open", "");
+    // Direct navigation expands the target, its collapsed parents and its section dropdown.
+    for (let d = target.parentElement?.closest("details"); d; d = d.parentElement?.closest("details")) d.open = true;
     if (target instanceof HTMLDetailsElement) target.open = true;
+    target.querySelector<HTMLDetailsElement>(":scope > details.research-disclosure")?.setAttribute("open", "");
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: "start" });
   }

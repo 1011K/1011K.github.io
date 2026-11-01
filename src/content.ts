@@ -466,7 +466,7 @@ export const CASE_DETAIL: Record<Ticker, { hypotheses: [string, string]; risks: 
   HDFCBANK: {
     hypotheses: [
       "Can deposit growth and a stable deposit mix keep funding cost and margin in line with loan growth?",
-      "Or does funding-cost pressure and slower deposit growth lower the return on equity the book can sustain?",
+      "Or do funding-cost pressure and slower deposit growth lower the return on equity the book can sustain?",
     ],
     risks: [
       "Margin compression if funding costs stay high or the deposit mix worsens.",

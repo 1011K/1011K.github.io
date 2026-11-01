@@ -28,7 +28,7 @@ test('identity, navigation and contact work without JavaScript', () => {
   assert.ok(page.includes('Ascendas Firstspace Development Management Pvt. Ltd.'));
   assert.ok(html.includes('mailto:krishivramchandani@gmail.com'));
   assert.ok(html.includes('href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"') && html.includes('href="https://github.com/1011K"'));
-  for (const t of ['91%', '97.2%', 'Industry Integrated with Tata Consultancy Services', 'April 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
+  for (const t of ['Industry Integrated with Tata Consultancy Services', 'April 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
   assert.match(page, /Private equity and hedge funds[\s\S]*Investment banking[\s\S]*Wealth management/);
   assert.match(html, /href="#main" class="skip"/);
   assert.match(html, /id="theme"/);

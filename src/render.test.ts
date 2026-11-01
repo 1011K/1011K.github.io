@@ -32,7 +32,7 @@ it("keeps Reliance inside the independent study block only, with both LinkedIn p
 });
 it("renders the profile details from the approved CV and none of the withheld ones", () => {
   const p = [html.facts, html.academic, html.experience, html.skills].join("");
-  for (const t of ["91%", "97.2%", "Ascendas Firstspace", "TALAASH", "Python (basic)", "SQL (introductory)", "Hindi"]) expect(p).toContain(t);
+  for (const t of ["Ascendas Firstspace", "TALAASH", "Python (basic)", "SQL (introductory)", "Hindi"]) expect(p).toContain(t);
   expect(p).not.toMatch(/\bC?GPA\b|\b266\b|\+91|charterholder/i);
 });
 it("shows eleven simulation cards", () => {

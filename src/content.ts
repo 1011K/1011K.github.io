@@ -425,8 +425,6 @@ export const FACTS: [string, string][] = [
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
   { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected April 2027" },
-  { level: "Class XII", detail: "Senior secondary", result: "91%" },
-  { level: "ICSE Class X", detail: "Secondary", result: "97.2%" },
 ];
 
 export interface Role {

@@ -45,8 +45,7 @@ it("gives each company two open questions and three risks, and no conclusion wor
 it("keeps profile facts to the approved CV: no GPA, report counts, phone or address", () => {
   const text = JSON.stringify([FACTS, ACADEMIC_RECORD, EXPERIENCE, LEADERSHIP, SKILLS, LINKS]);
   expect(text).not.toMatch(/\bC?GPA\b|\b266\b|\b66\b|\+91|address|charterholder/i);
-  expect(text).toMatch(/91%/);
-  expect(text).toMatch(/97\.2%/);
+  expect(text).not.toMatch(/91%|97\.2%|Class XII|Class X\b/);
   expect(LINKS.email).toBe("krishivramchandani@gmail.com");
 });
 it("describes the Reliance study as separate, with exactly its two LinkedIn posts and no PDF", () => {

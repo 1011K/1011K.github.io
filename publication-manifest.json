@@ -11,11 +11,11 @@
       "approvedBy": "Krishiv Ramchandani",
       "approvedAt": "2026-11-01",
       "asOf": "2026-10-30",
-      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports as a neutral public edition without ratings. Exact files from the ASTRA public-edition build (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361_incl_public_edition.patch, sha256 49af02fd40b72fcc5713fe1f3c2d24b45114cae9e2c586aca93f15af35aee025). The build step rewrites wording only: upside and downside become a model valuation spread, and verdict and stance become assessment and reading; numbers, methods and limitations are unchanged. Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY, SELL, verdict, stance, upside or downside wording in the PDF text or Excel cells; no local paths, macros or external links; all Excel formulas recomputed with two independent engines (xlcalculator by the producer, python formulas 1.3.4 here) with no mismatch; two Codex reviews (gpt-6-sol). NOT independently audited: statements are secondary-source data and the model has the open issues listed. Whether publishing a model fair value is acceptable for a non-registered publisher is a legal question not answered by this receipt.",
       "rightsCleared": true,
       "privacyCleared": true,
       "openIssues": [
-        "Fair value INR 420.32 against a price of INR 692.80 (-39.3%). Reliability is LOW.",
+        "Model valuation spread of -39.3% (fair value INR 420.32 against a price of INR 692.80). Reliability is LOW.",
         "Asset quality and capital adequacy are not evaluated (3 of 26 rubric criteria scored).",
         "The second data source (Yahoo) differs from the NSE lender XBRL by 40 to 53% on revenue and owners' equity (7 field-years over 25%).",
         "No segment data and no peer multiples."
@@ -23,11 +23,11 @@
       "assets": [
         {
           "path": "reports/HDFCBANK_NS_Institutional_Report.pdf",
-          "sha256": "73e7b5d7247ef719296c106c81fb68ce2cf58091ac0a15c11a55a0c59a4efeda"
+          "sha256": "e50f8804642960232bffcc65c4dbe878c831539654b6090c835e4c979c1dfe80"
         },
         {
           "path": "reports/HDFCBANK_NS_Financial_Model.xlsx",
-          "sha256": "4a4c4d3157c1cdf1e0c67565a2e980fd0802d7f1145a3737bfe0ea4e66545c61"
+          "sha256": "d70a22bb1345eff762d3bf20ff7444985f0e6d372869d4bdcb0317cb075d1bca"
         }
       ]
     },
@@ -40,7 +40,7 @@
       "approvedBy": "Krishiv Ramchandani",
       "approvedAt": "2026-11-01",
       "asOf": "2026-10-30",
-      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports as a neutral public edition without ratings. Exact files from the ASTRA public-edition build (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361_incl_public_edition.patch, sha256 49af02fd40b72fcc5713fe1f3c2d24b45114cae9e2c586aca93f15af35aee025). The build step rewrites wording only: upside and downside become a model valuation spread, and verdict and stance become assessment and reading; numbers, methods and limitations are unchanged. Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY, SELL, verdict, stance, upside or downside wording in the PDF text or Excel cells; no local paths, macros or external links; all Excel formulas recomputed with two independent engines (xlcalculator by the producer, python formulas 1.3.4 here) with no mismatch; two Codex reviews (gpt-6-sol). NOT independently audited: statements are secondary-source data and the model has the open issues listed. Whether publishing a model fair value is acceptable for a non-registered publisher is a legal question not answered by this receipt.",
       "rightsCleared": true,
       "privacyCleared": true,
       "openIssues": [
@@ -53,11 +53,11 @@
       "assets": [
         {
           "path": "reports/DLF_NS_Institutional_Report.pdf",
-          "sha256": "6d2af09a6464ea3e83d334306a69060acbf4d862f5cc68f36a428c4a65e87ca7"
+          "sha256": "172b80340ed5afc90a00c238487a9d103eb1d977ef3f65f412afdb4309e23b69"
         },
         {
           "path": "reports/DLF_NS_Financial_Model.xlsx",
-          "sha256": "0f7d5b59d6441ba67fc975d6e22884f27b83c37da0759caaacc3e9f34fc69390"
+          "sha256": "72c21829f6a73fd889b0ba436eb9ec9fbfef8ec083133e606c01fb202034fae9"
         }
       ]
     },
@@ -70,7 +70,7 @@
       "approvedBy": "Krishiv Ramchandani",
       "approvedAt": "2026-11-01",
       "asOf": "2026-10-30",
-      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports as a neutral public edition without ratings. Exact files from the ASTRA public-edition build (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361_incl_public_edition.patch, sha256 49af02fd40b72fcc5713fe1f3c2d24b45114cae9e2c586aca93f15af35aee025). The build step rewrites wording only: upside and downside become a model valuation spread, and verdict and stance become assessment and reading; numbers, methods and limitations are unchanged. Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY, SELL, verdict, stance, upside or downside wording in the PDF text or Excel cells; no local paths, macros or external links; all Excel formulas recomputed with two independent engines (xlcalculator by the producer, python formulas 1.3.4 here) with no mismatch; two Codex reviews (gpt-6-sol). NOT independently audited: statements are secondary-source data and the model has the open issues listed. Whether publishing a model fair value is acceptable for a non-registered publisher is a legal question not answered by this receipt.",
       "rightsCleared": true,
       "privacyCleared": true,
       "openIssues": [
@@ -82,11 +82,11 @@
       "assets": [
         {
           "path": "reports/BHARTIARTL_NS_Institutional_Report.pdf",
-          "sha256": "58757e77ca35d60e93113e20f3be76577b86a4fbd8611eb26534c8e93da7365b"
+          "sha256": "fc08da2d5f7c898657d8764d50da4d3c825bc18f191925cd4f64cec90cbbd243"
         },
         {
           "path": "reports/BHARTIARTL_NS_Financial_Model.xlsx",
-          "sha256": "3d7898f0f429b3de3a19b54d9d055833b0fd172ea63a764ced9edcddcf6dcfac"
+          "sha256": "b1a6ed21deeb8e52dda3eb0de8b4c4e16ef0470174f9cf1398a61161447f9307"
         }
       ]
     },
@@ -99,11 +99,11 @@
       "approvedBy": "Krishiv Ramchandani",
       "approvedAt": "2026-11-01",
       "asOf": "2026-10-30",
-      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports as a neutral public edition without ratings. Exact files from the ASTRA public-edition build (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361_incl_public_edition.patch, sha256 49af02fd40b72fcc5713fe1f3c2d24b45114cae9e2c586aca93f15af35aee025). The build step rewrites wording only: upside and downside become a model valuation spread, and verdict and stance become assessment and reading; numbers, methods and limitations are unchanged. Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY, SELL, verdict, stance, upside or downside wording in the PDF text or Excel cells; no local paths, macros or external links; all Excel formulas recomputed with two independent engines (xlcalculator by the producer, python formulas 1.3.4 here) with no mismatch; two Codex reviews (gpt-6-sol). NOT independently audited: statements are secondary-source data and the model has the open issues listed. Whether publishing a model fair value is acceptable for a non-registered publisher is a legal question not answered by this receipt.",
       "rightsCleared": true,
       "privacyCleared": true,
       "openIssues": [
-        "The model's confidence gate fails: fair value INR 364.92 is -61.1% from the INR 939.10 price, beyond the 60% limit, so the report states no verdict. The figures are still displayed in the PDF and Excel file. Run status is FAILED (LF_NO_PLUG, worst difference 14.68 Cr).",
+        "The model's confidence gate fails: the model valuation spread of -61.1% (fair value INR 364.92 against a price of INR 939.10) is beyond the 60% limit, so the report states no assessment. The figures are still displayed in the PDF and Excel file. Run status is FAILED (LF_NO_PLUG, worst difference 14.68 Cr).",
         "Historical EPS is withheld (shown as n/a): the statement share count of 61.8 Cr is 10.06 times below the 622 Cr used in the valuation, pending the exchange split and bonus record. The raw 61.8 Cr count still appears in the statement rows.",
         "The fee-income driver prints as 0.0040% of AUM, likely a unit error. Not fixed.",
         "Only 3 of 26 rubric criteria scored."
@@ -111,11 +111,11 @@
       "assets": [
         {
           "path": "reports/BAJFINANCE_NS_Institutional_Report.pdf",
-          "sha256": "1bb4004cc3b43be21cc38e52018b37dc51b3601748faf095da945510ef0924d2"
+          "sha256": "f7e156b5be4cc37f3d855b508c8d09ae637e6f916465b8283fabde0764fef98b"
         },
         {
           "path": "reports/BAJFINANCE_NS_Financial_Model.xlsx",
-          "sha256": "ee43cfd050ee3d3311b824f52d5eb562998c95df8658c63f133c5548c230d4b1"
+          "sha256": "1df01dc2e7386fc266c42524fbd415d363be07c6b1003f32bd1125905804edde"
         }
       ]
     },
@@ -128,7 +128,7 @@
       "approvedBy": "Krishiv Ramchandani",
       "approvedAt": "2026-11-01",
       "asOf": "2026-10-30",
-      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports. Owner chose a neutral public edition without ratings. Exact files from the ASTRA report-defects-v2 export (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361.patch, sha256 c6bc4a0cfd7cd82481ef955b4f89b57ba4d781dc04674b673c84ecfa3e4a7342). Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY or SELL wording, no local paths, macros or external links in the PDF or Excel; PDF document info neutral; all Excel formulas recomputed with an independent engine (python formulas 1.3.4) and matching cached values; Codex review of the publication gate. NOT independently audited: statements are secondary-source data and the model has the open issues listed.",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: publish the five reports as a neutral public edition without ratings. Exact files from the ASTRA public-edition build (base commit b7b86361d20c284ad0ff81aeacf46cd8392fc168 plus SOURCE_CHANGES_on_b7b86361_incl_public_edition.patch, sha256 49af02fd40b72fcc5713fe1f3c2d24b45114cae9e2c586aca93f15af35aee025). The build step rewrites wording only: upside and downside become a model valuation spread, and verdict and stance become assessment and reading; numbers, methods and limitations are unchanged. Checked by this release: no ACCUMULATE, REDUCE, OVERVALUED, UNDERVALUED, BUY, SELL, verdict, stance, upside or downside wording in the PDF text or Excel cells; no local paths, macros or external links; all Excel formulas recomputed with two independent engines (xlcalculator by the producer, python formulas 1.3.4 here) with no mismatch; two Codex reviews (gpt-6-sol). NOT independently audited: statements are secondary-source data and the model has the open issues listed. Whether publishing a model fair value is acceptable for a non-registered publisher is a legal question not answered by this receipt.",
       "rightsCleared": true,
       "privacyCleared": true,
       "openIssues": [
@@ -138,11 +138,11 @@
       "assets": [
         {
           "path": "reports/HDFCLIFE_NS_Institutional_Report.pdf",
-          "sha256": "27657625debc4b321521c7091594ed6b0b91494fe060a7656a5fe04a15ca5378"
+          "sha256": "604029b79dd097cc9f319b2d203ddf42646bdb10ae60a55b4a963d95a04ffde0"
         },
         {
           "path": "reports/HDFCLIFE_NS_Financial_Model.xlsx",
-          "sha256": "15c4c8f0310311f40eb45565d1b85e9423575cb34702ef736e13a06a1be0f811"
+          "sha256": "1a5c99f8d462bfa33df3837efc69c1c02c5438b758b2acca3e2f44970776fb6b"
         }
       ]
     }

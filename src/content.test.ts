@@ -28,7 +28,7 @@ it("routes each company to exactly one method and rejects the rest", () => {
 it("never claims unverified credentials", () => {
   const text = JSON.stringify(CREDENTIALS);
   expect(text).not.toMatch(/(?<!Not a )CFA charterholder|Level II passed|\bC?GPA\b/i);
-  expect(text).toMatch(/Not a CFA charterholder/);
+  expect(text).toMatch(/CFA Level I completion does not confer the CFA charter/);
   expect(text).toMatch(/Not a SEBI research analyst registration/);
 });
 it("rejects a release record naming a non-core ticker", () => {

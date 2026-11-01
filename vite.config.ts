@@ -1,12 +1,12 @@
 import { defineConfig, type Plugin } from "vite";
 import { placeholders } from "./src/render.ts";
-import { isReleased } from "./src/publication.ts";
+import { isDraftRelease, isReleased } from "./src/publication.ts";
 import manifest from "./publication-manifest.json" with { type: "json" };
 // Static, JavaScript-free sections are generated from src/content.ts at build time.
 const sections = (): Plugin => ({
   name: "static-sections",
   transformIndexHtml(html) {
-    const parts = placeholders((manifest.research as unknown[]).filter(isReleased));
+    const parts = placeholders((manifest.research as unknown[]).filter(isReleased), (manifest.researchDrafts as unknown[]).filter(isDraftRelease));
     const out = html.replace(/<!--@([a-z-]+)-->/g, (_, k: string) => {
       if (!(k in parts)) throw new Error(`Unknown section placeholder: ${k}`);
       return parts[k];

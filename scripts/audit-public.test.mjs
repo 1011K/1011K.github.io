@@ -100,6 +100,38 @@ test("exact approval hashes are required in both source and build", async () => 
   assert.match(run(), /audit passed/);
 });
 
+test("draft reports are pinned by exact hash and never accepted when they claim verification", async () => {
+  const { createHash } = await import("node:crypto");
+  const { readFileSync } = await import("node:fs");
+  const original = readFileSync("publication-manifest.json");
+  const pdf = "Synthetic draft pdf fixture", xlsx = "Synthetic draft xlsx fixture";
+  const h = (b) => createHash("sha256").update(b).digest("hex");
+  const draft = {
+    ticker: "DLF", title: "Synthetic draft", publicationStatus: "OWNER_APPROVED_DRAFT", verificationStatus: "UNVERIFIED", accuracyVerified: false,
+    approvedBy: "Synthetic test owner", approvedAt: "2026-11-01", asOf: "2026-10-30", reviewReceipt: "Synthetic test only",
+    rightsCleared: true, privacyCleared: true, openIssues: ["Synthetic open issue"],
+    assets: [{ path: "reports/draft-probe.pdf", sha256: h(pdf) }, { path: "reports/draft-probe.xlsx", sha256: h(xlsx) }],
+  };
+  const put = (d) => writeFileSync("publication-manifest.json", JSON.stringify({ ...JSON.parse(original), researchDrafts: [d] }));
+  mkdirSync("public/reports", { recursive: true });
+  mkdirSync("dist/reports", { recursive: true });
+  const files = ["public/reports/draft-probe.pdf", "dist/reports/draft-probe.pdf", "public/reports/draft-probe.xlsx", "dist/reports/draft-probe.xlsx"];
+  try {
+    put(draft);
+    for (const f of files) writeFileSync(f, f.endsWith(".pdf") ? pdf : xlsx);
+    assert.match(run(), /audit passed/);
+    writeFileSync("dist/reports/draft-probe.pdf", "Changed bytes");
+    assert.throws(run, /hash mismatch|missing or changed/);
+    writeFileSync("dist/reports/draft-probe.pdf", pdf);
+    put({ ...draft, verificationStatus: "VERIFIED" });
+    assert.throws(run, /Incomplete or unapproved draft/);
+  } finally {
+    writeFileSync("publication-manifest.json", original);
+    for (const f of files) rmSync(f, { force: true });
+  }
+  assert.match(run(), /audit passed/);
+});
+
 test("single-page build rejects extra HTML, source maps and orphan assets", () => {
   for (const [path, bytes, pattern] of [
     [

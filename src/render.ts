@@ -5,7 +5,7 @@ import {
   ENGINE_REASON, EXPERIENCE, FACTS, GATES, INTERESTS, LEADERSHIP, SIMULATIONS, SKILLS, STUDY,
   type Company, type Demo, type Role, type Ticker,
 } from "./content.ts";
-import { escapeHTML as e, type ReleaseRecord } from "./publication.ts";
+import { escapeHTML as e, type DraftRelease, type ReleaseRecord } from "./publication.ts";
 
 const list = (items: string[]) => `<ul>${items.map((i) => `<li>${e(i)}</li>`).join("")}</ul>`;
 
@@ -61,9 +61,16 @@ export const simulations = () =>
   ).join("");
 
 const matches = (r: ReleaseRecord, c: Company) => r.ticker === c.ticker;
-export function cases(releases: ReleaseRecord[] = []) {
+const draftBlock = (d?: DraftRelease) => {
+  if (!d) return "";
+  const pdf = d.assets.find((a) => a.path.endsWith(".pdf"))!, xlsx = d.assets.find((a) => a.path.endsWith(".xlsx"))!;
+  return `<div class="draft-reports"><p class="draft-note"><b>DRAFT. UNVERIFIED.</b> Educational research as of ${e(d.asOf)}. Not investment advice and not a recommendation. The author is not a SEBI-registered research analyst. Where a report shows a model fair value or its gap to the share price, that is an unaudited model output on secondary-source data, not a price target. Technical signals are not published.</p><div class="plinks"><a class="btn" href="/${e(pdf.path)}" download>Draft report (PDF) ↓</a><a class="btn" href="/${e(xlsx.path)}" download>Draft Excel model (XLSX) ↓</a></div><details class="more"><summary>Known open issues in this draft</summary>${list(d.openIssues)}</details></div>`;
+};
+export function cases(releases: ReleaseRecord[] = [], drafts: DraftRelease[] = []) {
   return COMPANIES.map((c, i) => {
     const files = releases.filter((r) => matches(r, c)).flatMap((r) => r.assets);
+    // A verified release always wins; a draft only shows where no verified release exists.
+    const draft = files.length ? undefined : drafts.find((d) => d.ticker === c.ticker);
     const pdf = files.find((a) => a.path.endsWith(".pdf")), xlsx = files.find((a) => a.path.endsWith(".xlsx"));
     const dl = (a: { path: string } | undefined, label: string) =>
       a ? `<a class="btn" href="/${e(a.path)}" download>${label}</a>` : `<span class="state">${label}: <b>WITHHELD</b></span>`;
@@ -73,7 +80,7 @@ export function cases(releases: ReleaseRecord[] = []) {
 <p class="q">${e(c.question)}</p>
 <details class="fold case-fold" id="case-fold-${c.ticker}"><summary>Open the case: questions, risks, evidence and verification log</summary><div class="case-body"><div class="hyp"><div><b>Open question A</b><p>${e(d.hypotheses[0])}</p></div><div><b>Open question B</b><p>${e(d.hypotheses[1])}</p></div></div>
 <div class="case-cols"><div><h4>Three key risks</h4><ol class="risks">${d.risks.map((r) => `<li>${e(r)}</li>`).join("")}</ol></div>
-<div><h4>Data and filings</h4><dl class="dstatus">${CASE_DATA_STATUS.map(([k, v]) => `<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join("")}</dl></div></div>
+<div><h4>Data and filings</h4><dl class="dstatus">${CASE_DATA_STATUS.map(([k, v]) => `<div><dt>${e(k)}</dt><dd>${e(draft && k === "Valuation output" ? "In the draft report. Unverified." : v)}</dd></div>`).join("")}</dl></div></div>
 <details class="more"><summary>Method, economics and verification focus</summary><dl>
 <div><dt>Valuation method</dt><dd>${e(c.methodText)}</dd></div>
 <div><dt>Method limits</dt><dd>${e(c.prohibitedText)}</dd></div>
@@ -81,9 +88,9 @@ export function cases(releases: ReleaseRecord[] = []) {
 <div><dt>Key uncertainty</dt><dd>${e(c.uncertainty)}</dd></div>
 <div><dt>What would change the thesis</dt><dd>${e(c.thesisChange)}</dd></div>
 <div><dt>Verification focus</dt><dd>${e(c.focus)}</dd></div>
-<div><dt>Provenance</dt><dd>Prepared by Krishiv Ramchandani with ASTRA-assisted modelling. Not independently audited. No investment recommendation or target is published.</dd></div></dl></details>
-<details class="more study"><summary>In-depth case study: method, checks and verification log</summary><div class="study-body"><p class="note"><strong>Status:</strong> the full report and workbook are in preparation. Early drafts did not pass review, so none is published. No valuation, fair value, rating or price target for these five companies is published. The calculators and labs on this page run on hypothetical inputs.</p><h4>How the model is built</h4>${ul(s.model)}<h4>What the checks test</h4>${ul(s.checks)}<h4>Verification log: open items</h4>${ul(s.open)}</div></details>
-<footer>${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></div></details></article>`;
+<div><dt>Provenance</dt><dd>Prepared by Krishiv Ramchandani with ASTRA-assisted modelling. Not independently audited. Not an investment recommendation or price target.</dd></div></dl></details>
+<details class="more study"><summary>In-depth case study: method, checks and verification log</summary><div class="study-body">${draft ? `<p class="note"><strong>Status:</strong> an unverified draft report and Excel model are linked below, with their open issues listed. Any fair value in them comes from an unaudited model on secondary-source data. It is not a price target or a recommendation. The calculators and labs on this page run on hypothetical inputs.</p>` : `<p class="note"><strong>Status:</strong> the full report and workbook are in preparation. Early drafts did not pass review, so none is published. No valuation, fair value, rating or price target for this company is published. The calculators and labs on this page run on hypothetical inputs.</p>`}<h4>How the model is built</h4>${ul(s.model)}<h4>What the checks test</h4>${ul(s.checks)}<h4>Verification log: open items</h4>${ul(s.open)}</div></details>
+${draftBlock(draft)}<footer>${draft ? "" : `${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}`}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></div></details></article>`;
   }).join("");
 }
 
@@ -130,7 +137,7 @@ ${[
   ["portfolio", "Lab 04 · Two-asset risk", "Allocation changes the risk.", "Two hypothetical assets, long-only, weights total 100%. No return forecasts."],
 ].map(([id, k, h, p]) => `<section id="lab-${id}" class="lab" tabindex="-1" aria-labelledby="${id}-title"><header><p class="eyebrow">${k}</p><h3 id="${id}-title">${h}</h3><p class="muted">${p}</p></header><div id="${id}-workspace"></div><noscript><p>Enable JavaScript to use this lab.</p></noscript></section>`).join("")}`;
 
-export const placeholders = (releases: ReleaseRecord[] = []): Record<string, string> => ({
+export const placeholders = (releases: ReleaseRecord[] = [], drafts: DraftRelease[] = []): Record<string, string> => ({
   facts: facts(),
   academic: academic(),
   credentials: credentials(),
@@ -139,7 +146,7 @@ export const placeholders = (releases: ReleaseRecord[] = []): Record<string, str
   study: study(),
   "astra-workstreams": astraWorkstreams(),
   "astra-areas": astraAreas(),
-  cases: cases(releases),
+  cases: cases(releases, drafts),
   demos: demos(),
   labs: labs(),
   simulations: simulations(),

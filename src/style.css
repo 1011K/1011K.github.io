@@ -87,6 +87,7 @@ details.area p{margin:0;padding:0 20px 14px;font-size:14px}
 .case{border:1px solid var(--line);background:var(--paper);padding:32px;display:grid;gap:22px}
 .case-fold{margin:0;background:transparent}.case-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:52px;row-gap:22px;align-items:start;padding-bottom:22px}
 .case-body>details,.case-body>footer{grid-column:1/-1}
+.case-body>.draft-reports{grid-column:1/-1;display:grid;gap:12px;border-left:3px solid var(--accent);background:var(--bg);padding:14px 18px}.draft-note{margin:0;font-size:13.5px}.draft-reports .plinks{display:flex;flex-wrap:wrap;gap:10px}.draft-reports .more{margin:0}
 .case header{display:flex;gap:18px;align-items:flex-start;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .case .idx{font-family:var(--serif);font-size:30px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .case header>div{flex:1;min-width:0}.case h3{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.03em;line-height:1.15}.case header p{margin:2px 0 0;font-size:13px}

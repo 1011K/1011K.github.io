@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, lstatSync, existsSync } from "node:fs";
 import { join, extname } from "node:path";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { isReleased, isApprovedMedia } from "../src/publication.ts";
+import { isReleased, isApprovedMedia, isDraftRelease } from "../src/publication.ts";
 const sourceOnly = process.argv.includes("--source-only");
 const manifest = JSON.parse(readFileSync("publication-manifest.json", "utf8"));
 const errors = [],
@@ -12,6 +12,7 @@ const errors = [],
 if (
   manifest.schemaVersion !== 1 ||
   !Array.isArray(manifest.research) ||
+  !Array.isArray(manifest.researchDrafts) ||
   !Array.isArray(manifest.media)
 )
   throw Error("Invalid publication manifest");
@@ -24,6 +25,16 @@ for (const record of manifest.research) {
     continue;
   }
   for (const a of record.assets) {
+    if (approved.has(a.path)) fail("Duplicate approved asset path");
+    approved.set(a.path, a.sha256);
+  }
+}
+for (const draft of manifest.researchDrafts) {
+  if (!isDraftRelease(draft)) {
+    fail("Incomplete or unapproved draft report record");
+    continue;
+  }
+  for (const a of draft.assets) {
     if (approved.has(a.path)) fail("Duplicate approved asset path");
     approved.set(a.path, a.sha256);
   }

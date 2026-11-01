@@ -351,15 +351,15 @@ export const CREDENTIALS: Credential[] = [
     title: "CFA Program",
     status: "Level I passed. Level II candidate, May 2027.",
     studied: "Valuation, capital markets, risk and research methodology.",
-    applied: "The same topics behind the demonstrations below.",
+    applied: "Applied through my independent financial modelling and research projects.",
     caution: "Not a CFA charterholder. Passing an exam does not certify any model on this page.",
   },
   {
     id: "nism-ra",
     title: "NISM Research Analyst (Series XV)",
     status: "Passed.",
-    studied: "Research conventions, reading issuer statements, evidence and investment-analysis questions.",
-    applied: "Structuring company research around sources and stated limitations.",
+    studied: "Research methods, financial statement analysis, source verification and investment evaluation.",
+    applied: "Organising company research around verifiable sources and stated limitations.",
     caution: "Not a SEBI research analyst registration.",
   },
   {
@@ -367,7 +367,7 @@ export const CREDENTIALS: Credential[] = [
     title: "NISM Equity Derivatives (Series VIII)",
     status: "Passed.",
     studied: "Option contracts, payoff algebra, Greeks, hedging risk and pricing assumptions.",
-    applied: "The options calculator below and the payoff reasoning behind it.",
+    applied: "Applied in the theoretical options calculator and payoff analysis.",
     caution: "An exam is not a substitute for licensed historical options data.",
   },
   {
@@ -375,7 +375,7 @@ export const CREDENTIALS: Credential[] = [
     title: "NISM Merchant Banking (Series IX)",
     status: "Passed.",
     studied: "Capital-markets issuance, disclosure and corporate actions.",
-    applied: "Reading corporate-action histories such as splits and bonus issues.",
+    applied: "Interpreting corporate actions, including share splits and bonus issues, in per-share analysis.",
     caution: "Not a merchant banking licence.",
   },
 ];
@@ -420,7 +420,7 @@ export const FACTS: [string, string][] = [
   ["Experience", "Investments Intern at CapitaLand (Ascendas Firstspace), Aug–Sep 2026."],
   ["Leadership", "Organising Committee, TALAASH & Jai Hind Conclave, 2024–present."],
   ["Languages", "English, Hindi."],
-  ["Career interests", "Private equity and hedge funds first, then investment banking and wealth management."],
+  ["Career interests", "Investment research, private equity, hedge funds, investment banking and wealth management."],
 ];
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [

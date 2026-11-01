@@ -1,0 +1,38 @@
+/* Five-company red correlation heat map and portfolio risk. Theme tokens from style.css; heat colours are inline from redScale. */
+[data-demo="correlation"] .rk-banner{font-weight:700;margin:0 0 14px;padding:8px 10px;border:1px solid var(--warn);background:var(--soft)}
+[data-demo="correlation"] .ws-controls .rk-banner{margin:0}
+[data-demo="correlation"] .rk-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+[data-demo="correlation"] .rk-grid2 input{width:100%;min-width:0}
+[data-demo="correlation"] .rk-hint{display:block;color:var(--muted);font-size:11px}
+[data-demo="correlation"] .rk-setall{display:grid;gap:8px}
+[data-demo="correlation"] .ws-controls select,[data-demo="correlation"] .ws-controls input{max-width:100%}
+/* heat tables */
+[data-demo="correlation"] .rk-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px 24px;margin:0 0 10px}
+[data-demo="correlation"] .rk-pair>div{min-width:0}
+[data-demo="correlation"] .rk-heat{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:2px;font-variant-numeric:tabular-nums;font-size:13px}
+[data-demo="correlation"] .rk-heat caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);padding:0 0 6px}
+[data-demo="correlation"] .rk-heat th{font-size:11px;font-weight:700;color:var(--muted);padding:4px 1px;text-align:center;overflow:hidden}
+[data-demo="correlation"] .rk-heat tbody th{text-align:left;padding-left:2px}
+[data-demo="correlation"] .rk-heat .rk-corner{width:19%;padding:0}
+[data-demo="correlation"] .rk-heat td{text-align:center;padding:10px 0;font-weight:700;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+[data-demo="correlation"] .rk-legend{max-width:420px;margin:6px 0 4px}
+[data-demo="correlation"] .rk-bar{display:block;height:14px;border:1px solid var(--line)}
+[data-demo="correlation"] .rk-ticks{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted);margin-top:3px}
+/* tables and charts */
+[data-demo="correlation"] .tscroll table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+[data-demo="correlation"] .tscroll caption{text-align:left;font-size:12px;font-weight:700;padding:0 0 6px;color:var(--ink)}
+[data-demo="correlation"] .tscroll th,[data-demo="correlation"] .tscroll td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:normal;overflow-wrap:anywhere;vertical-align:top}
+[data-demo="correlation"] .tscroll th:first-child,[data-demo="correlation"] .tscroll td:first-child{text-align:left}
+[data-demo="correlation"] .tscroll thead th{color:var(--muted);font-size:11px}
+[data-demo="correlation"] .tscroll tbody tr:last-child th,[data-demo="correlation"] .tscroll tbody tr:last-child td{font-weight:700}
+[data-demo="correlation"] .chart .rk-bw{fill:var(--ink)}
+[data-demo="correlation"] .chart .rk-bc{fill:#B03A4E}
+[data-demo="correlation"] .legend .s1:before{background:#B03A4E}
+@media(max-width:520px){
+  [data-demo="correlation"] .rk-pair{grid-template-columns:minmax(0,1fr)}
+  [data-demo="correlation"] .rk-heat{font-size:11px;border-spacing:1px}
+  [data-demo="correlation"] .rk-heat th{font-size:9.5px}
+  [data-demo="correlation"] .rk-heat td{padding:9px 0}
+  [data-demo="correlation"] .tscroll table{font-size:11px}
+  [data-demo="correlation"] .tscroll th,[data-demo="correlation"] .tscroll td{padding:5px 4px}
+}

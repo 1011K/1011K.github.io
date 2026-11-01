@@ -1,0 +1,44 @@
+/* Technical intelligence workstation. Theme tokens only, so light and dark both follow style.css. */
+[data-demo="technical"] [hidden]{display:none!important}
+[data-demo="technical"] .tc-banner{margin:0 0 12px;padding:9px 12px;border:1px solid var(--warn);background:var(--soft);font-weight:700;font-size:13px;line-height:1.45}
+[data-demo="technical"] .tc-params{display:grid;gap:12px;min-width:0}
+[data-demo="technical"] .chk{display:flex;gap:10px;align-items:center;font-size:13px;min-height:32px;cursor:pointer}
+[data-demo="technical"] .chk input{width:18px;height:18px;margin:0;flex:none;accent-color:var(--accent)}
+[data-demo="technical"] .ws-controls select,[data-demo="technical"] .ws-controls input[type=number]{max-width:100%;min-width:0}
+[data-demo="technical"] .tc-h{font:400 1.35rem var(--serif);margin:30px 0 8px}
+[data-demo="technical"] .tc-chart h4{margin:14px 0 4px}
+[data-demo="technical"] .tc-chart text{font-size:12.5px}
+/* candles: up is hollow with a stroke, down is filled, so colour is never the only cue */
+[data-demo="technical"] .tc-wick{fill:none;stroke-width:1}
+[data-demo="technical"] .tc-wick.up{stroke:var(--ok)}[data-demo="technical"] .tc-wick.dn{stroke:var(--no)}
+[data-demo="technical"] .tc-body.up{fill:var(--paper);stroke:var(--ok);stroke-width:1}
+[data-demo="technical"] .tc-body.dn{fill:var(--no);stroke:var(--no);stroke-width:1}
+[data-demo="technical"] .tc-vol{fill:var(--muted);opacity:.55}
+[data-demo="technical"] .tc-vol.hot{fill:var(--accent);opacity:1}
+[data-demo="technical"] .tc-in{fill:var(--ink);stroke:var(--paper);stroke-width:1}
+[data-demo="technical"] .tc-out{fill:var(--accent);stroke:var(--paper);stroke-width:1}
+[data-demo="technical"] .tc-hp{fill:var(--ok);opacity:.6}[data-demo="technical"] .tc-hn{fill:var(--no);opacity:.6}
+/* overlays differ by dash pattern as well as colour */
+[data-demo="technical"] .chart .ln.tc-ov0{stroke:var(--accent);stroke-width:2}
+[data-demo="technical"] .chart .ln.tc-ov1{stroke:var(--focus);stroke-width:2;stroke-dasharray:7 4}
+[data-demo="technical"] .chart .ln.tc-ov2{stroke:var(--ink);stroke-width:2;stroke-dasharray:2 3}
+[data-demo="technical"] .chart .ln.dash{stroke-dasharray:4 3}
+[data-demo="technical"] .chart .ln.thin{stroke-width:1.2}
+/* legend swatches */
+[data-demo="technical"] .tc-legend li:before{height:3px}
+[data-demo="technical"] .tc-lg0:before{background:var(--accent)!important}
+[data-demo="technical"] .tc-lg1:before{background:var(--focus)!important}
+[data-demo="technical"] .tc-lg2:before{background:var(--ink)!important}
+[data-demo="technical"] .tc-lgu:before{background:transparent!important;border:2px solid var(--ok);height:8px!important;box-sizing:border-box}
+[data-demo="technical"] .tc-lgd:before{background:var(--no)!important;height:8px!important}
+[data-demo="technical"] .tc-lgin:before{content:"\25B2"!important;background:none!important;color:var(--ink);width:auto!important;height:auto!important;font-size:10px}
+[data-demo="technical"] .tc-lgout:before{content:"\25BC"!important;background:none!important;color:var(--accent);width:auto!important;height:auto!important;font-size:10px}
+[data-demo="technical"] .tc-lgv:before{background:var(--muted)!important}
+[data-demo="technical"] table.grid th,[data-demo="technical"] table.grid td{padding-right:14px;white-space:nowrap}
+[data-demo="technical"] .tc-data tbody th{font-weight:400}
+[data-demo="technical"] .tscroll{max-height:460px;overflow:auto}
+[data-demo="technical"] .tscroll:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media(max-width:720px){
+  [data-demo="technical"] .tc-h{font-size:1.15rem}
+  [data-demo="technical"] .tc-chart text{font-size:15px}
+}

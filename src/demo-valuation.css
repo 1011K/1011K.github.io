@@ -1,0 +1,15 @@
+/* valuation workstation */
+[data-demo="valuation"] .val-hyp{border:1px solid var(--no);border-left-width:4px;background:var(--soft);color:var(--ink);padding:10px 14px;margin:0 0 16px;font-size:13px}
+[data-demo="valuation"] .val-hyp b{letter-spacing:.08em;margin-right:6px}
+[data-demo="valuation"] .val-hyp-sm{padding:8px 10px;font-size:12px}
+[data-demo="valuation"] .val-qa{margin:0 0 12px;padding-left:18px;font-size:13px;color:var(--muted);max-width:760px}
+[data-demo="valuation"] .val-qa li{margin:0 0 4px}
+[data-demo="valuation"] .ws-results table.grid th,[data-demo="valuation"] .ws-results table.grid td{font-variant-numeric:tabular-nums}
+[data-demo="valuation"] .ws-controls .btn{width:100%}
+/* heat table: colours are applied from script via data-bg / data-fg */
+[data-demo="valuation"] table.val-heat{border-collapse:separate;border-spacing:2px;min-width:480px}
+[data-demo="valuation"] table.val-heat td{text-align:right;padding:9px 10px;border:0;background:var(--soft);color:var(--ink)}
+[data-demo="valuation"] table.val-heat td.val-with{text-align:center;font-style:italic;color:var(--muted);background:transparent;border:1px dashed var(--line)}
+[data-demo="valuation"] table.val-heat td.val-base{font-weight:700;outline:2px solid var(--ink);outline-offset:-2px}
+[data-demo="valuation"] table.val-heat th{border-bottom:0;font-size:12px;white-space:nowrap}
+[data-demo="valuation"] .tscroll:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

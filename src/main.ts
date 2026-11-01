@@ -1,6 +1,8 @@
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/inter";
 import "./style.css";
+import "./workstation.css";
+import "./profile.css";
 import { mountLabs } from "./lab.ts";
 import { mountDemos } from "./demos.ts";
 const root = document.documentElement;

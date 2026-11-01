@@ -2,7 +2,9 @@
 
 Single-page professional portfolio for Krishiv Ramchandani. Vite, TypeScript, local Inter/Fraunces fonts, a global light/dark switch and a research-led editorial layout. No backend, remote market feed, analytics or ASTRA connection.
 
-Public copy and demo contracts live in `src/content.ts`. `src/render.ts` turns them into HTML at build time (a Vite transform fills the `<!--@name-->` placeholders in `index.html`), so every section except the interactive widgets works without JavaScript.
+Page order: hero with an at-a-glance facts panel, education and qualifications, experience, leadership and skills, Projects (ASTRA is one of three; the independent Reliance Industries valuation study is a separate, non-core project shared on LinkedIn only), the five research cases, the five demonstrations with educational labs, Forage simulations and contact. Profile facts come from the approved standard CV; no GPA, report counts, phone or address are published.
+
+Public copy and demo contracts live in `src/content.ts`. Profile styles live in `src/profile.css`, base and shell styles in `src/style.css`. `src/render.ts` turns them into HTML at build time (a Vite transform fills the `<!--@name-->` placeholders in `index.html`), so every section except the interactive widgets works without JavaScript.
 
 ## Development and checks
 

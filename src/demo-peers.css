@@ -1,0 +1,22 @@
+/* peers workstation: wide input grid on top, results below */
+[data-demo=peers] .ws{grid-template-columns:minmax(0,1fr)}
+[data-demo=peers] .ws-controls{border-right:0;border-bottom:1px solid var(--line)}
+.pc-banner{margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--warn);color:var(--ink);font-size:13px;overflow-wrap:anywhere}
+.pc-sub{margin:0;color:var(--muted);font-size:13px}
+.pc-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.pc-in{width:100%;border-collapse:collapse;font-size:13px}
+.pc-in caption{text-align:left;color:var(--muted);font-size:12px;padding-bottom:8px}
+.pc-in th,.pc-in td{border-bottom:1px solid var(--line);padding:6px 8px 6px 0;text-align:left;vertical-align:middle;font-weight:400}
+.pc-in thead th{font-weight:700;vertical-align:bottom;min-width:112px}
+.pc-in thead th:first-child{min-width:150px}
+.pc-in tbody th{font-weight:600}
+.pc-in th i{font-style:normal;color:var(--muted);font-size:11px;font-weight:400}
+.pc-in input[type=number],.pc-in input[type=date],.pc-in select{min-height:36px;padding:5px 8px;font-size:13px;min-width:100px}
+.pc-in input[type=date]{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid var(--muted);border-radius:0;width:100%}
+.pc-in input[type=checkbox]{width:20px;height:20px;accent-color:var(--ink)}
+.pc-in input:focus-visible,.pc-in select:focus-visible,[data-demo=peers] .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pc-cls{display:block;font-size:10px;letter-spacing:.1em;color:var(--muted);font-weight:400}
+.pc-list{margin:0 0 10px;padding-left:18px;font-size:13px}
+.pc-list li{margin:0 0 6px;overflow-wrap:anywhere}
+.pc-list .pc-cls{display:inline;margin:0 6px}
+@media(max-width:720px){.pc-opts{grid-template-columns:1fr}}

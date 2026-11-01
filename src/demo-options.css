@@ -1,0 +1,15 @@
+/* Options and derivatives workstation. Tokens come from style.css; layout shared via workstation.css. */
+[data-demo="options"] .opt-banner{border:1px solid var(--line);border-bottom:0;padding:4px 18px 10px;background:var(--soft)}
+[data-demo="options"] .opt-banner .status{font-weight:700;margin:8px 0 0}
+[data-demo="options"] .ws-results table.grid th,[data-demo="options"] .ws-results table.grid td{padding-right:14px}
+[data-demo="options"] .ws-results table.grid td{font-variant-numeric:tabular-nums}
+[data-demo="options"] .ws-results .status{max-width:760px}
+[data-demo="options"] .opt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+[data-demo="options"] .opt-grid .chart{min-width:0}
+[data-demo="options"] .opt-heat{min-width:560px}
+[data-demo="options"] .opt-heat td.base{outline:2px solid var(--ink);outline-offset:-2px}
+[data-demo="options"] .tscroll:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:720px){
+  [data-demo="options"] .opt-banner{padding:2px 14px 10px}
+  [data-demo="options"] .opt-grid{grid-template-columns:1fr}
+}

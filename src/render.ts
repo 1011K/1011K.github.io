@@ -1,7 +1,7 @@
 // Pure string rendering shared by the Vite HTML transform (static, works without JavaScript)
 // and the browser (company-dependent refresh). No DOM access.
 import {
-  ACADEMIC_RECORD, ASTRA_AREAS, ASTRA_WORKSTREAMS, AS_OF, AS_OF_LABEL, CASE_DATA_STATUS, CASE_DETAIL, COMPANIES, CREDENTIALS, DEMOS,
+  ACADEMIC_RECORD, ASTRA_AREAS, ASTRA_WORKSTREAMS, AS_OF, AS_OF_LABEL, CASE_DATA_STATUS, CASE_DETAIL, CASE_STUDY, COMPANIES, CREDENTIALS, DEMOS,
   ENGINE_REASON, EXPERIENCE, FACTS, GATES, INTERESTS, LEADERSHIP, SIMULATIONS, SKILLS, STUDY,
   type Company, type Demo, type Role, type Ticker,
 } from "./content.ts";
@@ -67,7 +67,8 @@ export function cases(releases: ReleaseRecord[] = []) {
     const pdf = files.find((a) => a.path.endsWith(".pdf")), xlsx = files.find((a) => a.path.endsWith(".xlsx"));
     const dl = (a: { path: string } | undefined, label: string) =>
       a ? `<a class="btn" href="/${e(a.path)}" download>${label}</a>` : `<span class="state">${label}: <b>WITHHELD</b></span>`;
-    const d = CASE_DETAIL[c.ticker];
+    const d = CASE_DETAIL[c.ticker], s = CASE_STUDY[c.ticker];
+    const ul = (xs: string[]) => `<ul>${xs.map((x) => `<li>${e(x)}</li>`).join("")}</ul>`;
     return `<article class="case" id="case-${c.ticker}"><header><span class="idx">${String(i + 1).padStart(2, "0")}</span><div><h3>${e(c.name)}</h3><p class="muted">${e(c.ticker)} · ${e(c.archetype)}</p></div><span class="chip">Under verification</span></header>
 <p class="q">${e(c.question)}</p>
 <div class="hyp"><div><b>Open question A</b><p>${e(d.hypotheses[0])}</p></div><div><b>Open question B</b><p>${e(d.hypotheses[1])}</p></div></div>
@@ -81,6 +82,7 @@ export function cases(releases: ReleaseRecord[] = []) {
 <div><dt>What would change the thesis</dt><dd>${e(c.thesisChange)}</dd></div>
 <div><dt>Verification focus</dt><dd>${e(c.focus)}</dd></div>
 <div><dt>Provenance</dt><dd>Prepared by Krishiv Ramchandani with ASTRA-assisted modelling. Not independently audited. No investment recommendation or target is published.</dd></div></dl></details>
+<details class="more study"><summary>In-depth case study: method, checks and verification log</summary><div class="study-body"><p class="note"><strong>Status:</strong> the full report and workbook are in preparation. Early drafts did not pass review, so none is published. No valuation, fair value, rating or price target for these five companies is published. The calculators and labs below run on hypothetical inputs.</p><h4>How the model is built</h4>${ul(s.model)}<h4>What the checks test</h4>${ul(s.checks)}<h4>Verification log: open items</h4>${ul(s.open)}</div></details>
 <footer>${dl(pdf, "Report (PDF)")} ${dl(xlsx, "Workbook (XLSX)")}<a class="text-link" href="#demos" data-pick="${c.ticker}">Open in demonstrations →</a></footer></article>`;
   }).join("");
 }

@@ -545,3 +545,100 @@ export const ASTRA_WORKSTREAMS = [
   "Equity screeners, technical indicators and backtesting with transaction-cost and look-ahead controls.",
   "Research-stage options analytics, Greeks and portfolio risk tools.",
 ];
+
+/** Methodology-only depth for each case. No figures, valuations, ratings or targets: those stay withheld until each report passes review. */
+export interface CaseStudy { model: string[]; checks: string[]; open: string[] }
+export const CASE_STUDY: Record<Ticker, CaseStudy> = {
+  HDFCBANK: {
+    model: [
+      "Opening book value per share, rolled forward each year with retained earnings (earnings less the payout).",
+      "Return on equity fades from the current level to a long-run level over the explicit years.",
+      "Cost of equity is built from a dated risk-free rate, a stated beta and an equity risk premium.",
+      "Value is book value plus the present value of residual income (return on equity above the cost of equity) and a terminal value.",
+      "Cross-checks: a justified price-to-book and a dividend discount model sit beside the residual-income answer.",
+    ],
+    checks: [
+      "Test: accounting identities hold in the projected statements.",
+      "A lender is never forced through an enterprise cash-flow model: deposits are operating funds, so FCFF and WACC are rejected.",
+      "Test: per-share inputs use one consistent share basis after corporate actions.",
+      "Test: terminal growth stays below the cost of equity and is consistent with long-run return on equity.",
+    ],
+    open: [
+      "Share-count basis after the 1:1 bonus issue of August 2025 (the company published the allotment) is being restated consistently across all years.",
+      "The bridge from pre-provision profit to profit before tax needs the lender statement layout, not the generic one.",
+      "The latest quarterly results published before the report date are to be incorporated.",
+      "Per-share ratios must agree between the narrative and the workbook.",
+    ],
+  },
+  DLF: {
+    model: [
+      "Net asset value is built project by project: saleable area, realisation, cost and timing for the residential pipeline.",
+      "The rental portfolio is valued on net operating income, occupancy and a stated discount rate.",
+      "Land bank is valued separately, then net debt and other claims are deducted.",
+      "Associate and joint-venture profit is to be shown as its own line in the bridge between consolidated profit before tax and profit after tax, once the filing's line items are loaded.",
+    ],
+    checks: [
+      "A consolidated cash-flow floor is refused: development cash flows are lumpy and tied to project timing.",
+      "Test: opening cash plus movements equals closing cash.",
+      "Test: the filed balance sheet balances as opened, before anything is forecast on it.",
+    ],
+    open: [
+      "Project-level inputs (saleable area, realisation, land bank, rental NOI, occupancy, discount rate) are not yet sourced, so no NAV is shown.",
+      "The cash roll-forward and opening balance sheet fail reconciliation in the current draft and must be repaired.",
+      "The difference between consolidated profit before tax and profit after tax is not yet itemised in the draft. It stays unexplained until the filing's line-by-line bridge, including associate and joint-venture profit, is loaded.",
+    ],
+  },
+  BHARTIARTL: {
+    model: [
+      "Revenue from subscribers times average revenue per user, with capital expenditure, depreciation, tax and working capital forecast explicitly.",
+      "Free cash flow to the firm is discounted at a weighted cost of capital built from a stated cost of equity and cost of debt.",
+      "Terminal value uses perpetual growth, held below the discount rate.",
+      "The enterprise-to-equity bridge is designed to subtract debt, lease liabilities and minority claims and add non-operating investments, line by line.",
+      "Sensitivity to discount rate and terminal growth is shown as a grid; a driver-based simulation is shown only once it can be reproduced independently.",
+    ],
+    checks: [
+      "Test: statutory and secondary data are compared and differences are disclosed, not averaged.",
+      "Test: the beta used is stated with its basis, and the cost-of-equity arithmetic can be reproduced by hand.",
+      "Test: bridge items are in the same units as enterprise value.",
+    ],
+    open: [
+      "Cash and some statements differ materially between sources; the primary filing must settle them.",
+      "The opening balance sheet and the cash roll-forward do not reconcile in the current draft.",
+      "Lease liabilities and minority interests are not yet measured in the bridge.",
+      "The simulation result cannot yet be reproduced independently, so it is not published.",
+    ],
+  },
+  BAJFINANCE: {
+    model: [
+      "Residual income on book value, with return on equity fading to a long-run level and a cost of equity from a stated beta.",
+      "Loan book, spread over cost of funds, credit cost and operating cost drive earnings.",
+      "A justified price-to-book and a dividend discount model are shown as cross-checks.",
+    ],
+    checks: [
+      "FCFF is rejected: borrowings fund the loan book, so debt is an operating input.",
+      "Test: every historical per-share figure is on one post-corporate-action basis before use.",
+      "Test: the earnings bridge from operating profit to profit after tax closes.",
+    ],
+    open: [
+      "The 2-for-1 split and 4-for-1 bonus effective in June 2025 together multiply the share count by ten. Per-share figures reported before the action need restating by that factor, after each period's basis is confirmed and dated.",
+      "The earnings bridge from the pre-tax figure to profit after tax does not yet close.",
+      "The cost-of-equity inputs (risk-free rate, policy beta) are labelled experimental until their basis is documented.",
+    ],
+  },
+  HDFCLIFE: {
+    model: [
+      "An insurer is valued on embedded value (adjusted net worth plus the value of in-force business) and the value of new business, not on enterprise cash flow.",
+      "Annualised premium equivalent and new-business margin drive the value of new business; persistency and solvency are tracked alongside.",
+    ],
+    checks: [
+      "FCFF, EBITDA and debt metrics are not used: they do not describe an insurer.",
+      "Test: embedded value comes only from a dated company disclosure, with its vintage stated.",
+      "Test: no share value is derived from embedded value unless a supported method exists for it.",
+    ],
+    open: [
+      "A dated embedded value, value of new business and annualised premium equivalent are not yet loaded with their disclosure date.",
+      "Insurer-specific drivers (premium, claims, persistency) are not yet ingested, so no valuation is shown.",
+      "Generic operating-company measures appearing in the current draft are to be removed.",
+    ],
+  },
+};

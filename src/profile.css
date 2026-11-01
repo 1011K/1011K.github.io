@@ -70,3 +70,8 @@ details.prov .prov-body{padding:4px 20px 18px}
 .evidence-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px 24px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .evidence-list li span{color:var(--muted)}
 @media(max-width:720px){.evidence-list li{grid-template-columns:1fr}}
+
+/* In-depth case study inside each case card. */
+details.study .study-body{padding:6px 20px 16px;max-width:860px}
+details.study h4{margin:16px 0 6px}
+details.study ul{margin:0 0 6px;padding-left:20px;font-size:14px;display:grid;gap:6px}

@@ -101,8 +101,10 @@ section.block.folded-section{padding-block:22px}
 .section-disclosure>summary.section-head:after{content:"+";position:absolute;right:10px;top:50%;transform:translateY(-50%);font:400 28px var(--serif);color:var(--accent)}
 .section-disclosure[open]>summary.section-head:after{content:"−"}
 .section-disclosure[open]>summary.section-head{margin-bottom:28px}
-.section-disclosure .section-head h2{font-size:clamp(28px,3.3vw,42px);margin-top:7px}
-.section-disclosure .section-head p{font-size:13px;max-width:450px}
+.section-disclosure .disclosure-heading{display:flex;flex-direction:column;gap:5px}
+.section-disclosure .disclosure-title{font-family:var(--serif);font-size:clamp(28px,3.3vw,42px);font-weight:400;letter-spacing:-.035em;line-height:1.12}
+.section-disclosure .disclosure-copy{font-size:13px;color:var(--muted);max-width:450px;justify-self:end;line-height:1.6}
+@media(max-width:1000px){.section-disclosure .disclosure-copy{justify-self:start}}
 .section-disclosure .disclosure-body{padding-bottom:22px}
 .project-extra{border-top:1px solid var(--line);padding-top:6px}
 .project-extra>summary,.shots-summary,.labs-summary{cursor:pointer;list-style:none;font-weight:650;font-size:14px;display:block;position:relative;min-height:44px;padding:12px 36px 12px 0;color:var(--ink)}

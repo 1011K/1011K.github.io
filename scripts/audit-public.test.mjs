@@ -112,7 +112,7 @@ test("draft reports are pinned by exact hash and never accepted when they claim 
     rightsCleared: true, privacyCleared: true, openIssues: ["Synthetic open issue"],
     assets: [{ path: "reports/draft-probe.pdf", sha256: h(pdf) }, { path: "reports/draft-probe.xlsx", sha256: h(xlsx) }],
   };
-  const put = (d) => writeFileSync("publication-manifest.json", JSON.stringify({ ...JSON.parse(original), researchDrafts: [d] }));
+  const put = (d) => writeFileSync("publication-manifest.json", JSON.stringify({ ...JSON.parse(original), researchDrafts: [...(JSON.parse(original).researchDrafts ?? []), d] }));
   mkdirSync("public/reports", { recursive: true });
   mkdirSync("dist/reports", { recursive: true });
   const files = ["public/reports/draft-probe.pdf", "dist/reports/draft-probe.pdf", "public/reports/draft-probe.xlsx", "dist/reports/draft-probe.xlsx"];

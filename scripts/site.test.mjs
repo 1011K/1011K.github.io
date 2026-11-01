@@ -126,6 +126,14 @@ test('built page, when present, has every generated section, working anchors and
   assert.doesNotMatch(built, /<!--@/);
   assert.equal((built.match(/class="acc sim"/g) ?? []).length, 11);
   assert.equal((built.match(/class="case"/g) ?? []).length, 5);
+  // Page copy says every case links an unverified draft: the manifest must back that up, and nothing may be called verified.
+  assert.equal(manifest.researchDrafts.length, 5);
+  assert.equal((built.match(/DRAFT\. UNVERIFIED\./g) ?? []).length, 5);
+  assert.equal((built.match(/href="\/reports\/[A-Z]+_NS_(Institutional_Report\.pdf|Financial_Model\.xlsx)" download/g) ?? []).length, 10);
+  assert.doesNotMatch(built, /ACCUMULATE|REDUCE|OVERVALUED|UNDERVALUED/);
+  // Draft PDFs publish a Bharti simulation and a Bajaj fair value, so the copy may not say they are unpublished or withheld.
+  assert.doesNotMatch(built, /so it is not published|shown only once it can be reproduced/);
+  assert.ok(manifest.researchDrafts.find(d => d.ticker === 'BAJFINANCE').openIssues.every(i => !/spread is withheld/i.test(i)));
   assert.equal((built.match(/role="tabpanel" class="panel"/g) ?? []).length, 5);
   assert.equal((built.match(/class="area"/g) ?? []).length, 6);
 });

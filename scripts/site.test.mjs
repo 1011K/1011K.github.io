@@ -35,7 +35,7 @@ test('identity, navigation and contact work without JavaScript', () => {
 });
 
 test('demo-first portfolio and optional deep research remain navigable', () => {
-  const ids = ['about','demos','projects','research','experience','education','simulations','contact'];
+  const ids = ['about','demos','projects','research','education','experience','simulations','contact'];
   for (let i = 1; i < ids.length; i++) {
     assert.ok(html.indexOf(`id="${ids[i - 1]}"`) < html.indexOf(`id="${ids[i]}"`), `unexpected section order: ${ids[i]}`);
   }

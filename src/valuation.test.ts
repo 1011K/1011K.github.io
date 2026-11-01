@@ -131,3 +131,16 @@ describe("fail-closed negatives", () => {
   it("residual income with g >= Ke", () => expect(() => residualIncome({ bvps: 100, roeStart: 0.15, roeLong: 0.15, years: 5, payout: 0.5, ke: 0.1, g: 0.1 })).toThrow(/Withheld/));
   it("NAV with a negative NAV per share has no premium", () => expect(() => priceVsNav(10, -5)).toThrow(/not positive/));
 });
+
+describe("review fixes", () => {
+  it("rejects terminal growth at or below -100% instead of returning a value", () => {
+    expect(() => dcf([100], 0.1, -1.5)).toThrow(/-100%/);
+    expect(() => dcf([100], 0.1, -1)).toThrow(/-100%/);
+    expect(() => residualIncome({ bvps: 100, roeStart: 0.15, roeLong: 0.15, years: 3, payout: 0.5, ke: 0.1, g: -1.2 })).toThrow(/-100%/);
+  });
+  it("reports the terminal payout implied by g and long-run ROE, and the explicit-period growth", () => {
+    const r = residualIncome({ bvps: 100, roeStart: 0.13, roeLong: 0.13, years: 5, payout: 0.4, ke: 0.12, g: 0.05 });
+    expect(r.terminalPayout).toBeCloseTo(1 - 0.05 / 0.13, 12);
+    expect(r.explicitGrowthAtLongRun).toBeCloseTo(0.13 * 0.6, 12);
+  });
+});

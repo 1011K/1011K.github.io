@@ -95,6 +95,7 @@ export function dcf(fcff: number[], rate: number, g: number) {
   fcff.forEach((x, k) => finite(x, `FCFF year ${k + 1}`));
   finite(rate, "WACC"); finite(g, "Terminal growth");
   if (rate <= 0) throw new Error("WACC must be above zero.");
+  if (g <= -1) throw new Error("Terminal growth must be above -100%: a perpetuity cannot shrink by more than all of itself each year.");
   if (g >= rate) throw new Error(`Withheld: terminal growth (${pc(g)}) must be below WACC (${pc(rate)}). The perpetuity is undefined.`);
   const n = fcff.length, df = fcff.map((_, k) => 1 / (1 + rate) ** (k + 1)), pv = fcff.map((x, k) => x * df[k]);
   const sumPv = pv.reduce((a, b) => a + b, 0), tv = (fcff[n - 1] * (1 + g)) / (rate - g), pvTv = tv * df[n - 1], ev = sumPv + pvTv;
@@ -145,6 +146,7 @@ export function residualIncome(i: RIInputs) {
   finite(i.ke, "Cost of equity"); finite(i.g, "Terminal growth");
   if (!Number.isInteger(i.years) || i.years < 1 || i.years > 20) throw new Error("Explicit years must be a whole number from 1 to 20.");
   if (i.ke <= 0) throw new Error("Cost of equity must be above zero.");
+  if (i.g <= -1) throw new Error("Terminal growth must be above -100%.");
   if (i.g >= i.ke) throw new Error(`Withheld: terminal growth (${pc(i.g)}) must be below cost of equity (${pc(i.ke)}).`);
   if (i.g > i.roeLong) throw new Error(`Terminal growth (${pc(i.g)}) exceeds long-run ROE (${pc(i.roeLong)}): it would need retention above 100%.`);
   let open = i.bvps;
@@ -155,7 +157,8 @@ export function residualIncome(i: RIInputs) {
     return row;
   });
   const sumPv = rows.reduce((a, r) => a + r.pv, 0), tv = ((i.roeLong - i.ke) * open) / (i.ke - i.g), pvTv = tv * rows[rows.length - 1].df, value = i.bvps + sumPv + pvTv;
-  return { rows, sumPv, tv, pvTv, value, pb: value / i.bvps, tvShare: value > 0 ? pvTv / value : NaN };
+  // The terminal formula lets book value grow at g, so the payout in that phase is implied by g and long-run ROE.
+  return { rows, sumPv, tv, pvTv, value, pb: value / i.bvps, tvShare: value > 0 ? pvTv / value : NaN, terminalPayout: i.roeLong > 0 ? 1 - i.g / i.roeLong : NaN, explicitGrowthAtLongRun: i.roeLong * (1 - i.payout) };
 }
 
 export interface Project { name: string; cashFlow: number; years: number; rate: number; stake: number }

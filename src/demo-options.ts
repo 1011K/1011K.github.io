@@ -61,6 +61,8 @@ export const mount: Mount = (root) => {
     const S = num(f, "spot", "Spot price"), K = num(f, "strike", "Strike"), tIn = num(f, "expiry", "Time to expiry");
     const vol = num(f, "vol", "Volatility") / 100, rate = num(f, "rate", "Risk-free rate") / 100, yld = num(f, "yield", "Dividend yield") / 100;
     const obs = opt(f, "premium", "Observed premium"), obsF = opt(f, "fut", "Observed futures price");
+    if (obs === 0) throw new Error("Observed premium must be above zero, or left blank. A zero premium would be a free option.");
+    if (obsF === 0) throw new Error("Observed futures price must be above zero, or left blank.");
     const lotSize = whole(f, "lotsize", "Lot size"), lots = whole(f, "lots", "Number of lots"), qty = lotSize * lots;
     if (S <= 0 || K <= 0) throw new Error("Spot and strike must be positive.");
     if (vol < 0) throw new Error("Volatility cannot be negative.");

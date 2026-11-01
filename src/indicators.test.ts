@@ -152,6 +152,17 @@ describe("execution", () => {
   });
 });
 
+describe("missing observations", () => {
+  it("never reads a gap as zero when seeding or updating an EMA", () => {
+    expect(ema([100, null, 100], 3)).toEqual([null, null, null]);
+    const out = ema([10, 10, 10, null, 20, 20, 20], 3);
+    expect(out.slice(0, 3)).toEqual([null, null, 10]);
+    expect(out[3]).toBeNull();
+    expect(out.slice(4)).toEqual([null, null, 20]);
+    expect(ema([5, null, 7, 9], 2, "first")).toEqual([5, null, 7, 7 + (2 / 3) * (9 - 7)]);
+  });
+});
+
 describe("sample size", () => {
   it("fails closed under 10 trades and reports above it", () => {
     const n = 300, b = mk(Array.from({ length: n }, (_, i) => 100 + Math.sin(i / 5) * 5));
@@ -161,8 +172,14 @@ describe("sample size", () => {
     const s = sampleStats(many, 0, n);
     expect(s.insufficient).toBe(false);
     if (!s.insufficient) { expect(s.trades).toBe(25); expect(s.turnover).toBeGreaterThan(0); expect(s.mdd).toBeLessThanOrEqual(0); }
-    expect(sampleStats(many, 0, 100)).toMatchObject({ insufficient: false });
+    expect(sampleStats(many, 0, 110)).toMatchObject({ insufficient: false });
     expect(sampleStats(many, 0, 60)).toMatchObject({ insufficient: true });
+  });
+  it("does not count a trade that exits after the sample ends", () => {
+    const n = 300, b = mk(Array.from({ length: n }, (_, i) => 100 + Math.sin(i / 5) * 5));
+    const en = Array.from({ length: 25 }, (_, i) => 5 + i * 10), ex = en.map((i) => i + 4), many = backtest(b, sig(n, en, ex), { costBps: 5, stopK: 0 });
+    // Trade 10 enters at bar 96 and exits at bar 100, so it straddles z = 98 and must not enter the first sample.
+    expect(sampleStats(many, 0, 98)).toEqual({ insufficient: true, trades: 9 });
   });
   it("curve stats", () => {
     const c = curveStats([0.1, -0.1, 0.1], 0, 3);

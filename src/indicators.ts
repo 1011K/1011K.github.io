@@ -27,18 +27,27 @@ export const sma = (x: Arr, n: number): Arr => {
  * "sma": first value is the mean of the first n inputs (null before that). "first": first value is the first input.
  * The two seeds differ during warm-up and converge geometrically afterwards.
  */
-export const ema = (x: Arr, n: number, seed: Seed = "sma"): Arr => {
-  const out = nul(x.length), a = 2 / (n + 1), s = x.findIndex((v) => v !== null);
-  if (s < 0) return out;
+const emaRun = (x: number[], n: number, seed: Seed): Arr => {
+  const out = nul(x.length), a = 2 / (n + 1);
   let from: number;
-  if (seed === "first") { out[s] = x[s]; from = s + 1; }
+  if (seed === "first") { out[0] = x[0]; from = 1; }
   else {
-    if (s + n > x.length) return out;
-    let sum = 0;
-    for (let i = s; i < s + n; i++) sum += nn(x[i]);
-    out[s + n - 1] = sum / n; from = s + n;
+    if (n > x.length) return out;
+    out[n - 1] = x.slice(0, n).reduce((s, v) => s + v, 0) / n; from = n;
   }
-  for (let i = from; i < x.length; i++) out[i] = a * nn(x[i]) + (1 - a) * nn(out[i - 1]);
+  for (let i = from; i < x.length; i++) out[i] = a * x[i] + (1 - a) * nn(out[i - 1]);
+  return out;
+};
+/** A missing observation is never read as zero: the EMA is computed per contiguous run and restarts (re-seeds) after a gap. */
+export const ema = (x: Arr, n: number, seed: Seed = "sma"): Arr => {
+  const out = nul(x.length);
+  for (let i = 0; i < x.length; ) {
+    if (x[i] === null) { i++; continue; }
+    let j = i;
+    while (j < x.length && x[j] !== null) j++;
+    emaRun(x.slice(i, j) as number[], n, seed).forEach((v, k) => (out[i + k] = v));
+    i = j;
+  }
   return out;
 };
 /** Linear weighted moving average, weights 1..n with the newest bar heaviest. */
@@ -355,9 +364,9 @@ export function curveStats(r: number[], a: number, z: number): Curve {
 }
 export interface Stats extends Curve { trades: number; hit: number; turnover: number }
 export type Sample = ({ insufficient: false } & Stats) | { insufficient: true; trades: number };
-/** Strategy metrics for bars [a, z). Trades are attributed to the sample of their entry fill. Fails closed under MIN_TRADES closed trades. */
+/** Strategy metrics for bars [a, z). A trade counts only if it both enters and exits inside the sample, so no later outcome leaks into an earlier sample. Fails closed under MIN_TRADES closed trades. */
 export function sampleStats(bt: BT, a: number, z: number, min = MIN_TRADES): Sample {
-  const t = bt.trades.filter((x) => x.inI >= a && x.inI < z && x.outI !== null);
+  const t = bt.trades.filter((x) => x.inI >= a && x.inI < z && x.outI !== null && x.outI < z);
   if (t.length < min) return { insufficient: true, trades: t.length };
   const fills = bt.fills.slice(a, z).reduce((s, v) => s + v, 0);
   return { insufficient: false, ...curveStats(bt.ret, a, z), trades: t.length, hit: t.filter((x) => x.ret > 0).length / t.length, turnover: fills / ((z - a) / TRADING_DAYS) };

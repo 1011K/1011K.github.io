@@ -27,6 +27,71 @@
       "reviewReceipt": "Owner explicitly selected \"Publish supplied phone-removed CV\" in the current release chat. Exact supplied one-page PDF bytes retained. Render, extracted text, document metadata, XMP, decoded streams, annotations and embedded Content Credentials inspected. No phone, home address, private local path, executable action or nested source PDF found. Claims are owner-provided; historical project output counts are not independently audited publications.",
       "rightsCleared": true,
       "privacyCleared": true
+    },
+    {
+      "kind": "SCREENSHOT",
+      "title": "Workstation preview: correlation",
+      "alt": "Screenshot of the correlation workstation: a five by five red heat map of hypothetical correlations next to a simulated sample matrix, with portfolio risk tiles and a risk-contribution table.",
+      "path": "media/workstation-correlation.webp",
+      "sha256": "d9b0bd47b48bcbd7f4f6457fcf19c3b7b8352d4811120f6193b1d3e1bf65e79f",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: use the screenshots I like that go with the profile. Captured by script from this site's own workstation in dark theme on hypothetical inputs or a synthetic series. No ASTRA screen, company data, account, key or private material appears. Visually inspected before publication.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "SCREENSHOT",
+      "title": "Workstation preview: valuation",
+      "alt": "Screenshot of the valuation workstation for a telecom company on hypothetical inputs: enterprise value tiles, a revenue and EBITDA line chart, an FCFF bar chart and a forecast table.",
+      "path": "media/workstation-valuation.webp",
+      "sha256": "e1aa8091866f0a480232466d5f21921f7cee90be8401d08a6e8deca85aad6137",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: use the screenshots I like that go with the profile. Captured by script from this site's own workstation in dark theme on hypothetical inputs or a synthetic series. No ASTRA screen, company data, account, key or private material appears. Visually inspected before publication.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "SCREENSHOT",
+      "title": "Workstation preview: technical",
+      "alt": "Screenshot of the technical workstation: candlestick chart with moving averages, volume and trade fills on a synthetic price series, with RSI and MACD panels below.",
+      "path": "media/workstation-technical.webp",
+      "sha256": "4330a076c1236a280c819b07dd474fea52484e642a724e8e00942bed8c591737",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: use the screenshots I like that go with the profile. Captured by script from this site's own workstation in dark theme on hypothetical inputs or a synthetic series. No ASTRA screen, company data, account, key or private material appears. Visually inspected before publication.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "SCREENSHOT",
+      "title": "Workstation preview: options",
+      "alt": "Screenshot of the options workstation: payoff at expiry compared with theoretical value today, four Greek curves against spot and a price against volatility chart.",
+      "path": "media/workstation-options.webp",
+      "sha256": "614984998a9e5659e2e31e47ebd2f6b8269ce80fccf3c139e36f02b53fba66f1",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: use the screenshots I like that go with the profile. Captured by script from this site's own workstation in dark theme on hypothetical inputs or a synthetic series. No ASTRA screen, company data, account, key or private material appears. Visually inspected before publication.",
+      "rightsCleared": true,
+      "privacyCleared": true
+    },
+    {
+      "kind": "SCREENSHOT",
+      "title": "Workstation preview: peers",
+      "alt": "Screenshot of the peer comparison workstation: a ratio table, a bar chart of EV to EBITDA and a rank table where adjacent peers are marked context only.",
+      "path": "media/workstation-peers.webp",
+      "sha256": "427f8a72ebb10d142362ab25ff301ba41c3e1b1c4a41057702359777ab9cd5e4",
+      "approved": true,
+      "approvedBy": "Krishiv Ramchandani",
+      "approvedAt": "2026-11-01",
+      "reviewReceipt": "Owner instruction in chat on 2026-11-01: use the screenshots I like that go with the profile. Captured by script from this site's own workstation in dark theme on hypothetical inputs or a synthetic series. No ASTRA screen, company data, account, key or private material appears. Visually inspected before publication.",
+      "rightsCleared": true,
+      "privacyCleared": true
     }
   ]
 }

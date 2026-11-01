@@ -1,0 +1,33 @@
+/* Shared demonstration workstation: controls left, results right. Theme tokens come from style.css. */
+.workstation{margin:0 0 24px}
+.ws{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);border:1px solid var(--line);background:var(--bg)}
+.ws-controls{padding:18px;border-right:1px solid var(--line);display:grid;gap:14px;align-content:start;min-width:0}
+.ws-controls .field small{color:var(--muted);font-size:11px}
+.ws-controls .field i{font-style:normal;color:var(--muted);font-size:11px}
+.ws-group{border:1px solid var(--line);padding:12px;margin:0;display:grid;gap:12px;min-width:0}
+.ws-group legend{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0 6px;color:var(--muted)}
+.ws-results{padding:18px 22px;min-width:0}
+.ws-error{color:var(--no);font-size:13px;margin:0 0 12px}.ws-error:empty{display:none}
+.ws-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px 20px;margin:0 0 18px;padding:0}
+.ws-metrics dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ws-metrics dd{margin:4px 0 0;font:400 1.5rem var(--serif);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ws-results h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 8px}
+.ws-results .note{font-size:13px;color:var(--muted);max-width:760px}
+.ws-results .btn{min-height:40px;padding:8px 14px}
+.ws-actions{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+/* charts */
+.chart{margin:12px 0 22px}
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.chart .gl{stroke:var(--line);stroke-width:1}
+.chart .zero{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.chart .ln{fill:none;stroke-width:2}
+.chart .s0{stroke:var(--ink)}.chart .s1{stroke:#B03A4E}.chart .s2{stroke:var(--accent)}.chart .s3{stroke:#6F0D1B;stroke-dasharray:5 4}.chart .s4{stroke:var(--muted)}
+.chart .bar{fill:#B03A4E}.chart .bar.neg{fill:var(--muted)}.chart .bar.tot{fill:var(--ink)}
+.chart figcaption{font-size:12px;color:var(--muted);margin-top:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin:0 0 6px;font-size:12px;color:var(--muted)}
+.legend li:before{content:"";display:inline-block;width:16px;height:3px;margin:0 6px 3px 0;background:currentColor}
+.legend .s0:before{background:var(--ink)}.legend .s1:before{background:#B03A4E}.legend .s2:before{background:var(--accent)}.legend .s3:before{background:#6F0D1B}.legend .s4:before{background:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:960px){.ws{grid-template-columns:1fr}.ws-controls{border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:720px){.ws-results{padding:14px}.ws-metrics dd{font-size:1.25rem}}

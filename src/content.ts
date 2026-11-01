@@ -178,12 +178,14 @@ export interface Demo {
   summary: string;
   authority: string;
   oracle: string;
+  mode: string;
   panels: string[];
   lab?: string;
 }
 export const DEMOS: Demo[] = [
   {
     id: "valuation",
+    mode: "HYPOTHETICAL inputs. Not the company's financials.",
     n: 1,
     title: "Institutional valuation",
     lens: "Financial Intelligence",
@@ -213,6 +215,7 @@ export const DEMOS: Demo[] = [
   },
   {
     id: "technical",
+    mode: "SYNTHETIC price series. Not the company's prices.",
     n: 2,
     title: "Technical intelligence",
     lens: "Technical Intelligence",
@@ -233,6 +236,7 @@ export const DEMOS: Demo[] = [
   },
   {
     id: "options",
+    mode: "THEORETICAL ONLY. Hypothetical inputs, no market quotes.",
     n: 3,
     title: "Options and derivatives",
     lens: "Derivatives and Quant",
@@ -244,6 +248,7 @@ export const DEMOS: Demo[] = [
   },
   {
     id: "peers",
+    mode: "HYPOTHETICAL inputs you enter. Not company data.",
     n: 4,
     title: "Automatic peer comparison",
     lens: "Financial Intelligence and Market Scan",
@@ -254,6 +259,7 @@ export const DEMOS: Demo[] = [
   },
   {
     id: "correlation",
+    mode: "HYPOTHETICAL volatilities and correlations. Simulated returns are not market data.",
     n: 5,
     title: "Correlation and portfolio risk",
     lens: "Portfolio Intelligence",
@@ -393,4 +399,149 @@ export const SIMULATIONS: Simulation[] = [
   { org: "Standard Chartered", title: "Credit Analyst Job Simulation", learned: "Borrower credit analysis, debt and financing risk.", connection: "Bank and NBFC research." },
   { org: "Deloitte Australia", title: "Data Analytics Job Simulation", learned: "Organising, interpreting and communicating analytical findings.", connection: "Auditability and clear reporting." },
   { org: "BCG", title: "GenAI Job Simulation", learned: "Practical generative AI and business problem solving.", connection: "ASTRA's AI-assisted development approach." },
+];
+
+// ---------------------------------------------------------------------------------------------
+// Profile content. Taken from the owner's approved standard CV. No semester or cumulative GPA, no
+// report counts, no phone number or address. Reliance Industries appears only in STUDY below.
+// ---------------------------------------------------------------------------------------------
+export const LINKS = {
+  email: "krishivramchandani@gmail.com",
+  linkedin: "https://in.linkedin.com/in/krishiv-ramchandani-02543835b",
+  github: "https://github.com/1011K",
+  cv: "/media/krishiv-ramchandani-cv.pdf",
+};
+
+export const FACTS: [string, string][] = [
+  ["Based in", "Mumbai, India"],
+  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected April 2027."],
+  ["CFA Program", "Level I passed, 2026. Level II candidate, May 2027."],
+  ["NISM", "Research Analyst (XV), Equity Derivatives (VIII), Merchant Banking (IX)."],
+  ["Experience", "Investments Intern, Ascendas Firstspace, Aug–Sep 2026."],
+  ["Leadership", "Organising Committee, TALAASH & Jai Hind Conclave, 2024–present."],
+  ["Languages", "English, Hindi."],
+  ["Career interests", "Private equity and hedge funds first, then investment banking and wealth management."],
+];
+
+export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
+  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected April 2027" },
+];
+
+export interface Role {
+  dates: string;
+  role: string;
+  org: string;
+  points: string[];
+}
+export const EXPERIENCE: Role[] = [
+  {
+    dates: "Aug – Sep 2026",
+    role: "Investments Intern",
+    org: "Ascendas Firstspace Development Management Pvt. Ltd.",
+    points: [
+      "Researched industrial and logistics real estate in Mumbai, Pune and NCR, focusing on rents, Grade-A supply and developer activity.",
+      "Worked with property and market data and gained an understanding of warehouse leasing, logistics assets and investment research.",
+    ],
+  },
+];
+export const LEADERSHIP: Role[] = [
+  {
+    dates: "2024 – present",
+    role: "Organising Committee",
+    org: "TALAASH & Jai Hind Conclave",
+    points: ["Event planning, logistics, coordination and outreach."],
+  },
+];
+
+export const SKILLS: { group: string; items: string[] }[] = [
+  { group: "Finance", items: ["Excel financial modelling", "Financial statement analysis", "Equity research", "DCF", "WACC", "SOTP", "Residual income", "Comparables", "Forecasting", "Sensitivity analysis"] },
+  { group: "Markets", items: ["Equity screening", "Technical analysis", "Derivatives", "Portfolio risk", "Enterprise risk management fundamentals"] },
+  { group: "Tools", items: ["Microsoft Excel", "PowerPoint", "Python (basic)", "SQL (introductory)", "Git/GitHub", "AI-assisted development"] },
+  { group: "Languages", items: ["English", "Hindi"] },
+];
+export const INTERESTS = ["Private equity and hedge funds", "Investment banking", "Wealth management"];
+
+// Case-card structure. Open questions only: no conclusions, ratings or targets.
+export const CASE_DETAIL: Record<Ticker, { hypotheses: [string, string]; risks: [string, string, string] }> = {
+  HDFCBANK: {
+    hypotheses: [
+      "Can deposit growth and a stable deposit mix keep funding cost and margin in line with loan growth?",
+      "Or does funding-cost pressure and slower deposit growth lower the return on equity the book can sustain?",
+    ],
+    risks: [
+      "Margin compression if funding costs stay high or the deposit mix worsens.",
+      "Asset quality weakening beyond the credit cost assumed.",
+      "Per-share inputs misstated if share counts are not restated consistently after the 2025 bonus issue.",
+    ],
+  },
+  DLF: {
+    hypotheses: [
+      "Do launches and collections follow the disclosed pipeline closely enough for project-level NAV inputs to hold?",
+      "Or do launch delays, pricing or execution gaps move project cash flows enough to change net asset value?",
+    ],
+    risks: [
+      "Launch timing and execution slippage against the disclosed pipeline.",
+      "Project economics (price, cost, timing) differing from disclosed inputs.",
+      "Inconsistent cash roll between project disclosures and the group balance sheet.",
+    ],
+  },
+  BHARTIARTL: {
+    hypotheses: [
+      "Does ARPU growth outpace capital intensity enough to lift free cash flow?",
+      "Or do network, spectrum and funding costs absorb the benefit of higher ARPU?",
+    ],
+    risks: [
+      "ARPU growing more slowly than the modelled drivers.",
+      "Capital and spectrum spending above modelled levels.",
+      "Leverage and funding cost, plus source and beta inconsistency in the cost of capital.",
+    ],
+  },
+  BAJFINANCE: {
+    hypotheses: [
+      "Does the loan mix keep credit cost within what a stable return on equity requires?",
+      "Or do rising stage 3 assets or dearer wholesale funding compress the spread and the return on equity?",
+    ],
+    risks: [
+      "Credit cost through the cycle.",
+      "Cost and availability of wholesale funding.",
+      "Per-share figures not adjusted consistently for the 2025 split and bonus.",
+    ],
+  },
+  HDFCLIFE: {
+    hypotheses: [
+      "Do persistency and new-business margin stay inside the disclosed embedded-value assumptions?",
+      "Or is embedded value too assumption-dependent to support a defensible valuation from public disclosures?",
+    ],
+    risks: [
+      "Persistency below the assumptions behind embedded value.",
+      "Embedded-value vintage and changes in assumptions.",
+      "No supported embedded-value engine or source, so valuation stays withheld.",
+    ],
+  },
+};
+export const CASE_DATA_STATUS: [string, string][] = [
+  ["Filings and annual reports", "Not loaded"],
+  ["Market data", "Not loaded"],
+  ["Valuation output", "None"],
+];
+
+// Separate, non-core project. Shared on LinkedIn only; no PDF is published here.
+export const STUDY = {
+  title: "Independent valuation study: Reliance Industries",
+  period: "2026",
+  summary:
+    "A separate independent valuation study of Reliance Industries, prepared in 2026. It is not part of the five research cases or the demonstrations on this page, and it is not an ASTRA output.",
+  methods: ["10-year FCFF", "WACC", "Reverse DCF", "Segment SOTP", "Comparable companies", "Sensitivity scenarios"],
+  note: "Shared on LinkedIn. No PDF or workbook is published here. LinkedIn may require sign-in.",
+  links: [
+    { label: "Valuation report post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_reliance-report-activity-7511490572344512512-99Oc" },
+    { label: "Excel workbook post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_astra-reliance-excel-report-activity-7511495036921073664-tM6T" },
+  ],
+};
+
+export const ASTRA_WORKSTREAMS = [
+  "Three-statement forecasting and FCFF, residual-income and sum-of-the-parts valuation workflows, with peer comparison and sensitivity analysis.",
+  "Filing-based data checks and Excel and PDF reporting.",
+  "Equity screeners, technical indicators and backtesting with transaction-cost and look-ahead controls.",
+  "Research-stage options analytics, Greeks and portfolio risk tools.",
 ];

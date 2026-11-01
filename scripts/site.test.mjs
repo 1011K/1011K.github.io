@@ -20,18 +20,34 @@ test('identity, navigation and contact work without JavaScript', () => {
   assert.match(html, /<h1[^>]*>Krishiv/);
   for (const id of ['about','education','experience','projects','astra','research','demos','simulations','contact']) assert.ok(html.includes(`id="${id}"`), id);
   const nav = [...html.matchAll(/<nav id="main-nav"[\s\S]*?<\/nav>/g)][0][0];
-  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Education','Experience','Projects','Research','Demonstrations','Simulations','Contact']);
+  assert.deepEqual([...nav.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), ['About','Demos','Projects','Research','Qualifications','Experience','Simulations','Contact']);
   for (const a of nav.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${a[1]}"`), a[1]);
   for (const href of page.matchAll(/href="#([^"]+)"/g)) assert.ok(page.includes(`id="${href[1]}"`), href[1]);
   assert.ok(html.includes('final-year BBA student at Jai Hind College, Mumbai'));
   assert.ok(html.includes('CFA Level I') && html.includes('Level II candidate'));
-  assert.ok(page.includes('Ascendas Firstspace Development Management Pvt. Ltd.'));
+  assert.ok(page.includes('CapitaLand (Ascendas Firstspace)'));
   assert.ok(html.includes('mailto:krishivramchandani@gmail.com'));
   assert.ok(html.includes('href="https://in.linkedin.com/in/krishiv-ramchandani-02543835b"') && html.includes('href="https://github.com/1011K"'));
-  for (const t of ['Industry Integrated with Tata Consultancy Services', 'April 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
+  for (const t of ['Industry Integrated with Tata Consultancy Services', 'Expected graduation: 2027', 'TALAASH &amp; Jai Hind Conclave', 'Python (basic)', 'SQL (introductory)', 'English', 'Hindi', 'Series XV', 'Series VIII', 'Series IX']) assert.ok(page.includes(t), t);
   assert.match(page, /Private equity and hedge funds[\s\S]*Investment banking[\s\S]*Wealth management/);
   assert.match(html, /href="#main" class="skip"/);
   assert.match(html, /id="theme"/);
+});
+
+test('demo-first portfolio and optional deep research remain navigable', () => {
+  const ids = ['about','demos','projects','research','education','experience','simulations','contact'];
+  for (let i = 1; i < ids.length; i++) {
+    assert.ok(html.indexOf(`id="${ids[i - 1]}"`) < html.indexOf(`id="${ids[i]}"`), `unexpected section order: ${ids[i]}`);
+  }
+  assert.match(html, /<details class="research-disclosure" id="research-details">/);
+  assert.match(html, /<details class="fold fold-gallery">/);
+  assert.match(html, /<details class="fold fold-labs">/);
+  for (const id of ['valuation','technical','options','peers','correlation']) {
+    assert.ok(html.includes(`href="#panel-${id}"`), `missing hero shortcut: ${id}`);
+    assert.ok(page.includes(`id="panel-${id}"`), `missing linked demo panel: ${id}`);
+  }
+  assert.match(page, /CapitaLand \(Ascendas Firstspace\)/);
+  assert.doesNotMatch(html, /Studying businesses, questioning assumptions|I have researched industrial and logistics real estate investment/);
 });
 test('no-JS fallback wins the cascade and hides dead controls', () => {
   const ns = html.match(/<noscript><style>([\s\S]*?)<\/style>/)[1];

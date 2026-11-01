@@ -342,7 +342,7 @@ export const CREDENTIALS: Credential[] = [
   {
     id: "bba",
     title: "BBA, Jai Hind College, Mumbai",
-    status: "Final year. Industry integrated with Tata Consultancy Services. Expected April 2027.",
+    status: "Final year. Industry integrated with Tata Consultancy Services. Expected graduation: 2027.",
     studied: "Business, finance, accounting and management.",
     applied: "Reading financial statements, building forecasts and valuation models, and market research.",
   },
@@ -351,15 +351,15 @@ export const CREDENTIALS: Credential[] = [
     title: "CFA Program",
     status: "Level I passed. Level II candidate, May 2027.",
     studied: "Valuation, capital markets, risk and research methodology.",
-    applied: "The same topics behind the demonstrations below.",
+    applied: "Applied through my independent financial modelling and research projects.",
     caution: "Not a CFA charterholder. Passing an exam does not certify any model on this page.",
   },
   {
     id: "nism-ra",
     title: "NISM Research Analyst (Series XV)",
     status: "Passed.",
-    studied: "Research conventions, reading issuer statements, evidence and investment-analysis questions.",
-    applied: "Structuring company research around sources and stated limitations.",
+    studied: "Research methods, financial statement analysis, source verification and investment evaluation.",
+    applied: "Organising company research around verifiable sources and stated limitations.",
     caution: "Not a SEBI research analyst registration.",
   },
   {
@@ -367,7 +367,7 @@ export const CREDENTIALS: Credential[] = [
     title: "NISM Equity Derivatives (Series VIII)",
     status: "Passed.",
     studied: "Option contracts, payoff algebra, Greeks, hedging risk and pricing assumptions.",
-    applied: "The options calculator below and the payoff reasoning behind it.",
+    applied: "Applied in the theoretical options calculator and payoff analysis.",
     caution: "An exam is not a substitute for licensed historical options data.",
   },
   {
@@ -375,7 +375,7 @@ export const CREDENTIALS: Credential[] = [
     title: "NISM Merchant Banking (Series IX)",
     status: "Passed.",
     studied: "Capital-markets issuance, disclosure and corporate actions.",
-    applied: "Reading corporate-action histories such as splits and bonus issues.",
+    applied: "Interpreting corporate actions, including share splits and bonus issues, in per-share analysis.",
     caution: "Not a merchant banking licence.",
   },
 ];
@@ -392,10 +392,10 @@ export const SIMULATIONS: Simulation[] = [
   { org: "Goldman Sachs", title: "Internal Audit Job Simulation", learned: "Internal controls, risk identification and independent review.", connection: "Validation gates before a number is shown." },
   { org: "Goldman Sachs", title: "Risk Job Simulation", learned: "Risk measurement and communication.", connection: "Market and portfolio risk analysis." },
   { org: "Vista Equity Partners", title: "AI in Action Job Simulation", learned: "Using AI in business processes.", connection: "Responsible AI-assisted project development." },
-  { org: "Vista Equity Partners", title: "Understanding the Deal Lifecycle Job Simulation", learned: "Deal process and diligence workflow.", connection: "Corporate finance career interests." },
-  { org: "Vista Equity Partners", title: "Demystifying Private Equity Job Simulation", learned: "Private equity investment process, business understanding and value creation.", connection: "Direct alignment with private equity interest." },
-  { org: "Citi", title: "Investment Banking Job Simulation", learned: "Corporate finance and capital-markets analytical workflow.", connection: "Investment banking interest." },
-  { org: "Bank of America", title: "Investment Banking Job Simulation", learned: "Transaction analysis and financial presentation.", connection: "Investment banking interest." },
+  { org: "Vista Equity Partners", title: "Understanding the Deal Lifecycle Job Simulation", learned: "Deal process and diligence workflow.", connection: "Supports my interest in corporate finance careers." },
+  { org: "Vista Equity Partners", title: "Demystifying Private Equity Job Simulation", learned: "Private equity investment process, business understanding and value creation.", connection: "Aligns with my interest in private equity." },
+  { org: "Citi", title: "Investment Banking Job Simulation", learned: "Corporate finance and capital-markets analytical workflow.", connection: "Aligns with my interest in investment banking." },
+  { org: "Bank of America", title: "Investment Banking Job Simulation", learned: "Transaction analysis and financial presentation.", connection: "Aligns with my interest in investment banking." },
   { org: "Standard Chartered", title: "Credit Analyst Job Simulation", learned: "Borrower credit analysis, debt and financing risk.", connection: "Bank and NBFC research." },
   { org: "Deloitte Australia", title: "Data Analytics Job Simulation", learned: "Organising, interpreting and communicating analytical findings.", connection: "Auditability and clear reporting." },
   { org: "BCG", title: "GenAI Job Simulation", learned: "Practical generative AI and business problem solving.", connection: "ASTRA's AI-assisted development approach." },
@@ -414,17 +414,17 @@ export const LINKS = {
 
 export const FACTS: [string, string][] = [
   ["Based in", "Mumbai, India"],
-  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected April 2027."],
+  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected graduation: 2027."],
   ["CFA Program", "Level I passed, 2026. Level II candidate, May 2027."],
   ["NISM", "Research Analyst (XV), Equity Derivatives (VIII), Merchant Banking (IX)."],
-  ["Experience", "Investments Intern, Ascendas Firstspace, Aug–Sep 2026."],
+  ["Experience", "Investments Intern at CapitaLand (Ascendas Firstspace), Aug–Sep 2026."],
   ["Leadership", "Organising Committee, TALAASH & Jai Hind Conclave, 2024–present."],
   ["Languages", "English, Hindi."],
-  ["Career interests", "Private equity and hedge funds first, then investment banking and wealth management."],
+  ["Career interests", "Investment research, private equity, hedge funds, investment banking and wealth management."],
 ];
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
-  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected April 2027" },
+  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected graduation: 2027" },
 ];
 
 export interface Role {
@@ -437,10 +437,10 @@ export const EXPERIENCE: Role[] = [
   {
     dates: "Aug – Sep 2026",
     role: "Investments Intern",
-    org: "Ascendas Firstspace Development Management Pvt. Ltd.",
+    org: "CapitaLand (Ascendas Firstspace)",
     points: [
-      "Researched industrial and logistics real estate in Mumbai, Pune and NCR, focusing on rents, Grade-A supply and developer activity.",
-      "Worked with property and market data and gained an understanding of warehouse leasing, logistics assets and investment research.",
+      "Supported research on industrial and logistics property markets in Mumbai, Pune and the National Capital Region, focusing on rents, warehouse supply and developer activity.",
+      "Reviewed property and market data to understand warehouse leasing conditions and regional market trends.",
     ],
   },
 ];
@@ -466,7 +466,7 @@ export const CASE_DETAIL: Record<Ticker, { hypotheses: [string, string]; risks: 
   HDFCBANK: {
     hypotheses: [
       "Can deposit growth and a stable deposit mix keep funding cost and margin in line with loan growth?",
-      "Or does funding-cost pressure and slower deposit growth lower the return on equity the book can sustain?",
+      "Or do funding-cost pressure and slower deposit growth lower the return on equity the book can sustain?",
     ],
     risks: [
       "Margin compression if funding costs stay high or the deposit mix worsens.",
@@ -530,9 +530,9 @@ export const STUDY = {
   title: "Independent valuation study: Reliance Industries",
   period: "2026",
   summary:
-    "A separate independent valuation study of Reliance Industries, prepared in 2026. It is not part of the five research cases or the demonstrations on this page, and it is not an ASTRA output.",
+    "A separate valuation study of Reliance Industries using discounted cash flow, sum-of-the-parts and comparative analysis. This study is not an ASTRA output.",
   methods: ["10-year FCFF", "WACC", "Reverse DCF", "Segment SOTP", "Comparable companies", "Sensitivity scenarios"],
-  note: "Shared on LinkedIn. No PDF or workbook is published here. LinkedIn may require sign-in.",
+  note: "The report and workbook are linked on LinkedIn; neither file is hosted on this site.",
   links: [
     { label: "Valuation report post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_reliance-report-activity-7511490572344512512-99Oc" },
     { label: "Excel workbook post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_astra-reliance-excel-report-activity-7511495036921073664-tM6T" },
@@ -543,7 +543,7 @@ export const ASTRA_WORKSTREAMS = [
   "Three-statement forecasting and FCFF, residual-income and sum-of-the-parts valuation workflows, with peer comparison and sensitivity analysis.",
   "Filing-based data checks and Excel and PDF reporting.",
   "Equity screeners, technical indicators and backtesting with transaction-cost and look-ahead controls.",
-  "Research-stage options analytics, Greeks and portfolio risk tools.",
+  "Research-stage options analytics, option Greeks and portfolio-risk analysis.",
 ];
 
 /** Methodology-only depth for each case. No figures, valuations, ratings or targets: those stay withheld until each report passes review. */

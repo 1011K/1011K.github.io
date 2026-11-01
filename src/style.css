@@ -225,3 +225,22 @@ td.h-na{background:var(--hna);color:var(--hna-ink);border:1px dashed var(--hna-l
 @media(max-width:720px){.shell{width:calc(100% - 34px)}.hero{grid-template-columns:1fr;padding-block:40px 56px;row-gap:36px}.portrait-wrap{max-width:360px;justify-self:start}.portrait{aspect-ratio:1/1.05}section.block{padding:60px 0}.section-head{margin-bottom:30px}.areas{grid-template-columns:1fr}.panel{padding:18px}.tabs button{flex:1 1 45%;text-align:left}.nav{padding-inline:17px}.bottom{display:block}.bottom span{display:block;margin-top:6px}table.heat td{height:40px;font-size:11px}table.heat th{font-size:10.5px}.case{padding:20px}.case header{flex-wrap:wrap}.dhead h3{font-size:26px}.demobar{padding:14px}.contact{padding:60px 0}.contact-links a{grid-template-columns:84px minmax(0,1fr) auto;gap:10px}}
 @media(prefers-reduced-motion:no-preference){a,.btn,button,details.acc,details.area,select,input,.nav a{transition:color .15s ease,background-color .15s ease,border-color .15s ease,opacity .15s ease}details.acc>summary:after,details.area>summary:after{transition:transform .18s ease}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* V9: make the portfolio useful before the reader scrolls into technical detail. */
+.topic-tags{display:flex;flex-wrap:wrap;gap:8px;margin:17px 0 0}
+.topic-tags a{display:inline-flex;align-items:center;min-height:36px;border:1px solid var(--line);border-radius:100px;padding:7px 12px;font-size:12px;color:var(--ink);text-decoration:none;line-height:1.3}
+.topic-tags a:hover,.topic-tags a:focus-visible{border-color:var(--accent);background:var(--paper)}
+.glance-fold{display:block;border-top:2px solid var(--ink);padding-top:0}
+.fold,.research-disclosure{border:1px solid var(--line);background:var(--paper);padding:0 22px;margin:18px 0}
+.glance-fold>summary,.fold>summary,.research-disclosure>summary{cursor:pointer;padding:17px 0;font-size:14px;font-weight:600;line-height:1.5}
+.fold>summary::marker,.research-disclosure>summary::marker,.glance-fold>summary::marker{color:var(--accent)}
+.fold>summary:focus-visible,.research-disclosure>summary:focus-visible,.glance-fold>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.research-disclosure>summary small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:2px}
+.research-inner{padding:4px 0 24px}
+.fold-gallery .shots-block{margin:10px 0 20px}
+.fold-labs .labs-wrap{padding:4px 0 20px}
+.fold-astra .areas{margin:12px 0 20px}
+.glance-fold .facts{padding-bottom:12px}
+#demos{scroll-margin-top:80px}
+@media(max-width:720px){.fold,.research-disclosure{padding:0 14px;margin:12px 0}.topic-tags a{font-size:11.5px;padding:7px 10px}}

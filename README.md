@@ -2,7 +2,7 @@
 
 Single-page professional portfolio for Krishiv Ramchandani. Vite, TypeScript, local Inter/Fraunces fonts, a global light/dark switch and a research-led editorial layout. No backend, remote market feed, analytics or ASTRA connection.
 
-Page order: hero with an at-a-glance facts panel, education and qualifications, experience, leadership and skills, Projects (ASTRA is one of three; the independent Reliance Industries valuation study is a separate, non-core project shared on LinkedIn only), the five research cases, the five demonstrations with educational labs, Forage simulations and contact. Profile facts come from the approved standard CV; no GPA, report counts, phone or address are published.
+Page order: short profile and demo shortcuts; five interactive educational workstations; three selected projects; expandable research cases; education and qualifications; experience; Forage simulations; and contact. The demo screenshot gallery and extra educational labs are collapsed by default. The separate Reliance Industries study is linked on LinkedIn only. Profile facts come from the approved standard CV; no GPA, report counts, phone or address are published.
 
 Public copy and demo contracts live in `src/content.ts`. Profile styles live in `src/profile.css`, base and shell styles in `src/style.css`. `src/render.ts` turns them into HTML at build time (a Vite transform fills the `<!--@name-->` placeholders in `index.html`), so every section except the interactive widgets works without JavaScript.
 
@@ -14,13 +14,13 @@ Run `npm test`, `npm run typecheck`, `npm run build`, `npm run audit:public`, `n
 
 ## Publication
 
-The manifest includes the owner-supplied professional portrait and the explicitly approved phone-removed standard CV, each pinned by exact SHA-256 and a privacy review receipt. Decoded pixels and full square framing are unchanged. No standalone video, product screenshot or research PDF is approved. Design reference files must never be publication assets. Research candidates are a source register, not published reports.
+The manifest includes the approved portrait, phone-removed CV, and five approved screenshots of the site's hypothetical calculators, all pinned by SHA-256 with owner-review receipts. There is no approved original ASTRA product screenshot, locally hosted ASTRA video or five-company research PDF. Design reference files must never be publication assets. Research candidates are a source register, not published reports.
 
 Every media release requires exact bytes, content/metadata inspection, rights/privacy review and owner approval of its SHA-256. Research also requires independent numerical/source review and full publication metadata. Historical files may remain accessible through Git history; deleting current copies does not erase past public exposure.
 
 ## Demonstrations and labs
 
-Five demonstrations (valuation, technical, options, peers, red correlation) are all **WITHHELD** as engine-backed demos: no owner engine is pinned, no licensed point-in-time data is loaded and no oracle has passed. What is interactive is labelled: the valuation method router fails closed by sector, the options calculator is a THEORETICAL ONLY Black-Scholes-Merton model on hypothetical inputs (`src/options.ts`), and the correlation weights are validated while the red 5x5 heat map shows only the palette with withheld cells.
+Five demonstrations (valuation, technical, options, peers, red correlation) are all **WITHHELD** as engine-backed demos: no owner engine is pinned, no licensed point-in-time data is loaded and no oracle has passed. What is interactive is labelled: the valuation method router fails closed by sector, the options calculator is a THEORETICAL ONLY Black-Scholes-Merton model on hypothetical inputs (`src/options.ts`), and the correlation weights are validated and the red 5x5 heat map uses explicitly hypothetical inputs, with simulated results separately labelled.
 
 Four independent educational labs (financial, technical on a synthetic series, expiry payoff, two-asset risk) are mounted below the demonstrations as hypothetical illustrations, not ASTRA output. Financial: five-year constant-assumption FCFF with bridge and WACC/g sensitivity. Technical: explicitly synthetic OHLCV with lagged EMA/RSI rules, next-open execution and costs. Derivatives: long call or protective put expiry P&L. Portfolio: two hypothetical long-only assets with Euler risk contributions. No return forecasts.
 

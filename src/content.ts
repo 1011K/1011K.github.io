@@ -342,7 +342,7 @@ export const CREDENTIALS: Credential[] = [
   {
     id: "bba",
     title: "BBA, Jai Hind College, Mumbai",
-    status: "Final year. Industry integrated with Tata Consultancy Services. Expected April 2027.",
+    status: "Final year. Industry integrated with Tata Consultancy Services. Expected graduation: 2027.",
     studied: "Business, finance, accounting and management.",
     applied: "Reading financial statements, building forecasts and valuation models, and market research.",
   },
@@ -414,17 +414,17 @@ export const LINKS = {
 
 export const FACTS: [string, string][] = [
   ["Based in", "Mumbai, India"],
-  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected April 2027."],
+  ["Education", "BBA (Industry Integrated with Tata Consultancy Services), Jai Hind College. Expected graduation: 2027."],
   ["CFA Program", "Level I passed, 2026. Level II candidate, May 2027."],
   ["NISM", "Research Analyst (XV), Equity Derivatives (VIII), Merchant Banking (IX)."],
-  ["Experience", "Investments Intern, Ascendas Firstspace, Aug–Sep 2026."],
+  ["Experience", "Investments Intern at CapitaLand (Ascendas Firstspace), Aug–Sep 2026."],
   ["Leadership", "Organising Committee, TALAASH & Jai Hind Conclave, 2024–present."],
   ["Languages", "English, Hindi."],
   ["Career interests", "Private equity and hedge funds first, then investment banking and wealth management."],
 ];
 
 export const ACADEMIC_RECORD: { level: string; detail: string; result: string }[] = [
-  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected April 2027" },
+  { level: "Bachelor of Business Administration", detail: "Jai Hind College, Mumbai. Industry Integrated with Tata Consultancy Services.", result: "Final year. Expected graduation: 2027" },
 ];
 
 export interface Role {
@@ -437,10 +437,10 @@ export const EXPERIENCE: Role[] = [
   {
     dates: "Aug – Sep 2026",
     role: "Investments Intern",
-    org: "Ascendas Firstspace Development Management Pvt. Ltd.",
+    org: "CapitaLand (Ascendas Firstspace)",
     points: [
-      "Researched industrial and logistics real estate in Mumbai, Pune and NCR, focusing on rents, Grade-A supply and developer activity.",
-      "Worked with property and market data and gained an understanding of warehouse leasing, logistics assets and investment research.",
+      "Supported research on industrial and logistics property markets in Mumbai, Pune and the National Capital Region, focusing on rents, warehouse supply and developer activity.",
+      "Reviewed property and market data to understand warehouse leasing conditions and regional market trends.",
     ],
   },
 ];
@@ -530,9 +530,9 @@ export const STUDY = {
   title: "Independent valuation study: Reliance Industries",
   period: "2026",
   summary:
-    "A separate independent valuation study of Reliance Industries, prepared in 2026. It is not part of the five research cases or the demonstrations on this page, and it is not an ASTRA output.",
+    "A separate valuation study of Reliance Industries using discounted cash flow, sum-of-the-parts and comparative analysis. This study is not an ASTRA output.",
   methods: ["10-year FCFF", "WACC", "Reverse DCF", "Segment SOTP", "Comparable companies", "Sensitivity scenarios"],
-  note: "Shared on LinkedIn. No PDF or workbook is published here. LinkedIn may require sign-in.",
+  note: "The report and workbook are linked on LinkedIn; neither file is hosted on this site.",
   links: [
     { label: "Valuation report post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_reliance-report-activity-7511490572344512512-99Oc" },
     { label: "Excel workbook post", href: "https://www.linkedin.com/posts/krishiv-ramchandani-02543835b_astra-reliance-excel-report-activity-7511495036921073664-tM6T" },
@@ -543,7 +543,7 @@ export const ASTRA_WORKSTREAMS = [
   "Three-statement forecasting and FCFF, residual-income and sum-of-the-parts valuation workflows, with peer comparison and sensitivity analysis.",
   "Filing-based data checks and Excel and PDF reporting.",
   "Equity screeners, technical indicators and backtesting with transaction-cost and look-ahead controls.",
-  "Research-stage options analytics, Greeks and portfolio risk tools.",
+  "Research-stage options analytics, option Greeks and portfolio-risk analysis.",
 ];
 
 /** Methodology-only depth for each case. No figures, valuations, ratings or targets: those stay withheld until each report passes review. */
